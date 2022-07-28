@@ -1,0 +1,367 @@
+@media screen and (max-width: 1690px) {
+    h1 {
+        font-size: 65px;
+    }
+    .site-btn-header {
+        padding: 10px 24px!important;
+    }
+    #sidebar a,
+    .navbar a {
+        font-size: 16px;
+    }
+    .numbr-call {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1399px) {
+    .back-bg .site-btn {
+        padding: 12px 28px;
+    }
+    .for-sollr-img {
+        display: none;
+    }
+    .banner-bottom-left {
+        width: 54%;
+    }
+    .banner-bottom-right {
+        width: 47%;
+    }
+    .banner-top {
+        top: 160px;
+    }
+    h1 {
+        font-size: 62px;
+    }
+    h2 {
+        font-size: 44px;
+    }
+    .student-tabs .nav-item button {
+        width: 160px !important;
+    }
+    .web-logo {
+        width: 155px;
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .banner-top {
+        top: 131px;
+    }
+    h1 {
+        font-size: 54px;
+    }
+    h2 {
+        font-size: 40px;
+    }
+    .banner-bottom-right h6 {
+        font-size: 20px;
+    }
+    .banner-bottom-right h2 {
+        font-size: 41px;
+    }
+    .mar-n-5 {
+        right: 0;
+    }
+    .banner-img {
+        margin-left: 0;
+    }
+    .banner-bottom-left {
+        left: -10px;
+    }
+    .banner-bottom-right {
+        right: 0;
+    }
+    #sidebar a,
+    .navbar a,
+    .nav-dropdown button {
+        font-size: 18px;
+    }
+    .banner-right::before {
+        top: 2px;
+        left: -15px;
+    }
+    .order-tabs .nav-item button {
+        width: 190px;
+    }
+    .navbar-collapse.show {
+        padding: 15px 35px 15px 15px;
+        width: 100%;
+    }
+    .navbar-collapse {
+        background: rgb(3 149 209 / 87%);
+        padding: 0px;
+        box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
+        position: fixed;
+        z-index: 1;
+        width: 0%;
+        left: 0;
+        right: auto;
+        top: 0px;
+        height: 100vh;
+        transition: all ease-in-out .5s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    ul.nav.navbar-nav.icons-nav {
+        margin-right: auto !important;
+        margin-top: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+    .navbar-light .navbar-toggler {
+        z-index: 3;
+    }
+    .shop-drop {
+        position: absolute !important;
+    }
+    #sidebar a,
+    .navbar a,
+    .nav-dropdown button {
+        font-size: 30px;
+        line-height: 2;
+    }
+    .navbar-nav {
+        text-align: center;
+    }
+    .nav-dropp {
+        position: absolute !important;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .contact-pic {
+        display: none;
+    }
+    .back-bg .site-btn {
+        margin-top: 10px;
+    }
+    .providing .tab-content {
+        margin-left: 0rem;
+    }
+    .left-top-arow {
+        display: none;
+    }
+    .login::before {
+        display: none;
+    }
+    .logn-back {
+        display: none;
+    }
+    .people-pic {
+        display: none;
+    }
+    .banner-inner-content {
+        position: absolute;
+        top: 48%;
+        left: 47%;
+        transform: translateY(-50%) translateX(-58%);
+    }
+    .notification-div {
+        height: 300px;
+        width: 280px;
+        transform: translate3d(0px, 6px, 0px) !important;
+        position: absolute !important;
+    }
+    .profile-div {
+        position: absolute !important;
+        transform: translate3d(0, 6px, 0px) !important;
+    }
+    .cart-dropp {
+        border-radius: 15px;
+        width: 310px;
+        transform: translate3d(0, 6px, 0px) !important;
+        padding: 20px;
+        position: absolute !important;
+    }
+    .cart-drop-2 {
+        border-radius: 15px;
+        width: 310px;
+        transform: translate3d(-85px, 6px, 0px) !important;
+        padding: 20px;
+        position: absolute !important;
+    }
+    .course-view {
+        top: 0;
+        margin: 30px 0;
+    }
+    .p-md {
+        font-size: 18px;
+    }
+    .p-sm {
+        font-size: 14px;
+    }
+    .banner-bottom-right {
+        right: 70px;
+        width: unset;
+    }
+    .banner-bottom-right img {
+        width: 80%;
+    }
+    .banner-bottom-content {
+        left: 30%;
+    }
+    .banner-bottom-left {
+        width: 44%;
+        top: 81%;
+        left: 10px !important;
+    }
+    .shop-left {
+        display: none;
+    }
+    .order-tabs .nav-item button {
+        width: auto;
+        flex: 1;
+    }
+    .w-300 {
+        width: 250px;
+    }
+    .banner-video-sm video[poster],
+    .banner-video-sm video,
+    .banner-video video[poster],
+    .banner-video video {
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .banner-inner-content2 {
+        position: absolute;
+        top: 65%;
+        left: 55%;
+        transform: translateY(-65%) translateX(-55%);
+    }
+    .banner {
+        height: 85vh;
+    }
+    .bird-in {
+        display: none;
+    }
+    .site-btn {
+        background: #0395D1;
+        color: white;
+        border: 1px solid #0395D1;
+        border-radius: 50px;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 8px 60px;
+        text-decoration: none;
+        transition: ease-in-out 0.2s;
+    }
+    .search-bar {
+        width: 100%;
+    }
+    .w-300 {
+        width: 100%;
+    }
+    .p-lg {
+        font-size: 16px;
+    }
+    .search-barr {
+        width: 100%;
+    }
+    .popular-carousel .owl-nav {
+        position: static;
+        transform: none;
+        justify-content: center;
+    }
+    .banner-bottom-right {
+        right: 10px;
+    }
+    .shop-drop {
+        min-width: 100%;
+        max-width: 100%;
+        left: 0 !important;
+    }
+    .progress {
+        margin-left: 10px !important;
+        margin-top: 0;
+    }
+    .notification-div {
+        width: 280px;
+        transform: translate3d(-16px, 6px, 0px) !important;
+    }
+    .cart-dropp {
+        width: 290px;
+        transform: translate3d(-62px, 6px, 0px) !important;
+    }
+    .flex-btn-1 {
+        flex: 1;
+        padding: 9px 0 !important;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .banner-inner-content {
+        position: absolute;
+        top: 50%;
+        left: 47%;
+        transform: translateY(-50%) translateX(-58%);
+    }
+    h1 {
+        font-size: 30px;
+    }
+    h2 {
+        font-size: 24px;
+    }
+    .course-carousel .owl-stage,
+    .product-carousel .owl-stage {
+        padding-left: 0 !important;
+    }
+    .review-test-card .p-md {
+        font-size: 13px;
+    }
+    .order-tabs.login-tabs li button.nav-link {
+        font-size: 16px;
+    }
+    .cart-table td {
+        font-size: 17px;
+    }
+    .cart-table.instructor-table td {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .much-money {
+        padding: 1rem 0;
+    }
+    .searchable-data {
+        padding: 1rem 0;
+    }
+    .solar-map {
+        padding: 1rem 0;
+    }
+    .historical-weather {
+        padding: 1rem 0;
+    }
+    footer {
+        padding-top: 4rem;
+    }
+    .potential {
+        padding: 1rem 0;
+    }
+    .best-for-you {
+        bottom: -18px;
+    }
+    .web-logo {
+        max-width: 200px;
+    }
+    .banner {
+        height: 50vh;
+    }
+    label {
+        font-size: 14px;
+    }
+    .order-tabs {
+        display: block !important;
+        text-align: center;
+        border-bottom: 0;
+    }
+    .order-tabs li.nav-item button {
+        margin: 5px auto;
+    }
+}
