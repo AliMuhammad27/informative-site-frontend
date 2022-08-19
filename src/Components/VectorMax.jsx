@@ -1,32 +1,31 @@
 import React, { useRef, useEffect } from "react";
 import { VectorMap } from "react-jvectormap";
 
-const VectorMapp = ({ printerdata }) => {
+const VectorMapp = ({ orders, state }) => {
+  console.log("ordersorders", orders);
   const map = useRef();
-  console.log("printerdata", printerdata);
-  const printlocation =
-    printerdata?.length > 0 &&
-    printerdata.map((print) => {
-      //   console.log('print.printergeolocation[0]',print.printergeolocation[0]);
-      return {
-        latLng: [
-          40.7128,
-          74.0060
-        ],
-        name: print?.city,
-      };
-    });
+
   const onToolTipShow = (e, el, code) => {
+    const content2 = el.html();
+    let productqty = [];
     console.log("e, el, code", e);
-    console.log("ee",el)
-    // console.log(code, e, el)
-    // let allData = {...this.state.activeStateData, ...this.state.inactiveStateData}
-    // console.log(allData)
-    let content = "State: " + el.html();
-    console.log("content", content);
+    orders?.length > 0 &&
+      orders?.map((ord) => {
+        // console.log('prd',ord);
+        ord?.map((ord2) => {
+          // console.log('prd2',ord2);
+          if (ord2?.state == content2) {
+            productqty.push("<br>" + ord2?.ord?.name + ": " + ord2?.ord?.qty);
+          }
+        });
+      });
+    console.log("productqty", productqty);
+    let joinedproductqty = productqty.join();
+    let content = el.html() + " " + joinedproductqty;
+    console.log("content", typeof content);
+    state(el.html() + " " + joinedproductqty);
     return el.html(content);
   };
-  console.log("printlocation", printlocation);
   return (
     <VectorMap
       map={"us_aea"}
@@ -34,8 +33,8 @@ const VectorMapp = ({ printerdata }) => {
       markerStyle={{
         initial: {
           fill: "#FFFF",
-          stroke: "#383f47"
-        }
+          stroke: "#383f47",
+        },
       }}
       onRegionTipShow={onToolTipShow}
       series={{
@@ -44,36 +43,22 @@ const VectorMapp = ({ printerdata }) => {
             attribute: "r",
             scale: [5, 20],
             values: [60, 6, 54],
-            normalizeFunction: "polynomial"
-          }
-        ]
+            normalizeFunction: "polynomial",
+          },
+        ],
       }}
       regionStyle={{
         initial: {
-          fill: "#128da7"
+          fill: "#0096FF",
         },
         hover: {
-          fill: "#A0D1DC"
-        }
+          fill: "#0000FF",
+        },
       }}
-      markers={
-        printlocation
-
-        //   {
-        //     latLng: [24.8607, 67.0011],
-        //     name: "WOW",
-        //     // value: 30
-        //   },
-        //   {
-        //     latLng: [-33, 12.45],
-        //     name: "WAZZZA",
-        //     value: 16
-        //   }
-      }
       ref={map}
       containerStyle={{
         width: "100%",
-        height: "100%"
+        height: "100%",
       }}
       containerClassName="map"
     />

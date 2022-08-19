@@ -1,31 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import useWindowTitle from "../../Hooks/useWindowTitle";
 import { Link } from "react-router-dom";
-import {
-  teslaCenters,
+const {
   getKeyByValue,
+  electricUsage,
   toCsv,
   download,
-} from "../../Util/Helpers";
-const EvChargingStations = ({ match }) => {
-  let teslavalues = "";
-  if (Object.values(teslaCenters).includes(match.params.state)) {
-    teslavalues = getKeyByValue(teslaCenters, match.params.state);
+} = require("../../Util/Helpers");
+
+const ElectricalUsage = ({ match }) => {
+  let electricalData = "";
+  if (Object.values(electricUsage).includes(match.params.state)) {
+    electricalData = getKeyByValue(electricUsage, match.params.state);
   }
+  const electricalData1 = electricalData.split("-");
+  console.log("StateKey", electricalData1[0]);
+  //console.log("StateKey", match.params.state);
   const downloadToCsv = function () {
     const table = document.getElementById("exportMe");
     const csv = toCsv(table);
     download(csv, "Record.csv");
   };
-  const weatherValues1 = teslavalues.split("-");
-  console.log("StateKey", weatherValues1);
   const goToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   };
-  useWindowTitle("Tesla Charging");
+  useWindowTitle("electrical-usage");
   return (
     <div className="wrapper">
       {/*?php include('mobile-navigation-loggedin.php') ?*/}
@@ -55,21 +57,17 @@ const EvChargingStations = ({ match }) => {
             </div>
           </div>
         </div>
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-lg-12">
-              <h2 className="text-50 text-center">
-                Area-wide Electric Car charging stations
-              </h2>
-            </div>
-            <div className="col-lg-10">
-              <p className="p-text text-center">
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour, or randomised words which don't look even
-                slightly believable. If you are going to use a passage of Lorem
-                Ipsum,
-              </p>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-12 col-xxl-11 col-xl-11  mx-auto">
+              <div className="row">
+                <div className="col-lg-4"></div>
+                <div className="col-lg-4">
+                  <h2 className="text-50 text-center">
+                    Electrical usage for residential and commercial
+                  </h2>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -82,53 +80,60 @@ const EvChargingStations = ({ match }) => {
                 <div className="col-lg-12">
                   <div className="table-responsive">
                     <table
-                      className="table table-striped table-bordered px-2"
+                      className="table table-striped table-bordered text-center"
                       id="exportMe"
                     >
                       <thead>
                         <tr>
                           <th>STATE</th>
-                          <th>Total EVs</th>
-                          <th>Level 1 Ports </th>
-                          <th>Level 2 Ports </th>
-                          <th>DCFC Ports</th>
-                          <th>Total Ports</th>
-                          <th>Ratio: EVs to Charger Ports</th>
+                          <th>Average retail price (cents/kWh)</th>
+                          <th>Net summer capacity (MW)</th>
+                          <th>Net generation (MWh)</th>
+                          <th>Total retail sales (MWh)</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
+                          {/* <td>{match.params.state}</td>
+                          <td>{data1[1]}¢ / kWh</td>
+                          <td>{data2[1]}¢ / kWh</td>
+                          {data2[1] < data1[1] ? (
+                            <td className="red-text">UP</td>
+                          ) : (
+                            <td className="green-text">DOWN</td>
+                          )}
+                          <td className="green-text">
+                            {(data1[1] - data2[1]).toFixed(2)}
+                          </td> */}
+
                           <td>{match.params.state}</td>
                           <td>
-                            {weatherValues1[0]
-                              ? weatherValues1[0]
-                              : "Data is not Available at the moment"}
+                            {electricalData1[0]
+                              ? electricalData1[0]
+                              : "No Data Available at the moment"}
                           </td>
                           <td>
-                            {weatherValues1[1]
-                              ? weatherValues1[1]
-                              : "Data is not Available at the moment"}
+                            {electricalData1[1]
+                              ? electricalData1[1]
+                              : "No Data Available at the moment"}
                           </td>
                           <td>
-                            {weatherValues1[2]
-                              ? weatherValues1[2]
-                              : "Data is not Available at the moment"}
+                            {electricalData1[2]
+                              ? electricalData1[2]
+                              : "No Data Available at the moment"}
                           </td>
                           <td>
-                            {weatherValues1[3]
-                              ? weatherValues1[3]
-                              : "Data is not Available at the moment"}
+                            {electricalData1[3]
+                              ? electricalData1[3]
+                              : "No Data Available at the moment"}
                           </td>
-                          <td>
-                            {weatherValues1[4]
-                              ? weatherValues1[4]
-                              : "Data is not Available at the moment"}
-                          </td>
-                          <td>
-                            {weatherValues1[5]
-                              ? weatherValues1[5]
-                              : "Data is not Available at the moment"}
-                          </td>
+                          {/* <td>{dummy}¢ / kWh</td> */}
+                          {/* {1 < 2 ? (
+                            <td className="red-text">UP</td>
+                          ) : (
+                            <td className="green-text">DOWN</td>
+                          )}
+                          <td className="green-text">{(2 - 3).toFixed(2)}</td> */}
                         </tr>
                       </tbody>
                     </table>
@@ -137,7 +142,7 @@ const EvChargingStations = ({ match }) => {
               </div>
               <div className="row text-center">
                 <div className="col-lg-12 my-5">
-                  <a href="#_" className="site-btn">
+                  <a href="http://altways.com/" className="site-btn">
                     Get a Qoute
                   </a>
                 </div>
@@ -153,9 +158,8 @@ const EvChargingStations = ({ match }) => {
           </Link>
         </div>
       </div>
-      {/*?php include('site-footer.php') ?*/}
     </div>
   );
 };
 
-export default EvChargingStations;
+export default ElectricalUsage;

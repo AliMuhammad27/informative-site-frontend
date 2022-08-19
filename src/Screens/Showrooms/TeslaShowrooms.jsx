@@ -1,17 +1,72 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import useWindowTitle from "../../Hooks/useWindowTitle";
-
-const TeslaShowrooms = () => {
+import {
+  teslaShowrooms,
+  getKeyByValue,
+  links,
+  toCsv,
+  download,
+} from "../../Util/Helpers";
+const TeslaShowrooms = ({ match }) => {
+  let teslashowrooms = "";
+  let showroomlinks = "";
+  if (Object.values(teslaShowrooms).includes(match.params.state)) {
+    teslashowrooms = getKeyByValue(teslaShowrooms, match.params.state);
+  }
+  if (Object.values(links).includes(match.params.state)) {
+    showroomlinks = getKeyByValue(links, match.params.state);
+  }
+  const downloadToCsv = function () {
+    const table = document.getElementById("exportMe");
+    const csv = toCsv(table);
+    download(csv, "Record.csv");
+  };
+  const teslashowrooms1 = teslashowrooms.split(",");
+  const showroomlinks1 = showroomlinks.split("-");
+  console.log("TeslaShowrooms", teslashowrooms1);
+  console.log("TeslaShowroomsLinks", showroomlinks1);
+  const goToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   useWindowTitle("showrooms");
   return (
     <div className="wrapper">
       <section className="inner-banner"></section>
       <section className="py-4">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12 col-xxl-11 col-xl-11  mx-auto">
+              <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+                  <div class="text-end">
+                    {/* <a href="#_" class="site-btn" onClick={downloadToCsv}>
+                        Download CSV
+                      </a> */}
+                    <button
+                      className="site-btn"
+                      id="export"
+                      onClick={downloadToCsv}
+                    >
+                      Download Csv
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <section class="py-4"></section>
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-12">
               <h2 className="text-50 text-center">
-                Area-wide Tesla Show Rooms/Garages
+                Area-wide Tesla Show Rooms
               </h2>
             </div>
             <div className="col-lg-10">
@@ -42,57 +97,49 @@ const TeslaShowrooms = () => {
               <div className="row">
                 <div className="col-lg-12">
                   <div className="table-responsive">
-                    <table className="table table-striped table-bordered px-2">
+                    <table
+                      id="exportMe"
+                      className="table table-striped table-bordered px-2"
+                    >
                       <thead>
                         <tr>
-                          <th>NAME</th>
+                          <th>STATE</th>
                           <th>Showroom-Locations</th>
+                          <th>Location Link</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>Brentwood-Remote Test Drive</td>
-                          <td>Sherman Oaks - Fashion Square Mall</td>
-                        </tr>
-                        <tr>
-                          <td>Buena Park</td>
-                          <td>Canoga Park-Topanga</td>
-                        </tr>
-                        <tr>
-                          <td>Canoga Park-Topanga</td>
-                          <td>Fort Wayne, In Remote Demonstration Drive</td>
-                        </tr>
-                        <tr>
-                          <td>Dublin-Amador Plaza</td>
-                          <td>Peabody-North Shore</td>
-                        </tr>
-                        <tr>
-                          <td>Gilroy-500 Automall Dr</td>
-                          <td>
-                            Fredericksburg-5865 Us-290 Remote Demonstration
-                            Drive
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Lake Forest</td>
-                          <td>Seattle-2200 6th Ave South</td>
-                        </tr>
-                        <tr>
-                          <td>Palo Alto</td>
-                          <td>
-                            Fredericksburg-5865 Us-290 Remote Demonstration
-                            Drive
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>San Diego-UTC</td>
-                          <td>Scottsdale-Fashion Square</td>
-                        </tr>
+                        {teslashowrooms1.length > 0 ? (
+                          teslashowrooms1.map((item, index) => (
+                            <tr key={index}>
+                              <td key={index}>{match.params.state}</td>
+                              <td>
+                                <div>
+                                  {item
+                                    ? item
+                                    : "Data is not Available at the moment"}
+                                </div>
+                              </td>
+                              {item ? (
+                                <td>
+                                  <a href={showroomlinks1[index]}>
+                                    <div>{showroomlinks1[index]}</div>
+                                  </a>
+                                </td>
+                              ) : (
+                                <td>No Location Available</td>
+                              )}
+                            </tr>
+                          ))
+                        ) : (
+                          <tr>no showrooms</tr>
+                        )}
                       </tbody>
                     </table>
                   </div>
                 </div>
               </div>
+              <script src="ex.js"></script>
               <div className="row text-center">
                 <div className="col-lg-12 my-5">
                   <a href="http://altways.com/" className="site-btn">
@@ -104,6 +151,13 @@ const TeslaShowrooms = () => {
           </div>
         </div>
       </section>
+      <div className="row text-center">
+        <div className="col-lg-12 my-5">
+          <Link to="/" className="site-btn" onClick={goToTop}>
+            Go Back To Home
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,34 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import useWindowTitle from "../../Hooks/useWindowTitle";
+import { windData, getKeyByValue, toCsv, download } from "../../Util/Helpers";
 import { Link } from "react-router-dom";
-import {
-  teslaCenters,
-  getKeyByValue,
-  toCsv,
-  download,
-} from "../../Util/Helpers";
-const EvChargingStations = ({ match }) => {
-  let teslavalues = "";
-  if (Object.values(teslaCenters).includes(match.params.state)) {
-    teslavalues = getKeyByValue(teslaCenters, match.params.state);
+
+const WindSpeed = ({ match }) => {
+  let windValues = "";
+  if (Object.values(windData).includes(match.params.state)) {
+    windValues = getKeyByValue(windData, match.params.state);
   }
+  const windValues1 = windValues.split("-");
+  console.log("StateKey", windValues1[0]);
   const downloadToCsv = function () {
     const table = document.getElementById("exportMe");
     const csv = toCsv(table);
     download(csv, "Record.csv");
   };
-  const weatherValues1 = teslavalues.split("-");
-  console.log("StateKey", weatherValues1);
   const goToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   };
-  useWindowTitle("Tesla Charging");
+  useWindowTitle("Wind-Speed");
   return (
     <div className="wrapper">
-      {/*?php include('mobile-navigation-loggedin.php') ?*/}
       <section className="inner-banner"></section>
       <section className="py-4">
         <div class="container-fluid">
@@ -58,9 +53,7 @@ const EvChargingStations = ({ match }) => {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-12">
-              <h2 className="text-50 text-center">
-                Area-wide Electric Car charging stations
-              </h2>
+              <h2 className="text-50 text-center">Average Wind speed</h2>
             </div>
             <div className="col-lg-10">
               <p className="p-text text-center">
@@ -87,47 +80,27 @@ const EvChargingStations = ({ match }) => {
                     >
                       <thead>
                         <tr>
-                          <th>STATE</th>
-                          <th>Total EVs</th>
-                          <th>Level 1 Ports </th>
-                          <th>Level 2 Ports </th>
-                          <th>DCFC Ports</th>
-                          <th>Total Ports</th>
-                          <th>Ratio: EVs to Charger Ports</th>
+                          <th>Rank</th>
+                          <th>Average Wind Speed </th>
+                          <th>State / Population</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <td>{match.params.state}</td>
                           <td>
-                            {weatherValues1[0]
-                              ? weatherValues1[0]
-                              : "Data is not Available at the moment"}
+                            {windValues1[0]
+                              ? windValues1[0]
+                              : "No Data is Available at the moment"}
                           </td>
                           <td>
-                            {weatherValues1[1]
-                              ? weatherValues1[1]
-                              : "Data is not Available at the moment"}
+                            {windValues1[1]
+                              ? windValues1[1]
+                              : "No Data is Available at the moment"}
                           </td>
                           <td>
-                            {weatherValues1[2]
-                              ? weatherValues1[2]
-                              : "Data is not Available at the moment"}
-                          </td>
-                          <td>
-                            {weatherValues1[3]
-                              ? weatherValues1[3]
-                              : "Data is not Available at the moment"}
-                          </td>
-                          <td>
-                            {weatherValues1[4]
-                              ? weatherValues1[4]
-                              : "Data is not Available at the moment"}
-                          </td>
-                          <td>
-                            {weatherValues1[5]
-                              ? weatherValues1[5]
-                              : "Data is not Available at the moment"}
+                            {windValues1[2]
+                              ? windValues1[2]
+                              : "No Data is Available at the moment"}
                           </td>
                         </tr>
                       </tbody>
@@ -137,7 +110,7 @@ const EvChargingStations = ({ match }) => {
               </div>
               <div className="row text-center">
                 <div className="col-lg-12 my-5">
-                  <a href="#_" className="site-btn">
+                  <a href="http://altways.com/" className="site-btn">
                     Get a Qoute
                   </a>
                 </div>
@@ -153,9 +126,8 @@ const EvChargingStations = ({ match }) => {
           </Link>
         </div>
       </div>
-      {/*?php include('site-footer.php') ?*/}
     </div>
   );
 };
 
-export default EvChargingStations;
+export default WindSpeed;

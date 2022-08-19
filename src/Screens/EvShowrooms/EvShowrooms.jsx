@@ -1,10 +1,7 @@
 import React from "react";
 import useWindowTitle from "../../Hooks/useWindowTitle";
-import { general } from "../../Util/Helpers";
 const EvShowrooms = ({ match }) => {
   useWindowTitle("Tesla-showrooms");
-  const output1 = general.filter((x) => x.state_name == match?.params?.state);
-  console.log("output1", output1[0].showrooms);
   return (
     <div className="wrapper">
       {/*?php include('mobile-navsigation-loggedin.php') ?*/}

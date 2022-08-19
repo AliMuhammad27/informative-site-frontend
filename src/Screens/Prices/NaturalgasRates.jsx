@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import useWindowTitle from "../../Hooks/useWindowTitle";
 import { Link } from "react-router-dom";
-import {
-  teslaCenters,
+const {
   getKeyByValue,
+  naturalgasRates,
   toCsv,
   download,
-} from "../../Util/Helpers";
-const EvChargingStations = ({ match }) => {
-  let teslavalues = "";
-  if (Object.values(teslaCenters).includes(match.params.state)) {
-    teslavalues = getKeyByValue(teslaCenters, match.params.state);
+} = require("../../Util/Helpers");
+
+const NaturalgasRates = ({ match }) => {
+  let electricPrice = "";
+
+  if (Object.values(naturalgasRates).includes(match.params.state)) {
+    electricPrice = getKeyByValue(naturalgasRates, match.params.state);
   }
   const downloadToCsv = function () {
     const table = document.getElementById("exportMe");
     const csv = toCsv(table);
     download(csv, "Record.csv");
   };
-  const weatherValues1 = teslavalues.split("-");
-  console.log("StateKey", weatherValues1);
+  console.log("StateKey", electricPrice);
   const goToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   };
-  useWindowTitle("Tesla Charging");
+  useWindowTitle("natural-gas-rates");
   return (
     <div className="wrapper">
-      {/*?php include('mobile-navigation-loggedin.php') ?*/}
       <section className="inner-banner"></section>
       <section className="py-4">
         <div class="container-fluid">
@@ -58,9 +58,7 @@ const EvChargingStations = ({ match }) => {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-12">
-              <h2 className="text-50 text-center">
-                Area-wide Electric Car charging stations
-              </h2>
+              <h2 className="text-50 text-center">Natural Gas/LP rates</h2>
             </div>
             <div className="col-lg-10">
               <p className="p-text text-center">
@@ -71,6 +69,16 @@ const EvChargingStations = ({ match }) => {
                 Ipsum,
               </p>
             </div>
+          </div>
+          {/* <div className="col-lg-12">
+        <img src="../../assets/images/map2.png" alt="" className="img-fluid" />
+      </div> */}
+          <div
+          // className="row text-center"
+
+          // style={{ width: "100%", height: "100vh" }}
+          >
+            {/* <VecttorMap/> */}
           </div>
         </div>
       </section>
@@ -88,45 +96,15 @@ const EvChargingStations = ({ match }) => {
                       <thead>
                         <tr>
                           <th>STATE</th>
-                          <th>Total EVs</th>
-                          <th>Level 1 Ports </th>
-                          <th>Level 2 Ports </th>
-                          <th>DCFC Ports</th>
-                          <th>Total Ports</th>
-                          <th>Ratio: EVs to Charger Ports</th>
+                          <th>Latest rate (dollars/thousand cubic feet)</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
                           <td>{match.params.state}</td>
                           <td>
-                            {weatherValues1[0]
-                              ? weatherValues1[0]
-                              : "Data is not Available at the moment"}
-                          </td>
-                          <td>
-                            {weatherValues1[1]
-                              ? weatherValues1[1]
-                              : "Data is not Available at the moment"}
-                          </td>
-                          <td>
-                            {weatherValues1[2]
-                              ? weatherValues1[2]
-                              : "Data is not Available at the moment"}
-                          </td>
-                          <td>
-                            {weatherValues1[3]
-                              ? weatherValues1[3]
-                              : "Data is not Available at the moment"}
-                          </td>
-                          <td>
-                            {weatherValues1[4]
-                              ? weatherValues1[4]
-                              : "Data is not Available at the moment"}
-                          </td>
-                          <td>
-                            {weatherValues1[5]
-                              ? weatherValues1[5]
+                            {electricPrice
+                              ? electricPrice
                               : "Data is not Available at the moment"}
                           </td>
                         </tr>
@@ -137,7 +115,7 @@ const EvChargingStations = ({ match }) => {
               </div>
               <div className="row text-center">
                 <div className="col-lg-12 my-5">
-                  <a href="#_" className="site-btn">
+                  <a href="http://altways.com/" className="site-btn">
                     Get a Qoute
                   </a>
                 </div>
@@ -153,9 +131,8 @@ const EvChargingStations = ({ match }) => {
           </Link>
         </div>
       </div>
-      {/*?php include('site-footer.php') ?*/}
     </div>
   );
 };
 
-export default EvChargingStations;
+export default NaturalgasRates;

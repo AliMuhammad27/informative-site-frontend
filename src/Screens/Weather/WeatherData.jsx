@@ -1,86 +1,60 @@
 import React, { useEffect, useState } from "react";
 import useWindowTitle from "../../Hooks/useWindowTitle";
-import moment from "moment";
-import axios from "axios";
-const day = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-];
+import {
+  weatherDate,
+  getKeyByValue,
+  toCsv,
+  download,
+} from "../../Util/Helpers";
+import { Link } from "react-router-dom";
+
 const WeatherData = ({ match }) => {
-  const [weatherdata, setweatherdata] = useState("");
-  const [lat, setlat] = useState("");
-  const [long, setlong] = useState("");
-  const apiKey = "4e28b47273e7002079347d838122fb6c";
-  const state = match.params.state;
-  const zipcode = match.params.zipcode;
-  console.log("State", match.params.state);
-  console.log("ZipCode", zipcode);
-
+  let weatherValues = "";
+  if (Object.values(weatherDate).includes(match.params.state)) {
+    weatherValues = getKeyByValue(weatherDate, match.params.state);
+  }
+  const weatherValues1 = weatherValues.split(",");
+  console.log("StateKey", weatherValues1[0]);
+  const downloadToCsv = function () {
+    const table = document.getElementById("exportMe");
+    const csv = toCsv(table);
+    download(csv, "Record.csv");
+  };
   useWindowTitle("Weather-data");
-  const handlelatAndlong = async () => {
-    try {
-      const res = await axios({
-        url: `https://api.openweathermap.org/geo/1.0/zip?zip=${zipcode}&appid=${apiKey}`,
-        method: "GET",
-      });
-      console.log("handlelatAndlong", res);
-      // setlat(res?.data?.lat)
-      // setlong(res?.data?.lon)
-      handleSevenDaysData(res?.data?.lat, res?.data?.lon);
-    } catch (err) {
-      console.log("Error", err);
-    }
+  const goToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
-  console.log("Lat", lat);
-  console.log("long", long);
-  const handleSevenDaysData = async (lat, long) => {
-    console.log("lat&long", lat, long);
-    try {
-      const res = await axios({
-        url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units=metric&exclude=currently,minutely,hourly,alerts&appid=4e28b47273e7002079347d838122fb6c`,
-        method: "GET",
-      });
-      console.log("handleSevenDaysData", res);
-      setweatherdata(res?.data?.daily);
-    } catch (err) {
-      console.log("Error", err);
-    }
-  };
-  useEffect(() => {
-    handlelatAndlong();
-  }, []);
-  console.log("WeatherData", weatherdata);
-
-  const dayNames = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursdsay",
-    "Friday",
-    "Saturday",
-  ];
-
-  var date = new Date();
-  const returnDate = () => {
-    date.setDate(date.getDate() + 1);
-    return String(date).split(" ")[0];
-  };
-  var date2 = new Date();
-  const returnDate2 = () => {
-    date2.setDate(date2.getDate() + 1);
-    return moment(date2).format("LL");
-  };
-
   return (
     <div className="wrapper">
       <section className="inner-banner"></section>
       <section className="py-4">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12 col-xxl-11 col-xl-11  mx-auto">
+              <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+                  <div class="text-end">
+                    {/* <a href="#_" class="site-btn" onClick={downloadToCsv}>
+                        Download CSV
+                      </a> */}
+                    <button
+                      className="site-btn"
+                      id="export"
+                      onClick={downloadToCsv}
+                    >
+                      Download Csv
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-12">
@@ -105,33 +79,38 @@ const WeatherData = ({ match }) => {
               <div className="row">
                 <div className="col-lg-12">
                   <div className="table-responsive">
-                    <table className="table table-striped table-bordered px-2">
+                    <table
+                      className="table table-striped table-bordered px-2"
+                      id="exportMe"
+                    >
                       <thead>
                         <tr>
                           <th>STATE</th>
-                          <th>DATE</th>
-                          <th>dAY</th>
-                          <th>Temperature</th>
-                          <th>Wind Speed</th>
-                          <th>Humidity</th>
+                          <th>Avg °F</th>
+                          <th>Avg °C</th>
+                          <th>Rank</th>
                         </tr>
                       </thead>
-                      {weatherdata && weatherdata?.length > 0 ? (
-                        weatherdata.map((item, index) => (
-                          <tbody>
-                            <tr>
-                              <td>{match.params.state}</td>
-                              <td>{returnDate2()}</td>
-                              <td>{returnDate()}</td>
-                              <td>{item?.temp?.day}c</td>
-                              <td>{item?.wind_speed} km/h</td>
-                              <td>{item?.humidity}%</td>
-                            </tr>
-                          </tbody>
-                        ))
-                      ) : (
-                        <tr>No results</tr>
-                      )}
+                      <tbody>
+                        <tr>
+                          <td>{match.params.state}</td>
+                          <td>
+                            {weatherValues1[0]
+                              ? weatherValues1[0]
+                              : "Data is not Available at the moment"}
+                          </td>
+                          <td>
+                            {weatherValues1[1]
+                              ? weatherValues1[1]
+                              : "Data is not Available at the moment"}
+                          </td>
+                          <td>
+                            {weatherValues1[2]
+                              ? weatherValues1[2]
+                              : "Data is not Available at the moment"}
+                          </td>
+                        </tr>
+                      </tbody>
                     </table>
                   </div>
                 </div>
@@ -147,6 +126,13 @@ const WeatherData = ({ match }) => {
           </div>
         </div>
       </section>
+      <div className="row text-center">
+        <div className="col-lg-12 my-5">
+          <Link to="/" className="site-btn" onClick={goToTop}>
+            Go Back To Home
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };

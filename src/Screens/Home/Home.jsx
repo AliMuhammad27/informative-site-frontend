@@ -4,17 +4,22 @@ import { State } from "country-state-city";
 import { Link } from "react-router-dom";
 import Toasty from "../../Util/toast";
 import Select from "react-select";
+import VectorMapp from "../../Components/VectorMax";
 const Home = ({ history }) => {
   const states = State.getStatesOfCountry("US");
   const [state, setstate] = useState(null);
   const [zipcode, setzipcode] = useState("");
+  const [electricrates, setelectricrates] = useState("");
 
   const updatedStates = states.map((state) => ({
     label: state.name,
     value: state.id,
     ...state,
   }));
+
   console.log("ChangedState", state);
+  console.log("ChangedStateElectri", electricrates);
+
   return (
     <div className="wrapper">
       <section className="banner position-relative">
@@ -23,72 +28,31 @@ const Home = ({ history }) => {
             <div className="col-12 col-xxl-11 col-xl-11  mx-auto">
               <div className="row align-items-center">
                 <div className="col-xxl-7 col-xl-12 col-12">
-                  <h6
-                    className="text-20-rener wow fadeInLeft"
-                    data-wow-delay="2s"
-                  >
-                    <span>
-                      <img src="assets/images/line.png" alt="" />
-                    </span>{" "}
-                    Be Eco---Friendly
-                  </h6>
-                  <h5 className="text-75 wow fadeInUp" data-wow-delay="2.3s">
-                    Proven Renewable
-                  </h5>
-                  <h5 className="text-75 wow fadeInUp" data-wow-delay="2.6s">
-                    Energy <span className="yellow-text">Solutions</span>
-                  </h5>
+                  {
+                    <h2 className="text-75 wow fadeInUp" data-wow-delay="2.6s">
+                      <span className="white-text">
+                        Find your data set with{" "}
+                        <span className="yellow-text">2 easy steps</span>
+                      </span>
+                    </h2>
+                  }
                   <div className="banner-box wow flipInX" data-wow-delay="2.8s">
                     <form className="row g-3 align-items-center">
                       <div className="col-md-2">
-                        {/* <input
-                          type="email"
-                          className="form-control"
-                          id="inputEmail4"
-                          placeholder="State"
-                          value={state}
-                          onChange={(e) => {
-                            setstate(e.target.value);
-                          }}
-                        /> */}
                         <Select
                           id="states"
                           name="states"
                           label="states"
+                          placeholder={state}
                           options={updatedStates}
+                          defaultValue={state}
                           value={state}
-                          // onChange={value => {
-                          //   setFieldValue("country", value);
-                          //   setFieldValue("state", null);
-                          //   setFieldValue("city", null);
-                          // }}
                           onChange={(value) => {
-                            setstate(value);
-                          }}
-                        />
-                      </div>
-                      <div className="col-md-2">
-                        <input
-                          type="email"
-                          className="form-control"
-                          id="inputEmail4"
-                          placeholder="Zip Code"
-                          value={zipcode}
-                          onChange={(e) => {
-                            setzipcode(e.target.value);
+                            setstate(value.name);
                           }}
                         />
                       </div>
                       <div className="col-md-3">
-                        {/* <select class="form-select" aria-label="Default select example">
-                                        <option selected>Select Service</option>
-                                        <option value="1">Gasoline Rates</option>
-                                        <option value="2">Electric Rates</option>
-                                        <option value="3">Solar Rates</option>
-                                        <option value="3">Show Rooms</option>
-                                        <option value="3">Charging Stations</option>
-                                        <option value="3">Weather</option>
-                                    </select> */}
                         <div className="dropdown">
                           <button
                             className="btn dropdown-toggle"
@@ -107,10 +71,8 @@ const Home = ({ history }) => {
                               <Link
                                 className="dropdown-item"
                                 onClick={(e) => {
-                                  state && zipcode.length > 0
-                                    ? history.push(
-                                        `/gasoline-prices/${state.name}/${zipcode}`
-                                      )
+                                  state
+                                    ? history.push(`/gasoline-prices/${state}`)
                                     : Toasty(
                                         "Error",
                                         "please fill all the req fields"
@@ -121,13 +83,11 @@ const Home = ({ history }) => {
                               </Link>
                             </li>
                             <li>
-                              <a
+                              <Link
                                 className="dropdown-item"
                                 onClick={(e) => {
-                                  state && zipcode.length > 0
-                                    ? history.push(
-                                        `/electric-rates/${state.name}/${zipcode}`
-                                      )
+                                  state
+                                    ? history.push(`/electric-rates/${state}`)
                                     : Toasty(
                                         "Error",
                                         "please fill all the req fields"
@@ -135,15 +95,80 @@ const Home = ({ history }) => {
                                 }}
                               >
                                 Electric Rates
-                              </a>
+                              </Link>
                             </li>
-                            {/* <li>
-                              <a
+                            <li>
+                              <Link
                                 className="dropdown-item"
-                                nClick={(e) => {
-                                  state.length > 0 && zipcode.length > 0
+                                onClick={(e) => {
+                                  state
+                                    ? history.push(`/electrical-usage/${state}`)
+                                    : Toasty(
+                                        "Error",
+                                        "please fill all the req fields"
+                                      );
+                                }}
+                              >
+                                {electricrates ? (
+                                  electricrates
+                                ) : (
+                                  <>Electrical Usage</>
+                                )}
+                              </Link>
+                            </li>
+                            <li>
+                              <Link
+                                className="dropdown-item"
+                                onClick={(e) => {
+                                  state
+                                    ? history.push(`/solar-rates/${state}`)
+                                    : Toasty(
+                                        "Error",
+                                        "please fill all the req fields"
+                                      );
+                                }}
+                              >
+                                Pv-Installation
+                              </Link>
+                            </li>
+                            <li>
+                              <Link
+                                className="dropdown-item"
+                                onClick={(e) => {
+                                  state
+                                    ? history.push(`/sun-hours/${state}`)
+                                    : Toasty(
+                                        "Error",
+                                        "please fill all the req fields"
+                                      );
+                                }}
+                              >
+                                Sun hours
+                              </Link>
+                            </li>
+                            <li>
+                              <Link
+                                className="dropdown-item"
+                                onClick={(e) => {
+                                  state
+                                    ? history.push(`/wind-speed/${state}`)
+                                    : Toasty(
+                                        "Error",
+                                        "please fill all the req fields"
+                                      );
+                                }}
+                              >
+                                Wind Speed
+                              </Link>
+                            </li>
+
+                            <li>
+                              <Link
+                                className="dropdown-item"
+                                onClick={(e) => {
+                                  state
                                     ? history.push(
-                                        `/solar-rates/${state}/${zipcode}`
+                                        `/naturalgas-prices/${state}`
                                       )
                                     : Toasty(
                                         "Error",
@@ -151,17 +176,15 @@ const Home = ({ history }) => {
                                       );
                                 }}
                               >
-                                Solar Rates
-                              </a>
-                            </li> */}
+                                Natural Gas Rates
+                              </Link>
+                            </li>
                             <li>
                               <Link
                                 className="dropdown-item"
                                 onClick={(e) => {
-                                  state && zipcode.length > 0
-                                    ? history.push(
-                                        `/tesla-showrooms/${state.name}/${zipcode}`
-                                      )
+                                  state
+                                    ? history.push(`/tesla-showrooms/${state}`)
                                     : Toasty(
                                         "Error",
                                         "please fill all the req fields"
@@ -175,9 +198,9 @@ const Home = ({ history }) => {
                               <Link
                                 className="dropdown-item"
                                 onClick={(e) => {
-                                  state && zipcode.length > 0
+                                  state
                                     ? history.push(
-                                        `/electric-car-charging-station/${state.name}/${zipcode}`
+                                        `/electric-car-charging-station/${state}`
                                       )
                                     : Toasty(
                                         "Error",
@@ -192,10 +215,8 @@ const Home = ({ history }) => {
                               <Link
                                 className="dropdown-item"
                                 onClick={(e) => {
-                                  state && zipcode.length > 0
-                                    ? history.push(
-                                        `/weather-data/${state.name}/${zipcode}`
-                                      )
+                                  state
+                                    ? history.push(`/weather-data/${state}`)
                                     : Toasty(
                                         "Error",
                                         "please fill all the req fields"
@@ -209,7 +230,7 @@ const Home = ({ history }) => {
                         </div>
                       </div>
                       <div className="col-md-5">
-                        <button className="btn site-btn">Get Started</button>
+                        <Link className="btn site-btn">Get Started</Link>
                       </div>
                     </form>
                   </div>
@@ -227,40 +248,6 @@ const Home = ({ history }) => {
           </div>
         </div>
       </section>
-      {/* banner section ends here */}
-      {/* How Much money start here */}
-      <section className="much-money">
-        <div className="container">
-          <div className="row">
-            <div className="col-xxl-12">
-              <h2
-                className="text-50 text-center wow fadeInUp"
-                data-wow-delay=".5s"
-              >
-                How Much money you save on solar
-              </h2>
-              <p
-                className="text-18-rener text-center wow fadeInUp"
-                data-wow-delay=".7s"
-              >
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour, or <br /> randomised words which don't look
-                even slightly believable. If you are going to use a passage of
-                Lorem Ipsum,
-              </p>
-              <img
-                src="assets/images/chart1.png"
-                alt=""
-                className="img-fluid py-4 wow fadeIn"
-                data-wow-delay=".7s"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* How Much money ends here */}
-      {/* searchable data start here */}
       <section className="searchable-data">
         <div className="container">
           <div className="row">
@@ -275,101 +262,254 @@ const Home = ({ history }) => {
                 className="text-18-rener text-center wow fadeInUp"
                 data-wow-delay=".7s"
               >
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour, or <br /> randomised words which don't look
-                even slightly believable. If you are going to use a passage of
-                Lorem Ipsum,
+                We have sourced and connected all these DATA SETS and made them
+                available to you. Simply select the DATA SET you are interested
+                in and enter the ZIP CODE and/or STATE above. If you prefer a
+                Map based research scroll down and use our MAP.
               </p>
             </div>
           </div>
           <div className="row">
             <div className="col-xxl-4">
-              <div className="custum-cards wow fadeInLeft" data-wow-delay=".5s">
-                <div className="d-flex align-items-center justify-content-center">
-                  <div className="flex-shrink-0">
-                    <img src="assets/images/flash.png" alt="..." />
-                  </div>
-                  <div className=" ms-3">
-                    <span className="text-18-rener">
-                      Electrical Rate $/Kwh Residential
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-xxl-4">
-              <div className="custum-cards wow fadeInDown" data-wow-delay=".5s">
-                <div className="d-flex align-items-center justify-content-center">
-                  <div className="flex-shrink-0">
-                    <img src="assets/images/fire.png" alt="..." />
-                  </div>
-                  <div className=" ms-3">
-                    <span className="text-18-rener">Natural Gas/ LP Rates</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-xxl-4">
-              <div
-                className="custum-cards wow fadeInRight"
-                data-wow-delay=".5s"
+              <Link
+                onClick={(e) => {
+                  state
+                    ? history.push(`/electrical-usage/${state}`)
+                    : Toasty("Error", "please fill all the req fields");
+                }}
               >
-                <div className="d-flex align-items-center justify-content-center">
-                  <div className="flex-shrink-0">
-                    <img src="assets/images/price-tag.png" alt="..." />
-                  </div>
-                  <div className=" ms-3">
-                    <span className="text-18-rener">Gasoline Prices</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-xxl-4">
-              <div className="custum-cards wow fadeInLeft" data-wow-delay=".5s">
-                <div className="d-flex align-items-center justify-content-center">
-                  <div className="flex-shrink-0">
-                    <img src="assets/images/contract.png" alt="..." />
-                  </div>
-                  <div className="ms-3">
-                    <span className="text-18-rener">Top Solar Contractors</span>
+                <div
+                  className="custum-cards wow fadeInLeft"
+                  data-wow-delay=".5s"
+                >
+                  <div className="d-flex align-items-center justify-content-center">
+                    <div className="flex-shrink-0">
+                      <img src="assets/images/flash.png" alt="..." />
+                    </div>
+                    <div className=" ms-3">
+                      <span className="text-18-rener">Electrical Usage</span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
+
             <div className="col-xxl-4">
-              <div className="custum-cards wow fadeInUp" data-wow-delay=".5s">
-                <div className="d-flex align-items-center justify-content-center">
-                  <div className="flex-shrink-0">
-                    <img src="assets/images/solar-panels.png" alt="..." />
-                  </div>
-                  <div className=" ms-3">
-                    <span className="text-18-rener">
-                      Installed Solar Capacity
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-xxl-4">
-              <div
-                className="custum-cards wow fadeInRight"
-                data-wow-delay=".5s"
+              <Link
+                onClick={(e) => {
+                  state
+                    ? history.push(`/electric-rates/${state}`)
+                    : Toasty("Error", "please fill all the req fields");
+                }}
               >
-                <div className="d-flex align-items-center justify-content-center">
-                  <div className="flex-shrink-0">
-                    <img src="assets/images/badge.png" alt="..." />
-                  </div>
-                  <div className=" ms-3">
-                    <span className="text-18-rener">Rebates/Incentives</span>
+                <div
+                  className="custum-cards wow fadeInLeft"
+                  data-wow-delay=".5s"
+                >
+                  <div className="d-flex align-items-center justify-content-center">
+                    <div className="flex-shrink-0">
+                      <img src="assets/images/flash.png" alt="..." />
+                    </div>
+                    <div className=" ms-3">
+                      <span className="text-18-rener">
+                        Electrical Rate $/Kwh Residential
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
+            </div>
+
+            <div className="col-xxl-4">
+              <Link
+                onClick={(e) => {
+                  state
+                    ? history.push(`/naturalgas-prices/${state}`)
+                    : Toasty("Error", "please fill all the req fields");
+                }}
+              >
+                <div
+                  className="custum-cards wow fadeInDown"
+                  data-wow-delay=".5s"
+                >
+                  <div className="d-flex align-items-center justify-content-center">
+                    <div className="flex-shrink-0">
+                      <img src="assets/images/fire.png" alt="..." />
+                    </div>
+                    <div className=" ms-3">
+                      <span className="text-18-rener">
+                        Natural Gas/ LP Rates
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
+
+            <div className="col-xxl-4">
+              <Link
+                onClick={(e) => {
+                  state
+                    ? history.push(`/gasoline-prices/${state}`)
+                    : Toasty("Error", "please fill all the req fields");
+                }}
+              >
+                <div
+                  className="custum-cards wow fadeInRight"
+                  data-wow-delay=".5s"
+                >
+                  <div className="d-flex align-items-center justify-content-center">
+                    <div className="flex-shrink-0">
+                      <img src="assets/images/price-tag.png" alt="..." />
+                    </div>
+                    <div className=" ms-3">
+                      <span className="text-18-rener">Gasoline Prices</span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
+            <div className="col-xxl-4">
+              <Link
+                onClick={(e) => {
+                  state
+                    ? history.push(`/weather-data/${state}`)
+                    : Toasty("Error", "please fill all the req fields");
+                }}
+              >
+                <div
+                  className="custum-cards wow fadeInLeft"
+                  data-wow-delay=".5s"
+                >
+                  <div className="d-flex align-items-center justify-content-center">
+                    <div className="flex-shrink-0">
+                      <img src="assets/images/weather.jpg" alt="..." />
+                    </div>
+                    <div className="ms-3">
+                      <span className="text-18-rener">Weather</span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
+
+            <div className="col-xxl-4">
+              <Link
+                onClick={(e) => {
+                  state
+                    ? history.push(`/wind-speed/${state}`)
+                    : Toasty("Error", "please fill all the req fields");
+                }}
+              >
+                <div
+                  className="custum-cards wow fadeInLeft"
+                  data-wow-delay=".5s"
+                >
+                  <div className="d-flex align-items-center justify-content-center">
+                    <div className="flex-shrink-0">
+                      <img src="assets/images/weather.jpg" alt="..." />
+                    </div>
+                    <div className="ms-3">
+                      <span className="text-18-rener">Wind Speed</span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
+            <div className="col-xxl-4">
+              <Link
+                onClick={(e) => {
+                  state
+                    ? history.push(`/wind-speed/${state}`)
+                    : Toasty("Error", "please fill all the req fields");
+                }}
+              >
+                <div
+                  className="custum-cards wow fadeInLeft"
+                  data-wow-delay=".5s"
+                >
+                  <div className="d-flex align-items-center justify-content-center">
+                    <div className="flex-shrink-0">
+                      <img src="assets/images/sun-hour.jpg" alt="..." />
+                    </div>
+                    <div className="ms-3">
+                      <span className="text-18-rener">Sun Hours</span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
+            <div className="col-xxl-4">
+              <Link
+                onClick={(e) => {
+                  state
+                    ? history.push(`/solar-rates/${state}`)
+                    : Toasty("Error", "please fill all the req fields");
+                }}
+              >
+                <div className="custum-cards wow fadeInUp" data-wow-delay=".5s">
+                  <div className="d-flex align-items-center justify-content-center">
+                    <div className="flex-shrink-0">
+                      <img src="assets/images/solar-panels.png" alt="..." />
+                    </div>
+                    <div className=" ms-3">
+                      <span className="text-18-rener">Solar Rates</span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
+
+            <div className="col-xxl-4">
+              <Link
+                onClick={(e) => {
+                  state
+                    ? history.push(`/electric-car-charging-station/${state}`)
+                    : Toasty("Error", "please fill all the req fields");
+                }}
+              >
+                <div
+                  className="custum-cards wow fadeInRight"
+                  data-wow-delay=".5s"
+                >
+                  <div className="d-flex align-items-center justify-content-center">
+                    <div className="flex-shrink-0">
+                      <img src="assets/images/electric-car.png" alt="..." />
+                    </div>
+                    <div className=" ms-3">
+                      <span className="text-18-rener">Charging Stations</span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
+            <div className="col-xxl-4">
+              <Link
+                onClick={(e) => {
+                  state
+                    ? history.push(`/tesla-showrooms/${state}`)
+                    : Toasty("Error", "please fill all the req fields");
+                }}
+              >
+                <div
+                  className="custum-cards wow fadeInRight"
+                  data-wow-delay=".5s"
+                >
+                  <div className="d-flex align-items-center justify-content-center">
+                    <div className="flex-shrink-0">
+                      <img src="assets/images/electric-car.png" alt="..." />
+                    </div>
+                    <div className=" ms-3">
+                      <span className="text-18-rener">Tesla Showrooms</span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
             </div>
           </div>
           <div className="row my-4 text-center">
             <div className="col-xxl-12 wow flipInX" data-wow-delay=".8s">
-              <a href="#" className="site-btn ">
+              <a href="http://altways.com/" className="site-btn ">
                 Show All
               </a>
             </div>
@@ -386,23 +526,70 @@ const Home = ({ history }) => {
                 className="text-50 text-center wow fadeInUp"
                 data-wow-delay=".5s"
               >
-                Area-wide solar potential
+                MAP BASED RESEARCH
+              </h2>
+              <p className="text-center wow fadeInUp">
+                1.Select The Data Set You Are Interested In
+              </p>
+              <p className="text-center wow fadeInUp">
+                2.Click on an area on the Map where you like to see the data
+              </p>
+            </div>
+            <div
+              className="banner-box wow flipInX mx-auto"
+              data-wow-delay="2.8s"
+            ></div>
+          </div>
+          <div style={{ height: "100vh" }}>
+            <VectorMapp state={setstate} />
+          </div>
+
+          {/* <div className="row my-4 text-center">
+            <div className="col-xxl-12 wow flipInX" data-wow-delay=".7s">
+              <a href="http://altways.com/" className="site-btn">
+                Explore Your Area
+              </a>
+            </div>
+          </div> */}
+          {/* <div>
+            <VectorMapp />
+          </div> */}
+
+          {/* <div className="row my-5" style={{ marginTop: "15px" }}>
+            <div className="col-xxl-12">
+              <img
+                src="assets/images/map22.png"
+                alt=""
+                className="img-fluid wow fadeIn"
+                data-wow-delay=".7s"
+              />
+            </div>
+          </div> */}
+        </div>
+      </section>
+      {/* <section className="solar-map">
+        <div className="container">
+          <div className="row">
+            <div className="col-xxl-12">
+              <h2
+                className="text-50 text-center wow fadeInUp"
+                data-wow-delay=".5s"
+              >
+                RENEWABLE ENERGY REBATE & INSENTIVES
               </h2>
               <p
                 className="text-18-rener text-center wow fadeInUp"
                 data-wow-delay=".7s"
               >
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour, or <br /> randomised words which don't look
-                even slightly believable. If you are going to use a passage of
-                Lorem Ipsum,
+                By one simple click on the map, we show you the available
+                Rebates & Incentives available for renewable investments
+                available in this area.
               </p>
             </div>
           </div>
           <div className="row my-4 text-center">
             <div className="col-xxl-12 wow flipInX" data-wow-delay=".7s">
-              <a href="#" className="site-btn">
+              <a href="http://altways.com/" className="site-btn">
                 Explore Your Area
               </a>
             </div>
@@ -418,10 +605,11 @@ const Home = ({ history }) => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+
       {/* solar-map ends here */}
       {/* Historical Weather start here */}
-      <section className="historical-weather">
+      {/* <section className="historical-weather">
         <div className="container">
           <div className="row">
             <div className="col-xxl-12">
@@ -487,13 +675,13 @@ const Home = ({ history }) => {
           </form>
           <div className="row my-4 text-center">
             <div className="col-xxl-12 wow flipInX" data-wow-delay=".7s">
-              <a href="#" className="site-btn">
+              <a href="http://altways.com/" className="site-btn">
                 View
               </a>
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* Historical Weather ends here */}
       {/* potential start here */}
       <section className="potential">
@@ -653,7 +841,7 @@ const Home = ({ history }) => {
               </div>
               <div className="row my-4 text-center">
                 <div className="col-xxl-12 wow flipInX" data-wow-delay=".9s">
-                  <a href="#" className="site-btn">
+                  <a href="http://altways.com/" className="site-btn">
                     View More
                   </a>
                 </div>
@@ -669,10 +857,13 @@ const Home = ({ history }) => {
           <div className="best-for-you2 wow zoomIn" data-wow-delay=".7s">
             <div className="row">
               <div className="col-lg-12">
-                <h1 className="text-50-white2 text-center">
-                  Let's Find Out What Solar Panels Are
+                <h1 className="text-center" style={{ fontSize: "25px" }}>
+                  Zip it solar would love to hear what you think about our
+                  service. Any feedback is welcome! if you like to see
+                  additional data made available here or if you are a provider
+                  of a data set you think should publish, PLEASE get in touch
+                  with us
                 </h1>
-                <h1 className="text-50-white2 text-center">Best For You</h1>
               </div>
             </div>
           </div>
@@ -681,5 +872,4 @@ const Home = ({ history }) => {
     </div>
   );
 };
-
 export default Home;

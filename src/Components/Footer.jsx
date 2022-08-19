@@ -1,6 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const goToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <footer>
       <div className="container-fluid">
@@ -8,18 +15,18 @@ const Footer = () => {
           <div className="col-xxl-10 col-xl-11 col-12 mx-auto">
             <div className="row">
               <div className="col-lg-4">
-                <a href="index.php">
+                <Link to="/" onClick={goToTop}>
                   <img
                     src="assets/images/logo.png"
                     alt=""
                     className="img-fluid web-logo"
                   />
-                </a>
+                </Link>
               </div>
               <div className="col-lg-8">
                 <h3 className="text-30-rener">
                   ZIPITSOLAR provides a MAP and ZIP Code based website where the
-                  customer/visitor{" "}
+                  visitor can find market specific data for free{" "}
                 </h3>
                 <div className="row">
                   <div className="col-lg-4">
@@ -33,7 +40,7 @@ const Footer = () => {
                       </li>
                     </ul>
                   </div>
-                  <div className="col-lg-4">
+                  {/* <div className="col-lg-4">
                     <h6>Find Our Address:</h6>
                     <ul className="pl-0 footer-links">
                       <li>
@@ -42,7 +49,7 @@ const Footer = () => {
                         </a>
                       </li>
                     </ul>
-                  </div>
+                  </div> */}
                   <div className="col-lg-4">
                     <h6>Our Social:</h6>
                     <ul className="ps-0 social-icons">

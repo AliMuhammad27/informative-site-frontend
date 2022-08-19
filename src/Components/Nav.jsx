@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 const Nav = () => {
+  const [show, setshow] = useState(true);
   return (
     <header>
       <div className="container-fluid">
@@ -26,26 +28,62 @@ const Nav = () => {
                 >
                   <span className="navbar-toggler-icon" />
                 </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
+                <div className={"collapse navbar-collapse"} id="navbarNav">
                   <ul className="nav navbar-nav">
                     <li className="medium me-xl-3">
-                      <a href="http://altways.com/">About Us</a>
+                      <Link
+                        to="/about-us"
+
+                        // onClick={(show) => {
+                        //   setshow(!show);
+                        // }}
+                      >
+                        About Us
+                      </Link>
                     </li>
                     <li className="medium mx-xl-3">
-                      <a href="http://altways.com/">Research Solar</a>
+                      <Link
+                        to="/why-zip-it-solar"
+                        onClick={(show) => {
+                          setshow(!show);
+                        }}
+                      >
+                        WHY ZIP IT SOLAR?
+                      </Link>
                     </li>
                     <li className="mx-xl-3 p-0 medium">
-                      <a href="http://altways.com/">Solar Calculator</a>
+                      <Link
+                        to="/data-source"
+                        onClick={(show) => {
+                          setshow(!show);
+                        }}
+                      >
+                        Data Sources
+                      </Link>
                     </li>
                     <li className="mx-xl-3 p-0 medium">
-                      <a href="http://altways.com/">Community Solar</a>
+                      <Link
+                        to="/other-good-resources"
+                        onClick={(show) => {
+                          setshow(!show);
+                        }}
+                      >
+                        Other Good Resources
+                      </Link>
                     </li>
                     <li className="mx-xl-3 p-0 medium">
-                      <a href="http://altways.com/">Contact Us</a>
+                      <Link
+                        to="/contact-us"
+                        onClick={(show) => {
+                          setshow(!show);
+                        }}
+                      >
+                        Contact Us
+                      </Link>
                     </li>
                   </ul>
                   <ul className="nav navbar-nav icons-nav ms-auto mt-3 mt-lg-0 flex-row">
-                    <li className="nav-item">
+                    <li className="nav-item ">
                       <div className="dropdown cart-drop cart-custom">
                         <button
                           className="cart-toggle transparent-btn d-flex align-items-center my-accountt"
@@ -53,13 +91,7 @@ const Nav = () => {
                           id="dropdownMenuButton1"
                           data-bs-toggle="dropdown"
                           aria-expanded="false"
-                        >
-                          <img
-                            src="assets/images/srch.png"
-                            alt=""
-                            className="img-fluid"
-                          />
-                        </button>
+                        ></button>
                       </div>
                     </li>
                     <li className="nav-item mx-2">
