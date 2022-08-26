@@ -12,7 +12,7 @@ const Nav = () => {
               <div className="container-fluid">
                 <Link to="/" className="navbar-brand">
                   <img
-                    src="assets/images/logo.png"
+                    src="assets/images/logo-new2.gif"
                     alt=""
                     className="img-fluid ml-3 ml-sm-0 web-logo"
                   />
@@ -82,7 +82,7 @@ const Nav = () => {
                       </Link>
                     </li>
                   </ul>
-                  <ul className="nav navbar-nav icons-nav ms-auto mt-3 mt-lg-0 flex-row">
+                  <ul className="nav navbar-nav icons-nav  mt-3 mt-lg-0 flex-row">
                     <li className="nav-item ">
                       <div className="dropdown cart-drop cart-custom">
                         <button

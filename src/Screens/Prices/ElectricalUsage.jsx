@@ -10,8 +10,8 @@ const {
 
 const ElectricalUsage = ({ match }) => {
   let electricalData = "";
-  if (Object.values(electricUsage).includes(match.params.state)) {
-    electricalData = getKeyByValue(electricUsage, match.params.state);
+  if (Object.values(electricUsage).includes(match.params.state.trim())) {
+    electricalData = getKeyByValue(electricUsage, match.params.state.trim());
   }
   const electricalData1 = electricalData.split("-");
   console.log("StateKey", electricalData1[0]);

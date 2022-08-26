@@ -9,8 +9,8 @@ import {
 } from "../../Util/Helpers";
 const EvChargingStations = ({ match }) => {
   let teslavalues = "";
-  if (Object.values(teslaCenters).includes(match.params.state)) {
-    teslavalues = getKeyByValue(teslaCenters, match.params.state);
+  if (Object.values(teslaCenters).includes(match.params.state.trim())) {
+    teslavalues = getKeyByValue(teslaCenters, match.params.state.trim());
   }
   const downloadToCsv = function () {
     const table = document.getElementById("exportMe");

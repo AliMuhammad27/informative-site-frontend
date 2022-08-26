@@ -11,8 +11,8 @@ import {
 const TeslaShowrooms = ({ match }) => {
   let teslashowrooms = "";
   let showroomlinks = "";
-  if (Object.values(teslaShowrooms).includes(match.params.state)) {
-    teslashowrooms = getKeyByValue(teslaShowrooms, match.params.state);
+  if (Object.values(teslaShowrooms).includes(match.params.state.trim())) {
+    teslashowrooms = getKeyByValue(teslaShowrooms, match.params.state.trim());
   }
   if (Object.values(links).includes(match.params.state)) {
     showroomlinks = getKeyByValue(links, match.params.state);

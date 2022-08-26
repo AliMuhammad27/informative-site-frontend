@@ -13,33 +13,39 @@ const ElectricPrice = ({ match }) => {
   const apiKey = "19xwQnDr0uwToLSTtfaE66IvalFWhTh8LnqXXcSk";
   const dummy = 1;
   let electricPrice = "";
+  // if (Object.values(electricRates).includes(match.params.state)) {
+  //   electricPrice = getKeyByValue(electricRates, match.params.state);
+  // }
+  // console.log("StateKey", electricPrice);
+  if (electricRates && match.params.state) {
+    console.log("state", match.params.state);
 
-  if (Object.values(electricRates).includes(match.params.state)) {
-    electricPrice = getKeyByValue(electricRates, match.params.state);
+    const abc = Object.values(electricRates).findIndex((ele) => {
+      const trimmed = match.params.state.trim();
+      console.log("matching", match.params.state === trimmed);
+      return ele === trimmed;
+    });
+
+    console.log(abc);
+
+    const abcccccc = Object.keys(electricRates).find((key) => {
+      return electricRates[key] === match.params.state;
+    });
+    console.log("abcccccccccccc", abcccccc);
+
+    // gasolineRates[key] === match.params.state);
+    electricPrice = getKeyByValue(electricRates, match.params.state.trim());
   }
-  console.log("StateKey", electricPrice);
 
   const downloadToCsv = function () {
     const table = document.getElementById("exportMe");
     const csv = toCsv(table);
     download(csv, "Record.csv");
   };
-  if (electricPrice) {
-    console.log("True");
-  } else {
-    console.log("false");
-  }
 
-  // const handleElectricData = async () => {
-  //   try {
-  //     const res = await axios.get(
-  //       `https://api.eia.gov/series/?api_key=${apiKey}&serimyFish.splice(2, 0, 'drum');
-  // }, []);
   console.log("ElectricData", electricdata[0]);
-  const data1 = electricdata[0];
-  const data2 = electricdata[1];
-  //   const changeInPercent = (data1[1] - data2[1]).toFixed(2) * 100;
-  //   console.log("Change", changeInPercent);
+  // const data1 = electricdata[0];
+  // const data2 = electricdata[1];
 
   const goToTop = () => {
     window.scrollTo({

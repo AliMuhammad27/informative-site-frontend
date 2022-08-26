@@ -4,8 +4,8 @@ import { pvRates, getKeyByValue, toCsv, download } from "../../Util/Helpers";
 import { Link } from "react-router-dom";
 const SolarPrice = ({ match }) => {
   let pvData = "";
-  if (Object.values(pvRates).includes(match.params.state)) {
-    pvData = getKeyByValue(pvRates, match.params.state);
+  if (Object.values(pvRates).includes(match.params.state.trim())) {
+    pvData = getKeyByValue(pvRates, match.params.state.trim());
   }
   const downloadToCsv = function () {
     const table = document.getElementById("exportMe");

@@ -1,30 +1,20 @@
 import React, { useRef, useEffect } from "react";
 import { VectorMap } from "react-jvectormap";
+import { usStates, getValue } from "../Util/Helpers";
 
-const VectorMapp = ({ orders, state }) => {
-  console.log("ordersorders", orders);
+const VectorMapp = ({ state }) => {
+  console.log("States", usStates);
   const map = useRef();
-
   const onToolTipShow = (e, el, code) => {
-    const content2 = el.html();
-    let productqty = [];
     console.log("e, el, code", e);
-    orders?.length > 0 &&
-      orders?.map((ord) => {
-        // console.log('prd',ord);
-        ord?.map((ord2) => {
-          // console.log('prd2',ord2);
-          if (ord2?.state == content2) {
-            productqty.push("<br>" + ord2?.ord?.name + ": " + ord2?.ord?.qty);
-          }
-        });
-      });
-    console.log("productqty", productqty);
-    let joinedproductqty = productqty.join();
-    let content = el.html() + " " + joinedproductqty;
+    let content = el.html();
     console.log("content", typeof content);
-    state(el.html() + " " + joinedproductqty);
+    document.getElementsByClassName(".jvectormap-tip").style.display = "none";
     return el.html(content);
+  };
+  const handleClick = (e, countryCode) => {
+    console.log("e, countryCode", e, countryCode);
+    console.log(state(getValue(usStates, countryCode)));
   };
   return (
     <VectorMap
@@ -37,6 +27,7 @@ const VectorMapp = ({ orders, state }) => {
         },
       }}
       onRegionTipShow={onToolTipShow}
+      onRegionClick={handleClick}
       series={{
         markers: [
           {

@@ -5,6 +5,59 @@ $(document).ready(function () {
   }, 2000);
 });
 
+// lottie start
+$(document).ready(function () {
+  setTimeout(function () {
+    var animation = bodymovin.loadAnimation({
+      container: document.getElementById("giveaways"),
+      path: "assets/images/json/102467-solar-panel.json",
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+    });
+
+    var animation = bodymovin.loadAnimation({
+      container: document.getElementById("giveaways2"),
+      path: "assets/images/json/lf30_editor_uqrsia3g.json",
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+    });
+
+    var animation = bodymovin.loadAnimation({
+      container: document.getElementById("giveaways3"),
+      path: "assets/images/json/lf30_editor_8hh6f8fh.json",
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+    });
+
+    var animation = bodymovin.loadAnimation({
+      container: document.getElementById("giveaways4"),
+      path: "assets/images/json/59875-home.json",
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+    });
+
+    var animation = bodymovin.loadAnimation({
+      container: document.getElementById("giveaways5"),
+      path: "assets/images/json/lf30_editor_ar3emp8n.json",
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+    });
+
+    var animation = bodymovin.loadAnimation({
+      container: document.getElementById("giveaways6"),
+      path: "assets/images/json/96916-searching.json",
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+    });
+  }, 4000);
+});
+
 $(".center").slick({
   centerMode: true,
   centerPadding: "0px",

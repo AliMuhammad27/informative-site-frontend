@@ -11,26 +11,30 @@ const {
 } = require("../../Util/Helpers");
 
 const GasolinePrices = ({ match }) => {
-  console.log("state", match.params.state);
   const state = match.params.state;
   let gasolinePrice = "";
+
   //const flag = !Object.values(gasolineRates).includes("Florida");
 
   // if (Object.values(gasolineRates).includes(match.params.state)) {
   if (gasolineRates && match.params.state) {
-    const abcccccc = Object.keys(gasolineRates).find(
-      (key) => gasolineRates[key] === match.params.state
-      // console.log(
-      //   "gasolineRates[key] === match.params.state",
-      //   gasolineRates,
-      //   key,
-      //   match.params.state
-      // )
-    );
+    console.log("state", match.params.state);
+
+    const abc = Object.values(gasolineRates).findIndex((ele) => {
+      const trimmed = match.params.state.trim();
+      console.log("matching", match.params.state === trimmed);
+      return ele === trimmed;
+    });
+
+    console.log(abc);
+
+    const abcccccc = Object.keys(gasolineRates).find((key) => {
+      return gasolineRates[key] === match.params.state;
+    });
     console.log("abcccccccccccc", abcccccc);
 
     // gasolineRates[key] === match.params.state);
-    gasolinePrice = getKeyByValue(gasolineRates, match.params.state);
+    gasolinePrice = getKeyByValue(gasolineRates, match.params.state.trim());
   }
   // }
   const downloadToCsv = function () {

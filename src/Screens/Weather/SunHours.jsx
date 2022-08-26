@@ -4,8 +4,8 @@ import { sunData, getKeyByValue, toCsv, download } from "../../Util/Helpers";
 import { Link } from "react-router-dom";
 const SunHours = ({ match }) => {
   let sunValues = "";
-  if (Object.values(sunData).includes(match.params.state)) {
-    sunValues = getKeyByValue(sunData, match.params.state);
+  if (Object.values(sunData).includes(match.params.state.trim())) {
+    sunValues = getKeyByValue(sunData, match.params.state.trim());
   }
   const sunValues1 = sunValues.split(",");
   const downloadToCsv = function () {

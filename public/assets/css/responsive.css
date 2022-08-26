@@ -232,6 +232,9 @@
 }
 
 @media screen and (max-width: 767px) {
+  .blub-box {
+    text-align: center;
+  }
   .banner-inner-content2 {
     position: absolute;
     top: 65%;
@@ -354,9 +357,9 @@
   .web-logo {
     max-width: 200px;
   }
-  .banner {
+  /* .banner {
     height: 50vh;
-  }
+  } */
   label {
     font-size: 14px;
   }
