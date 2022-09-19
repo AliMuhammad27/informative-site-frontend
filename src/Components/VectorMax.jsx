@@ -26,7 +26,6 @@ const VectorMapp = ({ state }) => {
           stroke: "#383f47",
         },
       }}
-      onRegionTipShow={onToolTipShow}
       onRegionClick={handleClick}
       series={{
         markers: [

@@ -4,6 +4,15 @@ export function getKeyByValue(object, value) {
 export function getValue(obj, key) {
   return obj[key];
 }
+
+export const zipCodeData = [
+  { state: "Alabama", rangeFrom: 10021, rangeTo: 10052 },
+  { state: "Ohio", rangeFrom: 1021, rangeTo: 1052 },
+  { state: "New York", rangeFrom: 1002, rangeTo: 1005 },
+  { state: "California", rangeFrom: 2021, rangeTo: 2052 },
+  { state: "Denver", rangeFrom: 3002, rangeTo: 3052 },
+];
+
 export const usStates = {
   "US-AL": "Alabama",
   "US-AK": "Alaska",

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import useWindowTitle from "../../Hooks/useWindowTitle";
 import { State } from "country-state-city";
 import { Link } from "react-router-dom";
-import Toasty from "../../Util/toast";
 import Select from "react-select";
 import VectorMapp from "../../Components/VectorMax";
 import Lottie from "react-lottie";
@@ -12,6 +10,10 @@ import AnimationData3 from "../../Lotties/96916-searching.json";
 import AnimationData4 from "../../Lotties/lf30_editor_8hh6f8fh.json";
 import AnimationData5 from "../../Lotties/lf30_editor_ar3emp8n.json";
 import AnimationData6 from "../../Lotties/lf30_editor_uqrsia3g.json";
+import AnimationData7 from "../../Lotties/lf30_editor_e37ufmz2.json";
+import AnimationData8 from "../../Lotties/lf30_editor_l5xvcdc7.json";
+import AnimationData9 from "../../Lotties/lf30_editor_moamicbr.json";
+import AnimationData10 from "../../Lotties/lf30_editor_w9uygc7w.json";
 import Modal from "../../Components/Modal";
 import WOW from "wowjs";
 const Home = ({ history }) => {
@@ -63,25 +65,52 @@ const Home = ({ history }) => {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
+
+  const defaultOptions7 = {
+    loop: true,
+    autoplay: true,
+    animationData: AnimationData7,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+  const defaultOptions8 = {
+    loop: true,
+    autoplay: true,
+    animationData: AnimationData8,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
+  const defaultOptions9 = {
+    loop: true,
+    autoplay: true,
+    animationData: AnimationData9,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
+  const defaultOptions10 = {
+    loop: true,
+    autoplay: true,
+    animationData: AnimationData10,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+  const { zipCodeData } = require("../../Util/Helpers");
   const states = State.getStatesOfCountry("US");
   const [state, setstate] = useState(null);
-  const [zipcode, setzipcode] = useState("");
-  const [electricrates, setelectricrates] = useState("");
-  const [electric, setelectric] = useState(null);
-  const [electricusage, setelectricusage] = useState(null);
-  const [gasolineprice, setgasolineprice] = useState(null);
-  const [naturalgas, setnaturalgas] = useState(null);
-  const [sunhours, setsunhours] = useState(null);
-  const [windspeed, setwindspeed] = useState(null);
-  const [weather, setweather] = useState(null);
-  const [solarrates, setsolarrates] = useState(null);
-  const [showrooms, setshowrooms] = useState(null);
-  const [chargingstations, setchargingstatiosn] = useState(null);
+  const [zipcode, setzipcode] = useState(null);
+  const [general, setgeneral] = useState("");
   const updatedStates = states.map((state) => ({
     label: state.name,
     value: state.id,
     ...state,
   }));
+  console.log("updatesStates", updatedStates);
   useEffect(() => {
     console.log("Running on State Change");
   }, [state]);
@@ -92,8 +121,6 @@ const Home = ({ history }) => {
     }).init();
   }, []);
   console.log("ChangedState", state);
-  console.log("ChangedStateElectri", electricrates);
-  console.log("electric", gasolineprice);
   const goToTop = () => {
     window.scrollTo({
       top: 0,
@@ -102,22 +129,28 @@ const Home = ({ history }) => {
   };
   const handler = () => {
     let path = "";
-    if (state && electric) return (path = `/electric-rates/${state}`);
-    else if (state && electricusage)
-      return (path = `/electrical-usage/${state}`);
-    else if (state && gasolineprice)
-      return (path = `/gasoline-prices/${state}`);
-    else if (state && sunhours) return (path = `/sun-hours/${state}`);
-    else if (state && windspeed) return (path = `/wind-speed/${state}`);
-    else if (state && solarrates) return (path = `/solar-rates/${state}`);
-    else if (state && weather) return (path = `/weather-data/${state}`);
-    else if (state && naturalgas) return (path = `/naturalgas-prices/${state}`);
-    else if (state && showrooms) return (path = `/tesla-showrooms/${state}`);
-    else if (state && chargingstations)
-      return (path = `/electric-car-charging-station/${state}`);
+    if (state && general) return (path = `/${general}/${state}`);
   };
   const res = handler();
   console.log("Ress", res);
+  console.log("ZipCodeChanges", zipcode);
+  console.log("ZipCodeData", zipCodeData);
+
+  console.log("abbbbbbbbbb");
+
+  const filteredState = zipCodeData.filter((ele) => {
+    if (zipcode >= ele.rangeFrom && zipcode <= ele.rangeTo) {
+      console.log("aya");
+      return ele ? ele : null;
+    }
+  });
+  console.log("FilteredState", filteredState[0]?.state);
+
+  useEffect(() => {
+    if (filteredState) {
+      setstate(filteredState[0]?.state);
+    }
+  }, [filteredState]);
   return (
     <div className="wrapper">
       {/*?php include('mobile-navigation-loggedin.php') ?*/}
@@ -125,7 +158,7 @@ const Home = ({ history }) => {
       <section className="banner position-relative">
         <div className="overlay2"></div>
         <video autoPlay muted loop id="myVideo">
-          <source src="assets/images/Zip it.mp4" type="video/mp4" />
+          <source src="assets/images/banner-video.mp4" type="video/mp4" />
         </video>
         <div className="container-fluid bb">
           <div className="row">
@@ -158,7 +191,6 @@ const Home = ({ history }) => {
                 <h6>Search Data</h6>
                 <form className="row g-3 align-items-end">
                   <div className="col-md-3 col-sm-4">
-                    <label htmlFor="">*</label>
                     <Select
                       id="states"
                       name="states"
@@ -173,16 +205,16 @@ const Home = ({ history }) => {
                     />
                   </div>
                   <div className="col-md-3 col-sm-4">
-                    <label htmlFor="">*</label>
                     <input
                       type="number"
                       className="form-control"
                       id="inputEmail4"
                       placeholder="Zip Code"
+                      value={zipcode}
+                      onChange={(e) => setzipcode(e.target.value)}
                     />
                   </div>
                   <div className="col-md-3">
-                    <label htmlFor="">*</label>
                     <div className="dropdown">
                       <button
                         className="btn dropdown-toggle"
@@ -191,33 +223,7 @@ const Home = ({ history }) => {
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                       >
-                        {electricusage ||
-                        electricrates ||
-                        electric ||
-                        gasolineprice ||
-                        naturalgas ||
-                        naturalgas ||
-                        sunhours ||
-                        windspeed ||
-                        weather ||
-                        solarrates ||
-                        showrooms ||
-                        chargingstations ? (
-                          electricusage ||
-                          electricrates ||
-                          electric ||
-                          gasolineprice ||
-                          naturalgas ||
-                          naturalgas ||
-                          sunhours ||
-                          windspeed ||
-                          weather ||
-                          solarrates ||
-                          showrooms ||
-                          chargingstations
-                        ) : (
-                          <>Select Service</>
-                        )}
+                        {general ? general : <>Select Service</>}
                       </button>
                       <ul
                         className="dropdown-menu"
@@ -228,17 +234,17 @@ const Home = ({ history }) => {
                             to="#"
                             className="dropdown-item"
                             onClick={(e) => {
-                              setgasolineprice("gasoline-prices");
+                              setgeneral("gasoline-prices");
                             }}
                           >
-                            Gasoline Rates
+                            Gasoline Prices
                           </Link>
                         </li>
                         <Link
                           to="#"
                           className="dropdown-item"
                           onClick={(e) => {
-                            setelectric("electric-rates");
+                            setgeneral("electric-rates");
                           }}
                         >
                           Electric Rates
@@ -248,10 +254,10 @@ const Home = ({ history }) => {
                             className="dropdown-item"
                             to="#"
                             onClick={(e) => {
-                              setelectricusage("electric-usage");
+                              setgeneral("electric-usage");
                             }}
                           >
-                            Electrical Usage
+                            Average Electrical Usage
                           </Link>
                         </li>
                         <li>
@@ -259,10 +265,10 @@ const Home = ({ history }) => {
                             className="dropdown-item"
                             to="#"
                             onClick={(e) => {
-                              setsolarrates("solar-rates");
+                              setgeneral("solar-rates");
                             }}
                           >
-                            Pv-Installation
+                            Pv System Installation
                           </Link>
                         </li>
                         <li>
@@ -270,20 +276,20 @@ const Home = ({ history }) => {
                             className="dropdown-item"
                             to="#"
                             onClick={(e) => {
-                              setsunhours("sun-hours");
+                              setgeneral("sun-hours");
                             }}
                           >
-                            Sun hours
+                            ESH (Equal Sun Hours)
                           </Link>
                         </li>
                         <li>
                           <Link
                             className="dropdown-item"
                             onClick={(e) => {
-                              setwindspeed("wind-speed");
+                              setgeneral("wind-speed");
                             }}
                           >
-                            Wind Speed
+                            Average Wind Speed
                           </Link>
                         </li>
 
@@ -291,42 +297,40 @@ const Home = ({ history }) => {
                           <Link
                             className="dropdown-item"
                             onClick={(e) => {
-                              setnaturalgas("naturalgas-prices");
+                              setgeneral("naturalgas-prices");
                             }}
                           >
-                            Natural Gas Rates
+                            Natural Gas/Lp Rates
                           </Link>
                         </li>
                         <li>
                           <Link
                             className="dropdown-item"
                             onClick={(e) => {
-                              setshowrooms("tesla-showrooms");
+                              setgeneral("tesla-showrooms");
                             }}
                           >
-                            Show Rooms
+                            Tesla Show Rooms/Garages
                           </Link>
                         </li>
                         <li>
                           <Link
                             className="dropdown-item"
                             onClick={(e) => {
-                              setchargingstatiosn(
-                                "electric-car-charging-station"
-                              );
+                              setgeneral("electric-car-charging-station");
                             }}
                           >
-                            Charging Stations
+                            Available Electric Car Charging Stations
                           </Link>
                         </li>
                         <li>
                           <Link
                             className="dropdown-item"
                             onClick={(e) => {
-                              setweather("weather-data");
+                              setgeneral("weather-data");
                             }}
                           >
-                            Weather
+                            Weather data
                           </Link>
                         </li>
                       </ul>
@@ -336,19 +340,7 @@ const Home = ({ history }) => {
                     <div className="col-md-5">
                       <Link
                         onClick={(e) => {
-                          state &&
-                          (electric ||
-                            electricusage ||
-                            gasolineprice ||
-                            solarrates ||
-                            sunhours ||
-                            windspeed ||
-                            weather ||
-                            naturalgas ||
-                            showrooms ||
-                            chargingstations)
-                            ? history.push(handler())
-                            : Modal();
+                          state && general ? history.push(handler()) : Modal();
                         }}
                         className="btn site-btn"
                       >
@@ -399,11 +391,10 @@ const Home = ({ history }) => {
                 className="text-18-rener text-center wow fadeInUp"
                 data-wow-delay=".7s"
               >
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour, or <br /> randomised words which don't look
-                even slightly believable. If you are going to use a passage of
-                Lorem Ipsum,
+                We have sourced and connected all these DATA SETS and made them
+                available to you. Simply select the DATA SET you are interested
+                in and enter the ZIP CODE and/or STATE above. If you prefer a
+                Map based research scroll down and use our MAP.
               </p>
             </div>
           </div>
@@ -413,9 +404,8 @@ const Home = ({ history }) => {
                 <div className="blub-box d-lg-flex d-md-flex d-sm-block align-items-center my-5">
                   <Link
                     onClick={(e) => {
-                      state
-                        ? history.push(`/electrical-usage/${state}`)
-                        : Modal();
+                      setgeneral(`electrical-usage`);
+                      goToTop();
                     }}
                   >
                     <div className="flex-shrink-0">
@@ -427,9 +417,8 @@ const Home = ({ history }) => {
                 <div className="blub-box d-lg-flex d-md-flex d-sm-block align-items-center  my-5">
                   <Link
                     onClick={(e) => {
-                      state
-                        ? history.push(`/naturalgas-prices/${state}`)
-                        : Modal();
+                      setgeneral("naturalgas-prices");
+                      goToTop();
                     }}
                   >
                     <div className="flex-shrink-0">
@@ -441,9 +430,8 @@ const Home = ({ history }) => {
                 <div className="blub-box d-lg-flex d-md-flex d-sm-block align-items-center  my-5">
                   <Link
                     onClick={(e) => {
-                      state
-                        ? history.push(`/electric-rates/${state}`)
-                        : Modal();
+                      setgeneral("electric-rates");
+                      goToTop();
                     }}
                   >
                     <div className="flex-shrink-0">
@@ -457,7 +445,8 @@ const Home = ({ history }) => {
                 <div className="blub-box d-lg-flex d-md-flex d-sm-block align-items-center  my-5">
                   <Link
                     onClick={(e) => {
-                      state ? history.push(`/wind-speed/${state}`) : Modal();
+                      setgeneral("sun-hours");
+                      goToTop();
                     }}
                   >
                     <div className="flex-shrink-0">
@@ -469,7 +458,8 @@ const Home = ({ history }) => {
                 <div className="blub-box d-lg-flex d-md-flex d-sm-block align-items-center  my-5">
                   <Link
                     onClick={(e) => {
-                      state ? history.push(`/wind-speed/${state}`) : Modal();
+                      setgeneral("weather-data");
+                      goToTop();
                     }}
                   >
                     <div className="flex-shrink-0">
@@ -494,9 +484,8 @@ const Home = ({ history }) => {
                 <div className="blub-box d-lg-flex d-md-flex d-sm-block text-sm-center align-items-center my-5">
                   <Link
                     onClick={(e) => {
-                      state
-                        ? history.push(`/gasoline-prices/${state}`)
-                        : Modal();
+                      setgeneral("gasoline-prices");
+                      goToTop();
                     }}
                   >
                     <div className="flex-shrink-0">
@@ -508,9 +497,8 @@ const Home = ({ history }) => {
                 <div className="blub-box d-lg-flex d-md-flex d-sm-block text-sm-center align-items-center  my-5">
                   <Link
                     onClick={(e) => {
-                      state
-                        ? history.push(`/tesla-showrooms/${state}`)
-                        : Modal();
+                      setgeneral("tesla-showrooms");
+                      goToTop();
                     }}
                   >
                     <div className="flex-shrink-0">
@@ -522,11 +510,8 @@ const Home = ({ history }) => {
                 <div className="blub-box d-lg-flex d-md-flex d-sm-block text-sm-center align-items-center  my-5">
                   <Link
                     onClick={(e) => {
-                      state
-                        ? history.push(
-                            `/electric-car-charging-station/${state}`
-                          )
-                        : Modal();
+                      setgeneral("electric-car-charging-station");
+                      goToTop();
                     }}
                   >
                     <div className="flex-shrink-0">
@@ -538,7 +523,8 @@ const Home = ({ history }) => {
                 <div className="blub-box d-lg-flex d-md-flex d-sm-block text-sm-center align-items-center  my-5">
                   <Link
                     onClick={(e) => {
-                      state ? history.push(`/wind-speed/${state}`) : Modal();
+                      setgeneral("wind-speed");
+                      goToTop();
                     }}
                   >
                     <div className="flex-shrink-0">
@@ -550,7 +536,8 @@ const Home = ({ history }) => {
                 <div className="blub-box d-lg-flex d-md-flex d-sm-block text-sm-center align-items-center  my-5">
                   <Link
                     onClick={(e) => {
-                      state ? history.push(`/solar-rates/${state}`) : Modal();
+                      setgeneral("solar-rates");
+                      goToTop();
                     }}
                   >
                     <div className="flex-shrink-0">
@@ -631,33 +618,7 @@ const Home = ({ history }) => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  {electricusage ||
-                  electricrates ||
-                  electric ||
-                  gasolineprice ||
-                  naturalgas ||
-                  naturalgas ||
-                  sunhours ||
-                  windspeed ||
-                  weather ||
-                  solarrates ||
-                  showrooms ||
-                  chargingstations ? (
-                    electricusage ||
-                    electricrates ||
-                    electric ||
-                    gasolineprice ||
-                    naturalgas ||
-                    naturalgas ||
-                    sunhours ||
-                    windspeed ||
-                    weather ||
-                    solarrates ||
-                    showrooms ||
-                    chargingstations
-                  ) : (
-                    <>Select Service</>
-                  )}
+                  {general ? general : <>Select Service</>}
                 </button>
                 <ul
                   className="dropdown-menu"
@@ -668,17 +629,17 @@ const Home = ({ history }) => {
                       to="#"
                       className="dropdown-item"
                       onClick={(e) => {
-                        setgasolineprice("gasoline-prices");
+                        setgeneral("gasoline-prices");
                       }}
                     >
-                      Gasoline Rates
+                      Gasoline Prices
                     </Link>
                   </li>
                   <Link
                     to="#"
                     className="dropdown-item"
                     onClick={(e) => {
-                      setelectric("electric-rates");
+                      setgeneral("electric-rates");
                     }}
                   >
                     Electric Rates
@@ -688,10 +649,10 @@ const Home = ({ history }) => {
                       className="dropdown-item"
                       to="#"
                       onClick={(e) => {
-                        setelectricusage("electric-usage");
+                        setgeneral("electric-usage");
                       }}
                     >
-                      {electricrates ? electricrates : <>Electrical Usage</>}
+                      Avergae Electrical Usage
                     </Link>
                   </li>
                   <li>
@@ -699,10 +660,10 @@ const Home = ({ history }) => {
                       className="dropdown-item"
                       to="#"
                       onClick={(e) => {
-                        setsolarrates("solar-rates");
+                        setgeneral("solar-rates");
                       }}
                     >
-                      Pv-Installation
+                      Pv System Installation
                     </Link>
                   </li>
                   <li>
@@ -710,20 +671,20 @@ const Home = ({ history }) => {
                       className="dropdown-item"
                       to="#"
                       onClick={(e) => {
-                        setsunhours("sun-hours");
+                        setgeneral("sun-hours");
                       }}
                     >
-                      Sun hours
+                      ESH (Equal Sun Hours)
                     </Link>
                   </li>
                   <li>
                     <Link
                       className="dropdown-item"
                       onClick={(e) => {
-                        setwindspeed("wind-speed");
+                        setgeneral("wind-speed");
                       }}
                     >
-                      Wind Speed
+                      Average Wind Speed
                     </Link>
                   </li>
 
@@ -731,40 +692,40 @@ const Home = ({ history }) => {
                     <Link
                       className="dropdown-item"
                       onClick={(e) => {
-                        setnaturalgas("naturalgas-prices");
+                        setgeneral("naturalgas-prices");
                       }}
                     >
-                      Natural Gas Rates
+                      Natural Gas/LP Rates
                     </Link>
                   </li>
                   <li>
                     <Link
                       className="dropdown-item"
                       onClick={(e) => {
-                        setshowrooms("tesla-showrooms");
+                        setgeneral("tesla-showrooms");
                       }}
                     >
-                      Show Rooms
+                      Tesla Show Rooms/Garages
                     </Link>
                   </li>
                   <li>
                     <Link
                       className="dropdown-item"
                       onClick={(e) => {
-                        setchargingstatiosn("electric-car-charging-station");
+                        setgeneral("electric-car-charging-station");
                       }}
                     >
-                      Charging Stations
+                      Available Electric Car Charging Stations
                     </Link>
                   </li>
                   <li>
                     <Link
                       className="dropdown-item"
                       onClick={(e) => {
-                        setweather("weather-data");
+                        setgeneral("weather-data");
                       }}
                     >
-                      Weather
+                      Weather Data
                     </Link>
                   </li>
                 </ul>
@@ -774,19 +735,7 @@ const Home = ({ history }) => {
               <div className="col-md-5">
                 <Link
                   onClick={(e) => {
-                    state &&
-                    (electric ||
-                      electricusage ||
-                      gasolineprice ||
-                      solarrates ||
-                      sunhours ||
-                      windspeed ||
-                      weather ||
-                      naturalgas ||
-                      showrooms ||
-                      chargingstations)
-                      ? history.push(handler())
-                      : Modal();
+                    state && general ? history.push(handler()) : Modal();
                   }}
                   className="btn site-btn"
                 >
@@ -795,7 +744,7 @@ const Home = ({ history }) => {
               </div>
             </div>
           </form>
-          <div style={{ height: "100vh", bottom: 0 }}>
+          <div className="my-map" style={{ height: "100vh", bottom: 0 }}>
             <VectorMapp state={setstate} />
           </div>
 
@@ -1010,6 +959,95 @@ const Home = ({ history }) => {
                     {/* <div className="loti-anim" id="giveaways6"></div> */}
                     <div className="card-body">
                       <h5 className="card-title text-24">Market researchers</h5>
+                      <p className="card-text">
+                        - Average Wind speed - Rebates/Incentives
+                      </p>
+                    </div>
+                    <a href="#_">
+                      <i className="fas fa-plus" />
+                    </a>
+                  </div>
+                </div>
+
+                <div className="col-lg-4">
+                  <div
+                    className="card text-center wow fadeInRight"
+                    data-wow-delay=".5s"
+                  >
+                    <Lottie
+                      options={defaultOptions8}
+                      height={150}
+                      width={150}
+                    />
+                    {/* <div className="loti-anim" id="giveaways6"></div> */}
+                    <div className="card-body">
+                      <h5 className="card-title text-24">Politicians</h5>
+                      <p className="card-text">
+                        - Average Wind speed - Rebates/Incentives
+                      </p>
+                    </div>
+                    <a href="#_">
+                      <i className="fas fa-plus" />
+                    </a>
+                  </div>
+                </div>
+                <div className="col-lg-4">
+                  <div
+                    className="card text-center wow fadeInRight"
+                    data-wow-delay=".5s"
+                  >
+                    <Lottie
+                      options={defaultOptions7}
+                      height={150}
+                      width={150}
+                    />
+                    {/* <div className="loti-anim" id="giveaways6"></div> */}
+                    <div className="card-body">
+                      <h5 className="card-title text-24">Policy Makers</h5>
+                      <p className="card-text">
+                        - Average Wind speed - Rebates/Incentives
+                      </p>
+                    </div>
+                    <a href="#_">
+                      <i className="fas fa-plus" />
+                    </a>
+                  </div>
+                </div>
+                <div className="col-lg-4">
+                  <div
+                    className="card text-center wow fadeInRight"
+                    data-wow-delay=".5s"
+                  >
+                    <Lottie
+                      options={defaultOptions9}
+                      height={150}
+                      width={150}
+                    />
+                    {/* <div className="loti-anim" id="giveaways6"></div> */}
+                    <div className="card-body">
+                      <h5 className="card-title text-24">Tourism Industry</h5>
+                      <p className="card-text">
+                        - Average Wind speed - Rebates/Incentives
+                      </p>
+                    </div>
+                    <a href="#_">
+                      <i className="fas fa-plus" />
+                    </a>
+                  </div>
+                </div>
+                <div className="col-lg-4">
+                  <div
+                    className="card text-center wow fadeInRight"
+                    data-wow-delay=".5s"
+                  >
+                    <Lottie
+                      options={defaultOptions10}
+                      height={150}
+                      width={150}
+                    />
+                    {/* <div className="loti-anim" id="giveaways6"></div> */}
+                    <div className="card-body">
+                      <h5 className="card-title text-24">Construction</h5>
                       <p className="card-text">
                         - Average Wind speed - Rebates/Incentives
                       </p>

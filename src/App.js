@@ -25,7 +25,7 @@ const EvChargingStations = lazy(() =>
 const WeatherData = lazy(() => import("./Screens/Weather/WeatherData"));
 const GasolinePrices = lazy(() => import("./Screens/Gasoline/GasolinePrices"));
 const TeslaShowrooms = lazy(() => import("./Screens/Showrooms/TeslaShowrooms"));
-
+const NotFound = lazy(() => import("./Screens/404/NotFound"));
 function App() {
   return (
     <Suspense fallback={<div className="spinner-2 "></div>}>

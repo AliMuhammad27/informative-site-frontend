@@ -1097,7 +1097,10 @@ footer h6 {
 .contact-list {
   list-style: none;
 }
-
+.my-map {
+  border-radius: 20px;
+  box-shadow: 0px 0px 8px 0px #959191cf;
+}
 .social-icons {
   list-style: none;
   display: flex;
@@ -2039,6 +2042,9 @@ textarea.site-input {
   border: 0;
   border-radius: 20px;
   box-shadow: 0 7px 37px rgb(0 0 0 / 10%);
+  /* z-index: 1000; */
+  position: relative;
+  z-index: 10;
 }
 
 .cart-drop .dropdown-menu a {
