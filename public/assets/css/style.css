@@ -151,6 +151,7 @@ body {
   padding: 12px 15px;
   text-decoration: none;
   transition: ease-in-out 0.2s;
+  margin: 10px 0;
 }
 
 .site-btn:hover {
@@ -398,7 +399,7 @@ a.article:hover {
 header {
   width: 100%;
   position: absolute;
-  z-index: 3;
+  z-index: 2;
   /* background-image: url(../images/header-bg.png); */
   background-position: bottom;
   padding: 22px 0;
@@ -441,7 +442,7 @@ header {
 .text-75 {
   font-family: "Acumin Pro";
   /* font-size: 75px; */
-  font-size: calc(22px + (64 - 22) * ((100vw - 300px) / (1600 - 300)));
+  font-size: calc(18px + (36 - 18) * ((100vw - 300px) / (1600 - 300)));
   color: #fff;
   font-weight: bold;
   text-transform: uppercase;
@@ -992,6 +993,7 @@ tr {
 
 .tables-box {
   padding: 3rem 0;
+  padding-bottom: 0;
 }
 
 /* ---------------------------------------------------
@@ -2033,7 +2035,87 @@ textarea.site-input {
   border-radius: 15px;
   padding: 20px !important;
 }
-
+.modal-content {
+  border-radius: 30px;
+  box-shadow: 0 3px 6px rgba(220, 218, 218, 0.4);
+  position: relative;
+}
+.authIcon,
+.authIcon2,
+.side-img1,
+.side-img2,
+.side-img3,
+.sideLink {
+  position: absolute;
+}
+.modal-content .main-modal-msg {
+  color: #000;
+  text-align: center;
+}
+.modal-content .prim-text {
+  text-transform: unset;
+  font-weight: 400;
+  font-family: "Kulim Park";
+}
+.auth-lg,
+.heading-sm,
+.modal-content .section-heading,
+.page-title {
+  text-transform: uppercase;
+}
+.modal-textarea {
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #707070;
+}
+.modal-body img {
+  width: 90px;
+  height: 90px;
+  border-radius: 100%;
+}
+.modal-content .modal-header {
+  border-bottom: none;
+  z-index: 99;
+}
+.secBtn.secModalBtn {
+  background: 0 0 !important;
+  border: 1px solid #eb3737;
+  color: #eb3736;
+}
+.secBtn.secModalBtn:hover {
+  background: radial-gradient(
+    circle,
+    rgba(217, 0, 24, 0.78195) 0,
+    #ec2444 53%,
+    #ea0c30 72%
+  ) !important;
+  color: #fff;
+}
+.modal-footer button {
+  padding: 8px 20px;
+}
+.modal-content .modal-footer {
+  border-top: none;
+  justify-content: center;
+}
+.modal-content .btn-close {
+  position: absolute;
+  right: 5px;
+  top: -5px;
+  z-index: 1024;
+  border-radius: 100%;
+  font-size: 10px;
+  color: #000;
+  font-weight: 700;
+  opacity: 1;
+  background-color: #fff;
+  padding: 10px;
+}
+.modalAnimation {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
 .ss-scroll {
   background: #0e00bb;
 }
@@ -2651,4 +2733,44 @@ input[disabled].l-grey-text {
 
 h5.p-md {
   font-size: 18px;
+}
+
+.s-data {
+  font-size: 22px;
+  text-align: center;
+}
+
+.for-none-block{
+  display: none!important;
+}
+
+
+
+
+.pagination {
+  /* display: inline-block; */
+  padding-left: 8px;
+  padding-right: 8px;
+  font-size: 20px;
+  cursor: pointer;
+  color: grey;
+}
+
+.pagination>li {
+  display: inline-block;
+  background-color: #fff;
+}
+
+
+
+.pagination>li>a {
+  float: left;
+  padding: 7px 8px;
+  text-decoration: none;
+  color: grey;
+}
+
+.pagination>li>a:hover{
+  background-color: #209dd6 ;
+  color: #fff!important;
 }

@@ -1,41 +1,16 @@
-import React, { useState, useEffect } from "react";
-import useWindowTitle from "../../Hooks/useWindowTitle";
+import React from "react";
 import { Link } from "react-router-dom";
-const {
-  getKeyByValue,
-  electricRates,
-  toCsv,
-  download,
-} = require("../../Util/Helpers");
-
-const ElectricPrice = ({ match }) => {
-  const [electricdata, setelecticdata] = useState("");
-  const apiKey = "19xwQnDr0uwToLSTtfaE66IvalFWhTh8LnqXXcSk";
-  const dummy = 1;
-  let electricPrice = "";
-  // if (Object.values(electricRates).includes(match.params.state)) {
-  //   electricPrice = getKeyByValue(electricRates, match.params.state);
-  // }
-  // console.log("StateKey", electricPrice);
-  if (electricRates && match.params.state) {
-    console.log("state", match.params.state);
-
-    const abc = Object.values(electricRates).findIndex((ele) => {
-      const trimmed = match.params.state.trim();
-      console.log("matching", match.params.state === trimmed);
-      return ele === trimmed;
+import useWindowTitle from "../../Hooks/useWindowTitle";
+import { CSVLink } from "react-csv";
+const { codeadoptiondata, toCsv, download } = require("../../Util/Helpers");
+const CodeAdoption = ({ match }) => {
+  const goToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
     });
-
-    console.log(abc);
-
-    const abcccccc = Object.keys(electricRates).find((key) => {
-      return electricRates[key] === match.params.state;
-    });
-    console.log("abcccccccccccc", abcccccc);
-
-    // gasolineRates[key] === match.params.state);
-    electricPrice = getKeyByValue(electricRates, match.params.state.trim());
-  }
+  };
+  useWindowTitle("U.s-Code-Adoption");
 
   const downloadToCsv = function () {
     const table = document.getElementById("exportMe");
@@ -43,16 +18,19 @@ const ElectricPrice = ({ match }) => {
     download(csv, "Record.csv");
   };
 
-  console.log("ElectricData", electricdata[0]);
-  // const data1 = electricdata[0];
-  // const data2 = electricdata[1];
+  const filteredData = codeadoptiondata.filter((ele) => {
+    if (ele.State === match.params.state.trim()) {
+      return ele ? ele : null;
+    }
+  });
 
-  const goToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+  console.log("filteredData", filteredData);
+
+  const headers = [
+    { label: "State", key: "State" },
+    { label: "USCodeAdoptions", key: "USCodeAdoptions" },
+  ];
+
   return (
     <div className="wrapper">
       {/*?php include('mobile-navigation-loggedin.php') ?*/}
@@ -65,19 +43,17 @@ const ElectricPrice = ({ match }) => {
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4">
-                  <div class="text-center">
-                    {/* <a href="#_" class="site-btn" onClick={downloadToCsv}>
-                        Download CSV
-                      </a> */}
-                    <button
-                      className="site-btn"
-                      style={{ left: "500px" }}
-                      id="export"
-                      onClick={downloadToCsv}
-                    >
-                      Download Csv
-                    </button>
-                  </div>
+                  <CSVLink
+                    data={filteredData}
+                    headers={headers}
+                    filename={"records.csv"}
+                  >
+                    <div class="text-end">
+                      <button className="site-btn" id="export">
+                        Download Csv
+                      </button>
+                    </div>
+                  </CSVLink>
                 </div>
               </div>
             </div>
@@ -89,8 +65,14 @@ const ElectricPrice = ({ match }) => {
               <div className="row">
                 <div className="col-lg-4"></div>
                 <div className="col-lg-4">
-                  <h2 className="text-50 text-center">Electric Rates</h2>
+                  <h2 className="text-50 text-center">U.S. Code Adoptions</h2>
                 </div>
+                {/* <div className="col-lg-10" style={{ marginLeft: "120px" }}>
+                  <p className="p-text text-center">
+                    Here you find the most current electricity pricing for
+                    residential & commercial usage in average per state
+                  </p>
+                </div> */}
               </div>
             </div>
           </div>
@@ -110,18 +92,27 @@ const ElectricPrice = ({ match }) => {
                       <thead>
                         <tr>
                           <th>STATE</th>
-                          <th>Sep 2022</th>
+                          <th>U.S. Code adoptions </th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>{match.params.state}</td>
-                          {electricPrice ? (
-                            <td>{electricPrice}¢ / kWh</td>
-                          ) : (
-                            <td>Data is not Available at the moment</td>
-                          )}
-                        </tr>
+                        {filteredData.length > 0 ? (
+                          filteredData.map((item, index) => (
+                            <tr>
+                              <td>{match.params.state}</td>
+                              <td>
+                                {item?.USCodeAdoptions
+                                  ? item?.USCodeAdoptions
+                                  : "Data is not Available at the moment"}
+                              </td>
+                            </tr>
+                          ))
+                        ) : (
+                          <tr>
+                            <td>{match.params.state}</td>
+                            <td>No Data Available At the moment</td>
+                          </tr>
+                        )}
                       </tbody>
                     </table>
                   </div>
@@ -148,5 +139,4 @@ const ElectricPrice = ({ match }) => {
     </div>
   );
 };
-
-export default ElectricPrice;
+export default CodeAdoption;

@@ -57,11 +57,7 @@ const WindSpeed = ({ match }) => {
             </div>
             <div className="col-lg-10">
               <p className="p-text text-center">
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour, or randomised words which don't look even
-                slightly believable. If you are going to use a passage of Lorem
-                Ipsum,
+                Here you find thee most current average wind speeds per state
               </p>
             </div>
           </div>
@@ -82,7 +78,7 @@ const WindSpeed = ({ match }) => {
                         <tr>
                           <th>Rank</th>
                           <th>Average Wind Speed </th>
-                          <th>State / Population</th>
+                          {/* <th>State / Population</th> */}
                         </tr>
                       </thead>
                       <tbody>
@@ -97,11 +93,11 @@ const WindSpeed = ({ match }) => {
                               ? windValues1[1]
                               : "No Data is Available at the moment"}
                           </td>
-                          <td>
+                          {/* <td>
                             {windValues1[2]
                               ? windValues1[2]
                               : "No Data is Available at the moment"}
-                          </td>
+                          </td> */}
                         </tr>
                       </tbody>
                     </table>
@@ -120,7 +116,7 @@ const WindSpeed = ({ match }) => {
         </div>
       </section>
       <div className="row text-center">
-        <div className="col-lg-12 my-5">
+        <div className="col-lg-12 mb-5">
           <Link to="/" className="site-btn" onClick={goToTop}>
             Go Back To Home
           </Link>

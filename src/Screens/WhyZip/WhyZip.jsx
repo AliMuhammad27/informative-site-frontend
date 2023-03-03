@@ -17,7 +17,7 @@ const WhyZip = () => {
           <div className="container">
             <div className="row align-items-center">
               <div className="col-lg-12">
-                <h4 className="text-45">Why ZPI IT SOLAR</h4>
+                <h4 className="text-45">Why ZIP IT SOLAR</h4>
                 <p className="p-text py-4">
                   Zip It Solar does not provide any information which is not
                   already publicly available. But as a PV System designer, I
@@ -78,7 +78,7 @@ const WhyZip = () => {
           </div>
         </section>
         <div className="row text-center">
-          <div className="col-lg-12 my-5">
+          <div className="col-lg-12 mb-5">
             <Link to="/" className="site-btn" onClick={goToTop}>
               Go Back To Home
             </Link>

@@ -1,61 +1,43 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import useWindowTitle from "../../Hooks/useWindowTitle";
 import { Link } from "react-router-dom";
 const {
+  sunhoursss,
+  UsStates,
   getKeyByValue,
-  electricRates,
   toCsv,
   download,
 } = require("../../Util/Helpers");
 
-const ElectricPrice = ({ match }) => {
-  const [electricdata, setelecticdata] = useState("");
-  const apiKey = "19xwQnDr0uwToLSTtfaE66IvalFWhTh8LnqXXcSk";
-  const dummy = 1;
-  let electricPrice = "";
-  // if (Object.values(electricRates).includes(match.params.state)) {
-  //   electricPrice = getKeyByValue(electricRates, match.params.state);
-  // }
-  // console.log("StateKey", electricPrice);
-  if (electricRates && match.params.state) {
-    console.log("state", match.params.state);
-
-    const abc = Object.values(electricRates).findIndex((ele) => {
-      const trimmed = match.params.state.trim();
-      console.log("matching", match.params.state === trimmed);
-      return ele === trimmed;
-    });
-
-    console.log(abc);
-
-    const abcccccc = Object.keys(electricRates).find((key) => {
-      return electricRates[key] === match.params.state;
-    });
-    console.log("abcccccccccccc", abcccccc);
-
-    // gasolineRates[key] === match.params.state);
-    electricPrice = getKeyByValue(electricRates, match.params.state.trim());
-  }
-
+const SunHourss = ({ match }) => {
   const downloadToCsv = function () {
     const table = document.getElementById("exportMe");
     const csv = toCsv(table);
     download(csv, "Record.csv");
   };
-
-  console.log("ElectricData", electricdata[0]);
-  // const data1 = electricdata[0];
-  // const data2 = electricdata[1];
-
   const goToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   };
+  useWindowTitle("Top-Solar-Contractor");
+
+  let stateVal = "";
+  if (Object.values(UsStates).includes(match.params.state.trim())) {
+    stateVal = getKeyByValue(UsStates, match.params.state.trim());
+  }
+  console.log("State", stateVal);
+
+  const filteredData = sunhoursss.filter((ele) => {
+    if (ele.HqState === stateVal) {
+      return ele ? ele : null;
+    }
+  });
+  console.log("filteredData", filteredData);
+
   return (
     <div className="wrapper">
-      {/*?php include('mobile-navigation-loggedin.php') ?*/}
       <section className="inner-banner"></section>
       <section className="py-4">
         <div class="container-fluid">
@@ -65,13 +47,9 @@ const ElectricPrice = ({ match }) => {
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4">
-                  <div class="text-center">
-                    {/* <a href="#_" class="site-btn" onClick={downloadToCsv}>
-                        Download CSV
-                      </a> */}
+                  <div class="text-end">
                     <button
                       className="site-btn"
-                      style={{ left: "500px" }}
                       id="export"
                       onClick={downloadToCsv}
                     >
@@ -89,7 +67,7 @@ const ElectricPrice = ({ match }) => {
               <div className="row">
                 <div className="col-lg-4"></div>
                 <div className="col-lg-4">
-                  <h2 className="text-50 text-center">Electric Rates</h2>
+                  <h2 className="text-50 text-center">Average ESH</h2>
                 </div>
               </div>
             </div>
@@ -109,18 +87,24 @@ const ElectricPrice = ({ match }) => {
                     >
                       <thead>
                         <tr>
-                          <th>STATE</th>
-                          <th>Sep 2022</th>
+                          <th>State</th>
+                          <th>Hq State</th>
+                          <th>Average ESH</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
                           <td>{match.params.state}</td>
-                          {electricPrice ? (
-                            <td>{electricPrice}¢ / kWh</td>
-                          ) : (
-                            <td>Data is not Available at the moment</td>
-                          )}
+                          <td>
+                            {filteredData[0].HqState
+                              ? filteredData[0].HqState
+                              : "Data is not Available at the moment"}
+                          </td>
+                          <td>
+                            {filteredData[0].AverageESH
+                              ? filteredData[0].AverageESH
+                              : "Data is not Available at the moment"}
+                          </td>
                         </tr>
                       </tbody>
                     </table>
@@ -149,4 +133,4 @@ const ElectricPrice = ({ match }) => {
   );
 };
 
-export default ElectricPrice;
+export default SunHourss;

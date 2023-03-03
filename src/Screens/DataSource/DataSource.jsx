@@ -2,6 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const DataSource = () => {
+  const goToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <div className="wrapper">
       {/*?php include('mobile-navigation-loggedin.php') ?*/}
@@ -12,14 +18,13 @@ const DataSource = () => {
             <div className="col-lg-12">
               <h4 className="text-45">Data Source</h4>
               <p className="p-text py-4">
-                All data on Zip It Solar are public. Some easy to find and some
-                very hidden. At Zip It Solar, all data are updated and accurate.
-                We evaluate our sourced very careful and maintain and review our
+                We evaluate our data very careful and maintain and review our
                 databases frequently. Per request, we can provide you with the
-                source database. Please contact us here (link to contact form).
+                source reference. Please contact us here{" "}
+                <Link to="/contact-us">Click Here to Contact Us</Link>
               </p>
               <div className>
-                <Link to="contact-us" className="site-btn my-4">
+                <Link to="/contact-us" className="site-btn my-4">
                   Contact Us
                 </Link>
               </div>
@@ -28,8 +33,8 @@ const DataSource = () => {
         </div>
       </section>
       <div className="row text-center">
-        <div className="col-lg-12 my-5">
-          <Link to="/" className="site-btn">
+        <div className="col-lg-12 mb-5">
+          <Link to="/" className="site-btn" onClick={goToTop}>
             Go Back To Home
           </Link>
         </div>

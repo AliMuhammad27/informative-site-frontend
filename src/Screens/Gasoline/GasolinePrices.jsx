@@ -52,7 +52,6 @@ const GasolinePrices = ({ match }) => {
       behavior: "smooth",
     });
   };
-
   useEffect(() => {
     console.log("gasolinePrice1", gasolinePrice1);
   }, [gasolinePrice1]);
@@ -87,15 +86,12 @@ const GasolinePrices = ({ match }) => {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-12">
-              <h2 className="text-50 text-center">Area-wide gasoline PRICES</h2>
+              <h2 className="text-50 text-center">Gasoline Prices</h2>
             </div>
             <div className="col-lg-10">
               <p className="p-text text-center">
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour, or randomised words which don't look even
-                slightly believable. If you are going to use a passage of Lorem
-                Ipsum,
+                Here you find the most current average gasoline and diesel price
+                per state
               </p>
             </div>
           </div>
@@ -126,7 +122,7 @@ const GasolinePrices = ({ match }) => {
                         <tr>
                           <th>STATE</th>
                           {/* <th>DATE</th> */}
-                          <th>Regular</th>
+                          <th>Price Per Gallon</th>
                           <th>Mid-Grade</th>
                           <th>Premium</th>
                           <th>Diesel</th>
@@ -161,7 +157,7 @@ const GasolinePrices = ({ match }) => {
         </div>
       </section>
       <div className="row text-center">
-        <div className="col-lg-12 my-5">
+        <div className="col-lg-12 mb-5">
           <Link to="/" className="site-btn" onClick={goToTop}>
             Go Back To Home
           </Link>

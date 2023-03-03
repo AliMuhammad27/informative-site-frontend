@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 const Footer = () => {
   const goToTop = () => {
     window.scrollTo({
@@ -15,32 +14,37 @@ const Footer = () => {
           <div className="col-xxl-10 col-xl-11 col-12 mx-auto">
             <div className="row align-items-baseline">
               <div className="col-lg-4">
-                <a href="index.php">
+                <Link to="/" onClick={goToTop}>
                   <img
                     src="assets/images/logo-new2.gif"
                     alt=""
                     className="img-fluid web-logo"
                   />
-                </a>
+                </Link>
                 <h3 className="p-text text-white py-2">
                   ZIPITSOLAR provides a MAP and ZIP Code based <br />
-                  website where the visitor can find market specific <br /> data
-                  for free
+                  website where the visitor can find and download
+                  market-specific data <br /> in one place - always up to date.
                 </h3>
                 <ul className="ps-0 social-icons">
                   <li>
-                    <a href="#_">
+                    <a href="https://www.facebook.com/Zip-It-Solar-104510879155478">
                       <i className="fab fa-facebook-f" />
                     </a>
                   </li>
                   <li>
-                    <a href="#_">
+                    <a href="https://twitter.com/SolarZip">
                       <i className="fab fa-twitter" />
                     </a>
                   </li>
                   <li>
-                    <a href="#_">
+                    <a href="https://www.instagram.com/zipitsolar_/">
                       <i className="fab fa-instagram" />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.linkedin.com/company/90891359/admin/">
+                      <i className="fab fa-linkedin-in" />
                     </a>
                   </li>
                 </ul>
@@ -92,19 +96,18 @@ const Footer = () => {
                       </li>
                     </ul>
                   </div> */}
-                  <div className="col-lg-4" style={{ marginLeft: "100px" }}>
+                  <div className="col-lg-4">
                     <h6>Contact Us</h6>
                     <ul className="ps-0">
                       <ul className="pl-0 footer-links addrs">
                         <li>
-                          <i className="fas fa-envelope" /> Zipitsolar@mail.com
+                          <i className="fas fa-envelope" /> info@zipitsolar.com
                         </li>
                         <li>
-                          <i className="fas fa-phone" /> +1 035 2445 8265
+                          <i className="fas fa-phone" /> (+1 904) 490 0081
                         </li>
                         <li>
-                          <i className="fas fa-map-marker-alt" /> 40 S. Liberty
-                          St. Onalaska, WI 54650
+                          <i className="fas fa-map-marker-alt" /> Florida, USA
                         </li>
                       </ul>
                     </ul>
@@ -119,13 +122,17 @@ const Footer = () => {
                   © 2021 ZIPITSOLAR.com, All Rights Reserved
                 </p>
               </div>
-              <div className="col-lg-6 text-end">
+              <div className="col-lg-6 text-lg-end">
                 <ul className="pl-0 footer-links d-inline-flex">
                   <li>
-                    <a href="#_" className="px-2">
+                    <Link
+                      to="/terms-and-services"
+                      className="px-2"
+                      onClick={goToTop}
+                    >
                       {" "}
                       Terms &amp; Conditions{" "}
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <a href="#_"> Privacy Policy </a>

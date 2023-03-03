@@ -3,18 +3,23 @@ import { VectorMap } from "react-jvectormap";
 import { usStates, getValue } from "../Util/Helpers";
 
 const VectorMapp = ({ state }) => {
-  console.log("States", usStates);
   const map = useRef();
-  const onToolTipShow = (e, el, code) => {
-    console.log("e, el, code", e);
-    let content = el.html();
-    console.log("content", typeof content);
-    document.getElementsByClassName(".jvectormap-tip").style.display = "none";
-    return el.html(content);
-  };
+  // const onToolTipShow = (e, el, code) => {
+  //   let content = el.html();
+  //   document.getElementsByClassName(".jvectormap-tip");
+  //   return el.html(content);
+  // };
   const handleClick = (e, countryCode) => {
-    console.log("e, countryCode", e, countryCode);
-    console.log(state(getValue(usStates, countryCode)));
+    console.log("e, countryCode", countryCode);
+    console.log("Haram Pai", state(getValue(usStates, countryCode)));
+    //solving the lable stays on Every page
+    setTimeout(() => {
+      Array.from(document.getElementsByClassName("jvectormap-tip")).forEach(
+        (el) => {
+          el.style.display = "none";
+        }
+      );
+    }, 100);
   };
   return (
     <VectorMap
@@ -26,6 +31,7 @@ const VectorMapp = ({ state }) => {
           stroke: "#383f47",
         },
       }}
+      // onToolTipShow={onToolTipShow}
       onRegionClick={handleClick}
       series={{
         markers: [
@@ -37,6 +43,7 @@ const VectorMapp = ({ state }) => {
           },
         ],
       }}
+      // onRegionTipShow={onToolTipShow}
       regionStyle={{
         initial: {
           fill: "#0096FF",

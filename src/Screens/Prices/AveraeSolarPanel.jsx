@@ -1,41 +1,66 @@
-import React, { useState } from "react";
+import React from "react";
 import useWindowTitle from "../../Hooks/useWindowTitle";
-import { Link } from "react-router-dom";
 import { CSVLink } from "react-csv";
-const {
-  electricusagepricedata,
+import {
+  UpdatedPvSystems,
+  PvSystems,
+  UsStates,
+  getKeyByValue,
+  UpdatedPvSystems1,
   toCsv,
   download,
-} = require("../../Util/Helpers");
-
-const ElectricalUsage = ({ match }) => {
-  //console.log("StateKey", match.params.state);
+  pvRates,
+} from "../../Util/Helpers";
+import { Link } from "react-router-dom";
+const AvergaSolarPanel = ({ match }) => {
   const downloadToCsv = function () {
     const table = document.getElementById("exportMe");
     const csv = toCsv(table);
     download(csv, "Record.csv");
   };
+  useWindowTitle("Average-solar-panel");
   const goToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   };
-  const filteredState = electricusagepricedata.filter((ele) => {
-    if (ele.State === match.params.state.trim()) {
-      console.log("aya");
+  let stateVal = "";
+  if (Object.values(UsStates).includes(match.params.state.trim())) {
+    stateVal = getKeyByValue(UsStates, match.params.state.trim());
+  }
+  console.log("State", stateVal);
+
+  // const filteredData = UpdatedPvSystems.filter((ele) => {
+  //   if (ele.State === stateVal) {
+  //     return ele ? ele : null;
+  //   }
+  // });
+
+  const filteredData1 = UpdatedPvSystems1.filter((ele) => {
+    if (ele.State === stateVal) {
       return ele ? ele : null;
     }
   });
-  console.log("FilteredState", filteredState);
-  useWindowTitle("electrical-usage-price");
+
+  // let pvData = "";
+  // if (Object.values(pvRates).includes(match.params.state.trim())) {
+  //   pvData = getKeyByValue(pvRates, match.params.state.trim());
+  // }
+
+  //const pvData1 = pvData.split("-");
+  //console.log("StateKey", pvData1[0]);
+  console.log("state", match.params.state);
+  //console.log("filteredData", filteredData);
+  console.log("filteredData1", filteredData1);
   const headers = [
     { label: "State", key: "State" },
-    { label: "ResidentialPrice", key: "ResidentialPrice" },
-    { label: "ResidentialAverage", key: "ResidentialAverage" },
-    { label: "CommercialPrice", key: "CommercialPrice" },
-    { label: "CommercialAverage", key: "CommercialAverage" },
+    { label: "system size", key: "SystemSize" },
+    { label: "system cost", key: "SystemCost" },
+    { label: "system cost tax", key: "SystemCostITC" },
+    { label: "average cost", key: "AverageCost" },
   ];
+
   return (
     <div className="wrapper">
       {/*?php include('mobile-navigation-loggedin.php') ?*/}
@@ -49,7 +74,7 @@ const ElectricalUsage = ({ match }) => {
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4">
                   <CSVLink
-                    data={filteredState}
+                    data={filteredData1}
                     headers={headers}
                     filename={"records.csv"}
                   >
@@ -71,14 +96,8 @@ const ElectricalUsage = ({ match }) => {
                 <div className="col-lg-4"></div>
                 <div className="col-lg-4">
                   <h2 className="text-50 text-center">
-                    ELECTRICAL USAGE & PRICES
+                    Average solar panel cost by system size
                   </h2>
-                </div>
-                <div className="col-lg-10" style={{ marginLeft: "120px" }}>
-                  <p className="p-text text-center">
-                    Here you find the most current electricity pricing for
-                    residential & commercial usage in average per state
-                  </p>
                 </div>
               </div>
             </div>
@@ -99,43 +118,44 @@ const ElectricalUsage = ({ match }) => {
                       <thead>
                         <tr>
                           <th>STATE</th>
-                          <th>Residential Price</th>
-                          <th>U.S.Average Residential Consumption</th>
-                          <th>Commercial Price</th>
-                          <th>U.S. Average Commercial Consumption</th>
+                          <th>system size</th>
+                          <th>system cost</th>
+                          <th>system cost (after 30% ITC)</th>
+                          <th>Average cost per watt</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {filteredState.length > 0 ? (
-                          filteredState.map((item, index) => (
+                        {filteredData1.length > 0 ? (
+                          filteredData1.map((item, index) => (
                             <tr>
                               <td>{match.params.state}</td>
                               <td>
-                                {item?.ResidentialPrice
-                                  ? item?.ResidentialPrice
+                                {item?.SystemSize
+                                  ? item?.SystemSize
                                   : "Data is not Available at the moment"}
                               </td>
                               <td>
-                                {item?.ResidentialAverage
-                                  ? item?.ResidentialAverage
+                                {item?.SystemCost
+                                  ? item?.SystemCost
                                   : "Data is not Available at the moment"}
                               </td>
                               <td>
-                                {item?.CommercialPrice
-                                  ? item?.CommercialPrice
+                                {item?.SystemCostITC
+                                  ? item?.SystemCostITC
                                   : "Data is not Available at the moment"}
                               </td>
-                              <td>
-                                {item?.CommercialAverage
-                                  ? item?.CommercialAverage
-                                  : "Data is not Available at the moment"}
-                              </td>
+                              {
+                                <td>
+                                  {item?.Average
+                                    ? item?.Average
+                                    : "Data is not Available at the moment"}
+                                </td>
+                              }
                             </tr>
                           ))
                         ) : (
                           <tr>
                             <td>{match.params.state}</td>
-                            <td>No Data Available At the moment</td>
                             <td>No Data Available At the moment</td>
                             <td>No Data Available At the moment</td>
                             <td>No Data Available At the moment</td>
@@ -164,8 +184,9 @@ const ElectricalUsage = ({ match }) => {
           </Link>
         </div>
       </div>
+      {/*?php include('site-footer.php') ?*/}
     </div>
   );
 };
 
-export default ElectricalUsage;
+export default AvergaSolarPanel;

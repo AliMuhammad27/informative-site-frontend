@@ -65,21 +65,16 @@ const TeslaShowrooms = ({ match }) => {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-12">
-              <h2 className="text-50 text-center">
-                Area-wide Tesla Show Rooms
-              </h2>
+              <h2 className="text-50 text-center">Tesla Show Room Locations</h2>
             </div>
             <div className="col-lg-10">
               <p className="p-text text-center">
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour, or randomised words which don't look even
-                slightly believable. If you are going to use a passage of Lorem
-                Ipsum,
+                Here you find location and description of TESLA Showrooms &
+                Service Centers per state.
               </p>
             </div>
           </div>
-          <div className="row py-4">
+          {/* <div className="row py-4">
             <div className="col-lg-12">
               <img
                 src="../../assets/images/mapp.png"
@@ -87,7 +82,7 @@ const TeslaShowrooms = ({ match }) => {
                 className="img-fluid"
               />
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
       <section className="tables-box">
@@ -152,7 +147,7 @@ const TeslaShowrooms = ({ match }) => {
         </div>
       </section>
       <div className="row text-center">
-        <div className="col-lg-12 my-5">
+        <div className="col-lg-12 mb-5">
           <Link to="/" className="site-btn" onClick={goToTop}>
             Go Back To Home
           </Link>

@@ -12,6 +12,12 @@
   .numbr-call {
     display: none;
   }
+  .for-none-block{
+    display: block!important;
+}
+.for-none-block2{
+    display: none;
+}
 }
 
 @media screen and (max-width: 1399px) {
@@ -252,9 +258,9 @@
     color: white;
     border: 1px solid #0395d1;
     border-radius: 50px;
-    font-size: 18px;
+    font-size: 17px;
     cursor: pointer;
-    padding: 8px 60px;
+    padding: 8px 22px;
     text-decoration: none;
     transition: ease-in-out 0.2s;
   }
@@ -298,6 +304,12 @@
   .flex-btn-1 {
     flex: 1;
     padding: 9px 0 !important;
+  }
+  footer {
+    text-align: center;
+  }
+  .social-icons {
+    justify-content: center;
   }
 }
 

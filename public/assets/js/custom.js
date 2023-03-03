@@ -530,3 +530,7 @@ $(".cart-custom").on("click", function (event) {
 
 var addBtn = document.querySelector(".add-btn");
 var cloneFeild = document.querySelector(".attribute-add");
+
+if (document.querySelector(".jvectormap-tip")) {
+  document.querySelector(".jvectormap-tip").style.display = "none";
+}

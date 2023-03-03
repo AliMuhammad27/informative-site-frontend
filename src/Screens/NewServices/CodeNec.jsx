@@ -1,41 +1,37 @@
-import React, { useState } from "react";
-import useWindowTitle from "../../Hooks/useWindowTitle";
+import React from "react";
 import { Link } from "react-router-dom";
+import useWindowTitle from "../../Hooks/useWindowTitle";
 import { CSVLink } from "react-csv";
-const {
-  electricusagepricedata,
-  toCsv,
-  download,
-} = require("../../Util/Helpers");
-
-const ElectricalUsage = ({ match }) => {
-  //console.log("StateKey", match.params.state);
-  const downloadToCsv = function () {
-    const table = document.getElementById("exportMe");
-    const csv = toCsv(table);
-    download(csv, "Record.csv");
-  };
+import { useState } from "react";
+import { useEffect } from "react";
+const { necdata, toCsv, download, exportCSV } = require("../../Util/Helpers");
+const CodeNec = ({ match }) => {
   const goToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   };
-  const filteredState = electricusagepricedata.filter((ele) => {
+  useWindowTitle("code-nec");
+
+  // const downloadToCsv = function () {
+  //   const table = document.getElementById("exportMe");
+  //   const csv = toCsv(table);
+  //   download(csv, "Record.csv");
+  // };
+
+  const filteredData = necdata.filter((ele) => {
     if (ele.State === match.params.state.trim()) {
-      console.log("aya");
       return ele ? ele : null;
     }
   });
-  console.log("FilteredState", filteredState);
-  useWindowTitle("electrical-usage-price");
+  console.log("filteredData", filteredData);
   const headers = [
     { label: "State", key: "State" },
-    { label: "ResidentialPrice", key: "ResidentialPrice" },
-    { label: "ResidentialAverage", key: "ResidentialAverage" },
-    { label: "CommercialPrice", key: "CommercialPrice" },
-    { label: "CommercialAverage", key: "CommercialAverage" },
+    { label: "NECAdoption", key: "NECAdoption" },
+    { label: "effectivedate", key: "effectivedate" },
   ];
+
   return (
     <div className="wrapper">
       {/*?php include('mobile-navigation-loggedin.php') ?*/}
@@ -49,7 +45,7 @@ const ElectricalUsage = ({ match }) => {
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4">
                   <CSVLink
-                    data={filteredState}
+                    data={filteredData}
                     headers={headers}
                     filename={"records.csv"}
                   >
@@ -71,15 +67,15 @@ const ElectricalUsage = ({ match }) => {
                 <div className="col-lg-4"></div>
                 <div className="col-lg-4">
                   <h2 className="text-50 text-center">
-                    ELECTRICAL USAGE & PRICES
+                    Code NEC & ASCE version
                   </h2>
                 </div>
-                <div className="col-lg-10" style={{ marginLeft: "120px" }}>
-                  <p className="p-text text-center">
-                    Here you find the most current electricity pricing for
-                    residential & commercial usage in average per state
-                  </p>
-                </div>
+                {/* <div className="col-lg-10" style={{ marginLeft: "120px" }}>
+              <p className="p-text text-center">
+                Here you find the most current electricity pricing for
+                residential & commercial usage in average per state
+              </p>
+            </div> */}
               </div>
             </div>
           </div>
@@ -99,35 +95,23 @@ const ElectricalUsage = ({ match }) => {
                       <thead>
                         <tr>
                           <th>STATE</th>
-                          <th>Residential Price</th>
-                          <th>U.S.Average Residential Consumption</th>
-                          <th>Commercial Price</th>
-                          <th>U.S. Average Commercial Consumption</th>
+                          <th>NEC Adoption</th>
+                          <th>Effective Date </th>
                         </tr>
                       </thead>
                       <tbody>
-                        {filteredState.length > 0 ? (
-                          filteredState.map((item, index) => (
+                        {filteredData.length > 0 ? (
+                          filteredData.map((item, index) => (
                             <tr>
                               <td>{match.params.state}</td>
                               <td>
-                                {item?.ResidentialPrice
-                                  ? item?.ResidentialPrice
+                                {item?.NECAdoption
+                                  ? item?.NECAdoption
                                   : "Data is not Available at the moment"}
                               </td>
                               <td>
-                                {item?.ResidentialAverage
-                                  ? item?.ResidentialAverage
-                                  : "Data is not Available at the moment"}
-                              </td>
-                              <td>
-                                {item?.CommercialPrice
-                                  ? item?.CommercialPrice
-                                  : "Data is not Available at the moment"}
-                              </td>
-                              <td>
-                                {item?.CommercialAverage
-                                  ? item?.CommercialAverage
+                                {item?.effectivedate
+                                  ? item?.effectivedate
                                   : "Data is not Available at the moment"}
                               </td>
                             </tr>
@@ -135,8 +119,6 @@ const ElectricalUsage = ({ match }) => {
                         ) : (
                           <tr>
                             <td>{match.params.state}</td>
-                            <td>No Data Available At the moment</td>
-                            <td>No Data Available At the moment</td>
                             <td>No Data Available At the moment</td>
                             <td>No Data Available At the moment</td>
                           </tr>
@@ -167,5 +149,4 @@ const ElectricalUsage = ({ match }) => {
     </div>
   );
 };
-
-export default ElectricalUsage;
+export default CodeNec;

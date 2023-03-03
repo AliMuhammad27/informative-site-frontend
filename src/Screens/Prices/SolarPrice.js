@@ -21,6 +21,7 @@ const SolarPrice = ({ match }) => {
     });
   };
   useWindowTitle("pv-installation");
+
   return (
     <div className="wrapper">
       {/*?php include('mobile-navigation-loggedin.php') ?*/}
@@ -59,6 +60,33 @@ const SolarPrice = ({ match }) => {
                   <h2 className="text-50 text-center">
                     PV System Installation cost
                   </h2>
+                </div>
+                <div className="col-lg-10" style={{ marginLeft: "170px" }}>
+                  {/* <ul style={{ marginLeft: "170px" }}>
+                    <li>
+                      <p className="">
+                        An hour in the morning that receives an average of 500
+                        W/m² of sunlight is equal to 0.5 peak sun hours.
+                      </p>
+                    </li>
+                    <li>
+                      <p className="">
+                        An hour in the morning that receives an average of 500
+                        W/m² of sunlight is equal to 0.5 peak sun hours.
+                      </p>
+                    </li>
+                  </ul> */}
+                  <p className="p-text text-center">
+                    Federal solar investment tax credit The federal solar
+                    investment tax credit will have the biggest impact on the
+                    cost you will face to go solar in Nebraska If you install
+                    your photovoltaic system before 2032, the federal tax credit
+                    is 30% of the cost of your solar panel system. This is 30%
+                    off the entire cost of the system including equipment, labor
+                    and permitting. Example: If your solar energy system costs
+                    $20,000, your federal solar tax credit would be $20,000 x
+                    30% = $6,000.
+                  </p>
                 </div>
               </div>
             </div>
@@ -126,7 +154,7 @@ const SolarPrice = ({ match }) => {
         </div>
       </section>
       <div className="row text-center">
-        <div className="col-lg-12 my-5">
+        <div className="col-lg-12 mb-5">
           <Link to="/" className="site-btn" onClick={goToTop}>
             Go Back To Home
           </Link>

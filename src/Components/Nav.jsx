@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 const Nav = () => {
   const [show, setshow] = useState(true);
+  // return el.html(content);
   return (
     <header>
       <div className="container-fluid">
@@ -95,7 +96,53 @@ const Nav = () => {
                       </div>
                     </li>
                     <li className="nav-item mx-2">
-                      <div className="dropdown cart-drop cart-custom">
+                      <div class="dropdown cart-drop cart-custom for-none-block2">
+                        <button
+                          class="cart-toggle transparent-btn d-flex align-items-center my-accountt"
+                          type="button"
+                          id="dropdownMenuButton1"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          <img
+                            src="assets/images/phone-call.png"
+                            alt=""
+                            className="img-fluid"
+                          />
+                          <span class="white-20-rener numbr-call">
+                            +1 904 490 0081
+                          </span>
+                        </button>
+                      </div>
+                      <div class="dropdown cart-drop cart-custom for-none-block">
+                        <button
+                          class="cart-toggle transparent-btn d-flex align-items-center my-accountt"
+                          type="button"
+                          id="dropdownMenuButton1"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          <img
+                            src="assets/images/phone-call.png"
+                            alt=""
+                            className="img-fluid"
+                          />
+                          <span class="white-20-rener numbr-call">
+                            +1 904 490 0081
+                          </span>
+                        </button>
+                        <ul
+                          class="dropdown-menu profile-div"
+                          aria-labelledby="dropdownMenuButton1"
+                        >
+                          <li>
+                            <h6 class="dropdown-item  text-18-rener numbr-call2">
+                              +1 904 490 0081
+                            </h6>
+                          </li>
+                        </ul>
+                      </div>
+                      {/* <div className="dropdown cart-drop cart-custom">
                         <button
                           className="cart-toggle transparent-btn d-flex align-items-center my-accountt"
                           type="button"
@@ -109,10 +156,10 @@ const Nav = () => {
                             className="img-fluid"
                           />
                           <span className="white-20-rener numbr-call">
-                            +1 035 2445 8265
+                            (904) 806-8880
                           </span>
                         </button>
-                      </div>
+                      </div> */}
                     </li>
                     <li className="nav-item mx-3">
                       <a href="http://altways.com/" className="site-btn-header">

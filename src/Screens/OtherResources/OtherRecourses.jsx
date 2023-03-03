@@ -2,6 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const OtherRecourses = () => {
+  const goToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <div>
       <div className="wrapper">
@@ -55,8 +61,8 @@ const OtherRecourses = () => {
           </div>
         </section>
         <div className="row text-center">
-          <div className="col-lg-12 my-5">
-            <Link to="/" className="site-btn">
+          <div className="col-lg-12 mb-5">
+            <Link to="/" className="site-btn" onClick={goToTop}>
               Go Back To Home
             </Link>
           </div>

@@ -11,9 +11,11 @@ const {
 const NaturalgasRates = ({ match }) => {
   let electricPrice = "";
 
-  if (Object.values(naturalgasRates).includes(match.params.state)) {
-    electricPrice = getKeyByValue(naturalgasRates, match.params.state);
+  if (Object.values(naturalgasRates).includes(match.params.state.trim())) {
+    electricPrice = getKeyByValue(naturalgasRates, match.params.state.trim());
   }
+
+  const electricPrice1 = electricPrice.split("/");
   const downloadToCsv = function () {
     const table = document.getElementById("exportMe");
     const csv = toCsv(table);
@@ -58,15 +60,14 @@ const NaturalgasRates = ({ match }) => {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-12">
-              <h2 className="text-50 text-center">Natural Gas/LP rates</h2>
+              <h2 className="text-50 text-center">
+                Natural Gas & LP Price and Consumption
+              </h2>
             </div>
             <div className="col-lg-10">
               <p className="p-text text-center">
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour, or randomised words which don't look even
-                slightly believable. If you are going to use a passage of Lorem
-                Ipsum,
+                Here you find the most current price for Natural Gas and the
+                average consumption per state
               </p>
             </div>
           </div>
@@ -96,17 +97,28 @@ const NaturalgasRates = ({ match }) => {
                       <thead>
                         <tr>
                           <th>STATE</th>
-                          <th>Latest rate (dollars/thousand cubic feet)</th>
+                          <th>State Energy Consumption</th>
+                          <th>Price/cubic feet</th>
+                          <th>U.S. Average</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
                           <td>{match.params.state}</td>
                           <td>
-                            {electricPrice
-                              ? electricPrice
-                              : "Data is not Available at the moment"}
+                            {electricPrice1[0]
+                              ? electricPrice1[0]
+                              : "No Data Available at the moment"}{" "}
+                            trillion btu
                           </td>
+                          <td>
+                            $
+                            {electricPrice1[1]
+                              ? electricPrice1[1]
+                              : "No Data Available at the moment"}{" "}
+                            /thousand cu ft
+                          </td>
+                          <td>$ 22.73 /thousand cu ft</td>
                         </tr>
                       </tbody>
                     </table>
@@ -125,7 +137,7 @@ const NaturalgasRates = ({ match }) => {
         </div>
       </section>
       <div className="row text-center">
-        <div className="col-lg-12 my-5">
+        <div className="col-lg-12 mb-5">
           <Link to="/" className="site-btn" onClick={goToTop}>
             Go Back To Home
           </Link>

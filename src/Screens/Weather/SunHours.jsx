@@ -1,6 +1,14 @@
 import React from "react";
 import useWindowTitle from "../../Hooks/useWindowTitle";
-import { sunData, getKeyByValue, toCsv, download } from "../../Util/Helpers";
+import { CSVLink } from "react-csv";
+import {
+  sunData,
+  getKeyByValue,
+  toCsv,
+  download,
+  sunhoursss,
+  UsStates,
+} from "../../Util/Helpers";
 import { Link } from "react-router-dom";
 const SunHours = ({ match }) => {
   let sunValues = "";
@@ -21,6 +29,24 @@ const SunHours = ({ match }) => {
     });
   };
   useWindowTitle("Sun-Hours");
+
+  let stateVal = "";
+  if (Object.values(UsStates).includes(match.params.state.trim())) {
+    stateVal = getKeyByValue(UsStates, match.params.state.trim());
+  }
+  console.log("State", stateVal);
+
+  const filteredData = sunhoursss.filter((ele) => {
+    if (ele.HqState === stateVal) {
+      return ele ? ele : null;
+    }
+  });
+  console.log("filteredData", filteredData);
+  const headers = [
+    { label: "State", key: "State" },
+    { label: "HqState", key: "HqState" },
+    { label: "AverageESH", key: "AverageESH" },
+  ];
   return (
     <div className="wrapper">
       <section className="inner-banner"></section>
@@ -32,18 +58,17 @@ const SunHours = ({ match }) => {
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4">
-                  <div class="text-end">
-                    {/* <a href="#_" class="site-btn" onClick={downloadToCsv}>
-                        Download CSV
-                      </a> */}
-                    <button
-                      className="site-btn"
-                      id="export"
-                      onClick={downloadToCsv}
-                    >
-                      Download Csv
-                    </button>
-                  </div>
+                  <CSVLink
+                    data={filteredData}
+                    headers={headers}
+                    filename={"records.csv"}
+                  >
+                    <div class="text-end">
+                      <button className="site-btn" id="export">
+                        Download Csv
+                      </button>
+                    </div>
+                  </CSVLink>
                 </div>
               </div>
             </div>
@@ -55,13 +80,46 @@ const SunHours = ({ match }) => {
               <h2 className="text-50 text-center">ESH (Equal Sun Hours)</h2>
             </div>
             <div className="col-lg-10">
-              <p className="p-text text-center">
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour, or randomised words which don't look even
-                slightly believable. If you are going to use a passage of Lorem
-                Ipsum,
-              </p>
+              <ul style={{ marginLeft: "170px" }}>
+                <li>
+                  <p className="">What Are Peak Sun Hours?</p>
+                </li>
+                <li>
+                  <p className="">
+                    Peak sun hours differ from hours of daylight; the peak sun
+                    hour actually describes the intensity of sunlight in a
+                    specific area, defined as an hour of sunlight that reaches
+                    an average of 1,000 watts of power per square meter (around
+                    10.5 feet). One hour in the morning that receives an average
+                    of 500 W/m² of sunlight is equal to 0.5 peak sun hours or
+                    ESH.
+                  </p>
+                </li>
+                <li>
+                  <p className="">
+                    Although your panels may get an average of 7 hours of
+                    daylight a day, the average peak sun hours are generally
+                    around 4 or 5. Solar radiation peaks at solar noon, when the
+                    sun reaches the highest point in the sky.
+                  </p>
+                </li>
+                <li>
+                  <p className="">
+                    The number of peak sun hours you get per day increases the
+                    closer you are to the equator and typically during the
+                    summer months.
+                  </p>
+                </li>
+                <li>
+                  <p className="">
+                    It may sound complicated, but the concept is actually
+                    relatively simple to apply. For example, if a given location
+                    receives a total of 6,650 Wh/m² of solar radiation over the
+                    course of a day, then that location gets 6.65 peak sun
+                    hours.
+                  </p>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -80,25 +138,15 @@ const SunHours = ({ match }) => {
                       <thead>
                         <tr>
                           <th>STATE</th>
-                          <th>Place</th>
-                          <th>% Sun</th>
-                          <th>Total Hours</th>
+                          <th>Total Hours Per Year</th>
                           <th>Clear Days</th>
+                          {/* <th>HQ STATE</th> */}
+                          <th>AVERAGE ESH</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
                           <td>{match.params.state}</td>
-                          <td>
-                            {sunValues1[0]
-                              ? sunValues1[0]
-                              : "Data is not Available at the moment"}
-                          </td>
-                          <td>
-                            {sunValues1[1]
-                              ? sunValues1[1]
-                              : "Data is not Available at the moment"}
-                          </td>
                           <td>
                             {sunValues1[2]
                               ? sunValues1[2]
@@ -107,6 +155,16 @@ const SunHours = ({ match }) => {
                           <td>
                             {sunValues1[3]
                               ? sunValues1[3]
+                              : "Data is not Available at the moment"}
+                          </td>
+                          {/* <td>
+                            {filteredData[0].HqState
+                              ? filteredData[0].HqState
+                              : "Data is not Available at the moment"}
+                          </td> */}
+                          <td>
+                            {filteredData[0]?.AverageESH
+                              ? filteredData[0]?.AverageESH
                               : "Data is not Available at the moment"}
                           </td>
                         </tr>
@@ -127,7 +185,7 @@ const SunHours = ({ match }) => {
         </div>
       </section>
       <div className="row text-center">
-        <div className="col-lg-12 my-5">
+        <div className="col-lg-12 mb-5">
           <Link to="/" className="site-btn" onClick={goToTop}>
             Go Back To Home
           </Link>

@@ -3,13 +3,13 @@ import useWindowTitle from "../../Hooks/useWindowTitle";
 import { Link } from "react-router-dom";
 import { CSVLink } from "react-csv";
 const {
-  electricusagepricedata,
+  topsolardata,
+  UsStates,
+  getKeyByValue,
   toCsv,
   download,
 } = require("../../Util/Helpers");
-
-const ElectricalUsage = ({ match }) => {
-  //console.log("StateKey", match.params.state);
+const TopSolarContractors = ({ match }) => {
   const downloadToCsv = function () {
     const table = document.getElementById("exportMe");
     const csv = toCsv(table);
@@ -21,24 +21,32 @@ const ElectricalUsage = ({ match }) => {
       behavior: "smooth",
     });
   };
-  const filteredState = electricusagepricedata.filter((ele) => {
-    if (ele.State === match.params.state.trim()) {
-      console.log("aya");
+  useWindowTitle("Top-Solar-Contractor");
+  let stateVal = "";
+  if (Object.values(UsStates).includes(match.params.state.trim())) {
+    stateVal = getKeyByValue(UsStates, match.params.state.trim());
+  }
+  console.log("State", stateVal);
+
+  const filteredData = topsolardata.filter((ele) => {
+    if (ele.HQSTATE === stateVal) {
       return ele ? ele : null;
     }
   });
-  console.log("FilteredState", filteredState);
-  useWindowTitle("electrical-usage-price");
+  console.log("filteredData", filteredData);
+
   const headers = [
-    { label: "State", key: "State" },
-    { label: "ResidentialPrice", key: "ResidentialPrice" },
-    { label: "ResidentialAverage", key: "ResidentialAverage" },
-    { label: "CommercialPrice", key: "CommercialPrice" },
-    { label: "CommercialAverage", key: "CommercialAverage" },
+    { label: "NATIONA LRANK", key: "NATIONALRANK" },
+    { label: "COMPANY", key: "COMPANY" },
+    { label: "PRIMARY MARKET", key: "PRIMARYMARKET" },
+    {
+      label: "TOTAL KW INSTALLED SINCE FOUNDING",
+      key: "TOTALKWINSTALLEDSINCEFOUNDING",
+    },
+    { label: "KW INSTALLED IN 2021", key: "KWINSTALLEDIN2021" },
   ];
   return (
     <div className="wrapper">
-      {/*?php include('mobile-navigation-loggedin.php') ?*/}
       <section className="inner-banner"></section>
       <section className="py-4">
         <div class="container-fluid">
@@ -49,7 +57,7 @@ const ElectricalUsage = ({ match }) => {
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4">
                   <CSVLink
-                    data={filteredState}
+                    data={filteredData}
                     headers={headers}
                     filename={"records.csv"}
                   >
@@ -70,14 +78,25 @@ const ElectricalUsage = ({ match }) => {
               <div className="row">
                 <div className="col-lg-4"></div>
                 <div className="col-lg-4">
-                  <h2 className="text-50 text-center">
-                    ELECTRICAL USAGE & PRICES
-                  </h2>
+                  <h2 className="text-50 text-center">Top Solar Contractors</h2>
                 </div>
                 <div className="col-lg-10" style={{ marginLeft: "120px" }}>
                   <p className="p-text text-center">
-                    Here you find the most current electricity pricing for
-                    residential & commercial usage in average per state
+                    The list details the headquarters location of a company,
+                    number of employees, its primary market (utility,
+                    commercial/C&I, residential, or residential/commercial
+                    split) and its primary service (EPC, developer, solar
+                    installer, installation subcontractor, electrical
+                    subcontractor, sales partner). Companies choose their
+                    primary market and primary service. That does not mean they
+                    only work in these areas. They could work across all markets
+                    and all services, and their listed kilowatts reflect their
+                    cumulative installation numbers from the last year in all
+                    markets, services and states. Ranks are determined by the
+                    number of kilowatts (DC) a company was involved with
+                    installing in 2021 in the United States only. If two
+                    companies reported the same 2021 numbers, they were sorted
+                    by total kilowatts installed. (Source: SolarPowerWorld)
                   </p>
                 </div>
               </div>
@@ -98,45 +117,49 @@ const ElectricalUsage = ({ match }) => {
                     >
                       <thead>
                         <tr>
-                          <th>STATE</th>
-                          <th>Residential Price</th>
-                          <th>U.S.Average Residential Consumption</th>
-                          <th>Commercial Price</th>
-                          <th>U.S. Average Commercial Consumption</th>
+                          <th>NATIONAL RANK</th>
+                          <th>Company Name </th>
+                          <th>Primary Market</th>
+                          <th>TOTAL KW INSTALLED SINCE FOUNDING</th>
+                          <th>KW INSTALLED IN 2021</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {filteredState.length > 0 ? (
-                          filteredState.map((item, index) => (
+                        {filteredData.length > 0 ? (
+                          filteredData.map((item, index) => (
                             <tr>
-                              <td>{match.params.state}</td>
                               <td>
-                                {item?.ResidentialPrice
-                                  ? item?.ResidentialPrice
+                                {item?.NATIONALRANK
+                                  ? item?.NATIONALRANK
                                   : "Data is not Available at the moment"}
                               </td>
                               <td>
-                                {item?.ResidentialAverage
-                                  ? item?.ResidentialAverage
+                                {item?.COMPANY
+                                  ? item?.COMPANY
                                   : "Data is not Available at the moment"}
                               </td>
                               <td>
-                                {item?.CommercialPrice
-                                  ? item?.CommercialPrice
+                                {item?.PRIMARYMARKET
+                                  ? item?.PRIMARYMARKET
                                   : "Data is not Available at the moment"}
                               </td>
                               <td>
-                                {item?.CommercialAverage
-                                  ? item?.CommercialAverage
+                                {item?.TOTALKWINSTALLEDSINCEFOUNDING
+                                  ? item?.TOTALKWINSTALLEDSINCEFOUNDING
+                                  : "Data is not Available at the moment"}
+                              </td>
+                              <td>
+                                {item?.KWINSTALLEDIN2021
+                                  ? item?.KWINSTALLEDIN2021
                                   : "Data is not Available at the moment"}
                               </td>
                             </tr>
                           ))
                         ) : (
                           <tr>
+                            <td>No Data Available At the moment</td>
+                            <td>No Data Available At the moment</td>
                             <td>{match.params.state}</td>
-                            <td>No Data Available At the moment</td>
-                            <td>No Data Available At the moment</td>
                             <td>No Data Available At the moment</td>
                             <td>No Data Available At the moment</td>
                           </tr>
@@ -168,4 +191,4 @@ const ElectricalUsage = ({ match }) => {
   );
 };
 
-export default ElectricalUsage;
+export default TopSolarContractors;

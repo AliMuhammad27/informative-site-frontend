@@ -46,7 +46,7 @@ const AboutUs = () => {
           </div>
         </section>
         <div className="row text-center">
-          <div className="col-lg-12 my-5">
+          <div className="col-lg-12 mb-5">
             <Link to="/" className="site-btn" onClick={goToTop}>
               Go Back To Home
             </Link>
