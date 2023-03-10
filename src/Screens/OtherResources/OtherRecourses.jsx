@@ -55,6 +55,41 @@ const OtherRecourses = () => {
                       http://www.solarreviews.com/
                     </a>
                   </li>
+                  <li>
+                    <a href="https://www.energysage.com/">
+                      https://www.energysage.com/
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.worldtimebuddy.com/pst-to-mdt-converter/">
+                      https://www.worldtimebuddy.com/pst-to-mdt-converter/
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.calculator.net/">
+                      https://www.calculator.net/
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.blocklayer.com/pitchangle/">
+                      https://www.blocklayer.com/pitchangle/
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://pvwatts.nrel.gov/">
+                      https://pvwatts.nrel.gov/
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.altestore.com/store/calculators/load_calculator/">
+                      https://www.altestore.com/store/calculators/load_calculator/
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://enphase.com/installers/microinverters/calculator/">
+                      https://enphase.com/installers/microinverters/calculator/
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>

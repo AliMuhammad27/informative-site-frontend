@@ -100,9 +100,9 @@ const ElectricalUsage = ({ match }) => {
                         <tr>
                           <th>STATE</th>
                           <th>Residential Price</th>
-                          <th>U.S.Average Residential Consumption</th>
+                          <th>U.S.Average Residential Price</th>
                           <th>Commercial Price</th>
-                          <th>U.S. Average Commercial Consumption</th>
+                          <th>U.S. Average Commercial Price</th>
                         </tr>
                       </thead>
                       <tbody>
