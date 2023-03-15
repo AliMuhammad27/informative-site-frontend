@@ -1,7 +1,7 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
 
-export default function Pagination({ totalPages, setPage }) {
+export default function Pagination({ totalPages, setPage,currentPage }) {
   return (
     <div className="row mb-2">
       <div className="col-sm-12 col-md-5">

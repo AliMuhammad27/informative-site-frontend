@@ -52,33 +52,33 @@ function App() {
         <Route path="/" component={Home} exact />
         <Route path="/terms-and-services" component={TermsAndServices} exact />
         <Route
-          path="/gasoline-prices/:state"
+          path="/gasoline-prices/:state/:zipcode"
           component={GasolinePrices}
           exact
         />
         <Route
-          path="/naturalgas-prices/:state"
+          path="/naturalgas-prices/:state/:zipcode"
           component={NaturalgasRates}
           exact
         />
-        <Route path="/weather-data/:state" component={WeatherData} exact />
-        <Route path="/sun-hours/:state" component={SunHours} exact />
-        <Route path="/wind-speed/:state" component={WindSpeed} exact />
+        <Route path="/weather-data/:state/:zipcode" component={WeatherData} exact />
+        <Route path="/sun-hours/:state/:zipcode" component={SunHours} exact />
+        <Route path="/wind-speed/:state/:zipcode" component={WindSpeed} exact />
         <Route
-          path="/electric-car-charging-station/:state"
+          path="/electric-car-charging-station/:state/:zipcode"
           component={EvChargingStations}
           exact
         />
-        <Route path="/tesla-showrooms/:state/" component={EvShowrooms} exact />
-        <Route path="/electric-rates/:state" component={ElectricPrice} exact />
-        <Route path="/solar-rates/:state" component={SolarPrice} exact />
+        <Route path="/tesla-showrooms/:state/:zipcode" component={EvShowrooms} exact />
+        <Route path="/electric-rates/:state/:zipcode" component={ElectricPrice} exact />
+        <Route path="/solar-rates/:state/:zipcode" component={SolarPrice} exact />
         <Route
-          path="/electrical-usage/:state"
+          path="/electrical-usage/:state/:zipcode"
           component={ElectricalUsage}
           exact
         />
         <Route
-          path="/electrical-usage-commercial/:state"
+          path="/electrical-usage-commercial/:state/:zipcode"
           component={ElectricalUsageCom}
           exact
         />
@@ -88,23 +88,23 @@ function App() {
         <Route path="/data-source" component={DataSource} exact />
         <Route path="/other-good-resources" component={OtherRecourses} exact />
         <Route
-          path="/average-solar-panel-cost/:state"
+          path="/average-solar-panel-cost/:state/:zipcode"
           component={AvergaSolarPanel}
           exact
         />
         <Route
-          path="/top-solar-contractors/:state"
+          path="/top-solar-contractors/:state/:zipcode"
           component={TopSolarContractors}
           exact
         />
         <Route
-          path="/charging-locations/:state"
+          path="/charging-locations/:state/:zipcode"
           component={ChargingStationsLocation}
           exact
         />
-        <Route path="/average-sunhours/:state" component={sunhoursss} exact />
-        <Route path="/code-adoption/:state" component={CodeAdoption} exact />
-        <Route path="/code-nec/:state" component={CodeNec} exact />
+        <Route path="/average-sunhours/:state/:zipcode" component={sunhoursss} exact />
+        <Route path="/code-adoption/:state/:zipcode" component={CodeAdoption} exact />
+        <Route path="/code-nec/:state/:zipcode" component={CodeNec} exact />
         <MyFoot />
       </Router>
     </Suspense>

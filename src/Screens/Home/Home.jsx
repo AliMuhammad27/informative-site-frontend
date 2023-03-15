@@ -140,7 +140,7 @@ const Home = ({ history }) => {
   };
   const handler = () => {
     let path = "";
-    if (state && general) return (path = `/${general}/${state}`);
+    if (state && general) return (path = `/${general}/${state}/${zipcode}`);
   };
   const res = handler();
   let sasas = "";

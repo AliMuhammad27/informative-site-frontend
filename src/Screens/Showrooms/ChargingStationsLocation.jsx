@@ -15,6 +15,10 @@ import {
 import { Link } from "react-router-dom";
 const ChargingStationsLocation = ({ match }) => {
   const [page, setPage] = useState(1);
+  const [paginationpage, setpaginationpage] = useState(1);
+  const [data, setdata] = useState([]);
+
+  const urlzipcode = match.params.zipcode
   const [stations, setStations] = useState();
   const downloadToCsv = function () {
     const table = document.getElementById("exportMe");
@@ -31,6 +35,7 @@ const ChargingStationsLocation = ({ match }) => {
   let stateVal = "";
   if (Object.values(UsStates).includes(match.params.state.trim())) {
     stateVal = getKeyByValue(UsStates, match.params.state.trim());
+
   }
   console.log("State", stateVal);
   const filteredData = updatedElectricCharging.filter((ele) => {
@@ -58,14 +63,23 @@ const ChargingStationsLocation = ({ match }) => {
       params: {
         page,
         state,
+        ZIP: urlzipcode
       },
     });
   };
 
   const executionFunction = async () => {
-    const response = await getStationsData(page, stateVal);
-    if (response) {
-      setStations(response?.data);
+    let { data } = await getStationsData(page, stateVal);
+    console.log('data', data)
+    const response2 = data?.docs?.filter(res => res?.ZIP == urlzipcode)
+    const response3 = data?.docs?.filter(res => res?.ZIP !== urlzipcode)
+    console.log('responseeee', data)
+    data = { ...data, docs: [...response2, ...response3] }
+    console.log('response2', response2)
+    if (data) {
+      console.log('data?.docs',data?.docs)
+      setStations(data);
+      setdata(data?.docs?.slice(0,10))
     }
     // console.log("Response Data", response.data);
   };
@@ -75,7 +89,22 @@ const ChargingStationsLocation = ({ match }) => {
     executionFunction();
   }, [page]);
 
+  useEffect(() => {
+  console.log('paginationpage',paginationpage)
+  }, [paginationpage]);
   console.log("Stations", stations?.docs);
+useEffect(() => {
+console.log('stations?.docs',stations?.docs)
+let coptofstations=stations?.docs.slice(0);
+let abc=coptofstations
+console.log('abc',abc,stations?.docs)
+if(paginationpage==1){
+  setdata(abc?.splice(0,10))
+
+}else{  setdata(abc?.splice(paginationpage*10,10))
+}
+  // setdata(paginationpage*10,10)
+}, [paginationpage])
 
   return (
     <div className="wrapper">
@@ -89,17 +118,18 @@ const ChargingStationsLocation = ({ match }) => {
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4">
-                  <CSVLink
-                    data={stations?.docs}
-                    headers={headers}
-                    filename={"records.csv"}
-                  >
-                    <div class="text-end">
-                      <button className="site-btn" id="export">
-                        Download Csv
-                      </button>
-                    </div>
-                  </CSVLink>
+                  {stations &&
+                    <CSVLink
+                      data={stations?.docs}
+                      headers={headers}
+                      filename={"records.csv"}
+                    >
+                      <div class="text-end">
+                        <button className="site-btn" id="export">
+                          Download Csv
+                        </button>
+                      </div>
+                    </CSVLink>}
                 </div>
               </div>
             </div>
@@ -149,25 +179,25 @@ const ChargingStationsLocation = ({ match }) => {
                       </thead>
                       <tbody>
                         {stations &&
-                        Object.keys(stations).length > 0 &&
-                        stations.docs.length > 0
-                          ? stations.docs.map((item, index) => (
-                              <tr className="tableRow">
-                                <td>
-                                  {" "}
-                                  {getSerial(
-                                    stations.limit,
-                                    stations.page,
-                                    index
-                                  )}
-                                </td>
-                                <td>{item?.State}</td>
-                                <td>{item?.StationName}</td>
-                                <td>{item?.StreetAddress}</td>
-                                <td>{item?.City}</td>
-                                <td>{item?.ZIP}</td>
-                              </tr>
-                            ))
+                          Object.keys(stations).length > 0 &&
+                          data.length > 0
+                          ? data.map((item, index) => (
+                            <tr className="tableRow">
+                              <td>
+                                {" "}
+                                {getSerial(
+                                  10,
+                                  paginationpage,
+                                  index
+                                )}
+                              </td>
+                              <td>{item?.State}</td>
+                              <td>{item?.State == 'FL' ? item['Station Name']:item?.StationName}</td>
+                              <td>{item?.State == 'FL' ? item['Street Address']:item?.StreetAddress}</td>
+                              <td>{item?.City}</td>
+                              <td>{item?.ZIP}</td>
+                            </tr>
+                          ))
                           : "No stations"}
                       </tbody>
                     </table>
@@ -178,11 +208,11 @@ const ChargingStationsLocation = ({ match }) => {
                 {stations?.docs?.length > 0 && (
                   <Pagination
                     totalDocs={stations?.totalDocs}
-                    totalPages={stations?.totalPages}
-                    currentPage={stations?.page}
-                    setPage={setPage}
-                    hasNextPage={stations?.hasNextPage}
-                    hasPrevPage={stations?.hasPrevPage}
+                    totalPages={Math.round(stations?.totalDocs/10)}
+                    currentPage={paginationpage}
+                    setPage={setpaginationpage}
+                    // hasNextPage={stations?.hasNextPage}
+                    // hasPrevPage={stations?.hasPrevPage}
                   />
                 )}
               </div>

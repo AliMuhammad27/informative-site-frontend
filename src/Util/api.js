@@ -4,15 +4,15 @@ export let baseURL;
 export let imageUrl;
 export let defaultUrl;
 
-if (window.location.hostname == "localhost") {
-  baseURL = "https://localhost:6058/api";
-  imageUrl = "https://localhost:6058/";
-  defaultUrl = "https://localhost:6058/";
-} else {
+// if (window.location.hostname == "localhost") {
+  // baseURL = "https://localhost:6058/api";
+  // imageUrl = "https://localhost:6058/";
+  // defaultUrl = "https://localhost:6058/";
+// } else {
   baseURL = "https://zipitsolar.com:6058/api";
   imageUrl = "https://zipitsolar.com:6058/";
   defaultUrl = "https://zipitsolar.com:6058/";
-}
+// }
 let api = axios.create({
   baseURL,
   headers: {
