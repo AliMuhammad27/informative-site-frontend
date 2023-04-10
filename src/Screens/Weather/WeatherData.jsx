@@ -26,23 +26,22 @@ const WeatherData = ({ match }) => {
   //   });
   // };
   console.log("weatherdata", weatherdata?.forecast?.temperature);
-  const getWeatherData = async (q, appid, units) => {
-    return await axios.get("https://api.openweathermap.org/data/2.5/weather", {
+  const getWeatherData = async (key, q,) => {
+    return await axios.get("https://api.weatherapi.com/v1/forecast.json", {
       params: {
+        key,
         q,
-        appid,
-        units,
       },
     });
   };
   const executionFunction = async () => {
     const response = await getWeatherData(
-      match.params.state.trim(),
-      "4e28b47273e7002079347d838122fb6c",
-      "Imperial"
+      "dcb90f1ca39049feba1214220231903",
+      match?.params?.zipcode.trim(),
     );
     if (response) {
-      setweatherdata(response?.data?.main);
+      console.log('forecast23',response?.data?.forecast?.forecastday[0]?.day)
+      setweatherdata(response?.data?.forecast?.forecastday[0]?.day);
     }
     // console.log("Response Data", response.data);
   };
@@ -127,15 +126,15 @@ const WeatherData = ({ match }) => {
                         <tr>
                           <td>{match.params.state}</td>
                           <td>
-                            {weatherdata?.temp_min
-                              ? weatherdata?.temp_min
+                            {weatherdata
+                              ? weatherdata?.mintemp_f
                               : "Data is not Available at the moment"}
                             °F
                           </td>
                           <td>
                             {" "}
-                            {weatherdata?.temp_max
-                              ? weatherdata?.temp_max
+                            {weatherdata
+                              ? weatherdata?.maxtemp_f
                               : "Data is not Available at the moment"}
                             °F
                           </td>

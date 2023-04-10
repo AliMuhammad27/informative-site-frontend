@@ -35,6 +35,9 @@ const ElectricalUsage = ({ match }) => {
     { label: "ResidentialAverage", key: "ResidentialAverage" },
     { label: "CommercialPrice", key: "CommercialPrice" },
     { label: "CommercialAverage", key: "CommercialAverage" },
+    { label: "ResidentialConsumption", key: "ResidentialConsumption" },
+    { label: "CommercialConsumption", key: "CommercialConsumption" },
+
   ];
   return (
     <div className="wrapper">
@@ -103,6 +106,8 @@ const ElectricalUsage = ({ match }) => {
                           <th>U.S.Average Residential Price</th>
                           <th>Commercial Price</th>
                           <th>U.S. Average Commercial Price</th>
+                          <th>Electrical Consumption Residential</th>
+                          <th>Electrical Consumption Commercial</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -129,6 +134,17 @@ const ElectricalUsage = ({ match }) => {
                                 {item?.CommercialAverage
                                   ? item?.CommercialAverage
                                   : "Data is not Available at the moment"}
+                              </td>
+                              <td>
+                                {item?.ResidentialConsumption
+                                  ? item?.ResidentialConsumption
+                                  : "Data is not Available at the moment"}
+                              </td>
+                              <td>
+                                Coming Soon
+                                {/* {item?.CommercialConsumption
+                                  ? item?.CommercialConsumption
+                                  : "Data is not Available at the moment"} */}
                               </td>
                             </tr>
                           ))

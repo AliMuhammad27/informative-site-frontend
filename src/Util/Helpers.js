@@ -13715,6 +13715,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "14.04 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "1,140 kWh",
+    CommercialConsumption: "236 trillion Btu",
+
   },
   {
     State: "Alaska",
@@ -13722,6 +13725,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "19.98 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "594 kWh",
+    CommercialConsumption: "58 trillion Btu",
+
   },
   {
     State: "Arizona",
@@ -13729,6 +13735,8 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "11.50 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "1,048 kWh",
+    CommercialConsumption: "334 trillion Btu",
   },
   {
     State: "Arkansas",
@@ -13736,6 +13744,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "10.77 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "1,098 kWh",
+    CommercialConsumption: "216 trillion Btu",
+
   },
   {
     State: "California",
@@ -13743,6 +13754,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "23.70 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "542 kWh",
+    CommercialConsumption: "1,358 trillion Btu",
+
   },
   {
     State: "Colorado",
@@ -13750,6 +13764,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "12.58 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "704 kWh",
+    CommercialConsumption: "281 trillion Btu",
+
   },
   {
     State: "Connecticut",
@@ -13757,6 +13774,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "16.85 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "713 kWh",
+    CommercialConsumption: "170 trillion Btu",
+
   },
   {
     State: "Delaware",
@@ -13764,6 +13784,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "11.18 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "950 kWh",
+    CommercialConsumption: "56 trillion Btu",
+
   },
   {
     State: "Florida",
@@ -13771,6 +13794,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "11.07 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "1,096 kWh",
+    CommercialConsumption: "908 trillion Btu",
+
   },
   {
     State: "Georgia",
@@ -13778,6 +13804,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "14.69 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "1,072 kWh",
+    CommercialConsumption: "498 trillion Btu",
+
   },
   {
     State: "Hawaii",
@@ -13785,6 +13814,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "42.36 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "531 kWh",
+    CommercialConsumption: "39 trillion Btu",
+
   },
   {
     State: "Idaho",
@@ -13792,6 +13824,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "8.86 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "961 kWh",
+    CommercialConsumption: "90 trillion Btu",
+
   },
   {
     State: "Illinois",
@@ -13799,6 +13834,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "12.62 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "728 kWh",
+    CommercialConsumption: "740 trillion Btu",
+
   },
   {
     State: "Indiana",
@@ -13806,6 +13844,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "13.16 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "946 kWh",
+    CommercialConsumption: "337 trillion Btu",
+
   },
   {
     State: "Iowa",
@@ -13813,6 +13854,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "12.86 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "861 kWh",
+    CommercialConsumption: "181 trillion Btu",
+
   },
   {
     State: "Kansas",
@@ -13820,6 +13864,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "12.38 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "890 kWh",
+    CommercialConsumption: "203 trillion Btu",
+
   },
   {
     State: "Kentucky",
@@ -13827,6 +13874,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "12.02 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "1,084 kWh",
+    CommercialConsumption: "234 trillion Btu",
+
   },
   {
     State: "Louisiana",
@@ -13834,6 +13884,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "12.69 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "1,192 kWh",
+    CommercialConsumption: "234 trillion Btu",
+
   },
   {
     State: "Maine",
@@ -13841,6 +13894,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "15.54 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "584 kWh",
+    CommercialConsumption: "64 trillion Btu",
+
   },
   {
     State: "Maryland",
@@ -13848,6 +13904,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "12.82 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "973 kWh",
+    CommercialConsumption: "358 trillion Btu",
+
   },
   {
     State: "Massachusetts",
@@ -13855,6 +13914,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "18.18 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "596 kWh",
+    CommercialConsumption: "369 trillion Btu",
+
   },
   {
     State: "Michigan",
@@ -13862,12 +13924,18 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "12.47 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "670 kWh",
+    CommercialConsumption: "571 trillion Btu",
+
   },
   {
     State: "Minnesota",
     ResidentialPrice: "15.15 cents/kWh",
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "13.15 cents/kWh",
+    ResidentialConsumption: "776 kWh",
+    CommercialConsumption: "339 trillion Btu",
+
   },
   {
     State: "Mississippi",
@@ -13875,6 +13943,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "11.49 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "1,171 kWh",
+    CommercialConsumption: "139 trillion Btu",
+
   },
   {
     State: "Missouri",
@@ -13882,6 +13953,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "11.23 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "1,039 kWh",
+    CommercialConsumption: "379 trillion Btu",
+
   },
   {
     State: "Montana",
@@ -13889,6 +13963,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "10.61 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "872 kWh",
+    CommercialConsumption: "82 trillion Btu",
+
   },
   {
     State: "Nebraska",
@@ -13896,6 +13973,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "9.53 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "1,005 kWh",
+    CommercialConsumption: "137 trillion Btu",
+
   },
   {
     State: "Nevada",
@@ -13903,6 +13983,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "10.19 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "959 kWh",
+    CommercialConsumption: "145 trillion Btu",
+
   },
   {
     State: "New Hampshire",
@@ -13910,6 +13993,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "17.16 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "631 kWh",
+    CommercialConsumption: "65 trillion Btu",
+
   },
   {
     State: "New Jersey",
@@ -13917,6 +14003,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "14.62 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "687 kWh",
+    CommercialConsumption: "521 trillion Btu",
+
   },
   {
     State: "New Mexico",
@@ -13924,6 +14013,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "12.35 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "646 kWh",
+    CommercialConsumption: "116 trillion Btu",
+
   },
   {
     State: "New York",
@@ -13931,6 +14023,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "19.96 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "599 kWh",
+    CommercialConsumption: "1,013 trillion Btu",
+
   },
   {
     State: "North Carolina",
@@ -13938,6 +14033,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "9.21 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "1,063 kWh",
+    CommercialConsumption: "537 trillion Btu",
+
   },
   {
     State: "North Dakota",
@@ -13945,6 +14043,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "9.63 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "1,041 kWh",
+    CommercialConsumption: "85 trillion Btu",
+
   },
   {
     State: "Ohio",
@@ -13952,6 +14053,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "10.78 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "879 kWh",
+    CommercialConsumption: "633 trillion Btu",
+
   },
   {
     State: "Oklahoma",
@@ -13959,6 +14063,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "11.38 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "1,088 kWh",
+    CommercialConsumption: "223 trillion Btu",
+
   },
   {
     State: "Oregon",
@@ -13966,6 +14073,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "9.12 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "936 kWh",
+    CommercialConsumption: "185 trillion Btu",
+
   },
   {
     State: "Pennsylvania",
@@ -13973,6 +14083,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "11.19 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "851 kWh",
+    CommercialConsumption: "525 trillion Btu",
+
   },
   {
     State: "Rhode Island",
@@ -13980,6 +14093,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "15.09 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "585 kWh",
+    CommercialConsumption: "45 trillion Btu",
+
   },
   {
     State: "South Carolina",
@@ -13987,6 +14103,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "12.15 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "1,078 kWh",
+    CommercialConsumption: "254 trillion Btu",
+
   },
   {
     State: "South Dakota",
@@ -13994,6 +14113,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "10.75 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "1,019 kWh",
+    CommercialConsumption: "62 trillion Btu",
+
   },
   {
     State: "Tennessee",
@@ -14001,6 +14123,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "12.82 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "1,183 kWh",
+    CommercialConsumption: "412 trillion Btu",
+
   },
   {
     State: "Texas",
@@ -14008,6 +14133,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "9.89 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "1,094 kWh",
+    CommercialConsumption: "1,631 trillion Btu",
+
   },
   {
     State: "Utah",
@@ -14015,6 +14143,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "8.82 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "775 kWh",
+    CommercialConsumption: "169 trillion Btu",
+
   },
   {
     State: "Vermont",
@@ -14022,6 +14153,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "17.30 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "567 kWh",
+    CommercialConsumption: "25 trillion Btu",
+
   },
   {
     State: "Virginia",
@@ -14029,6 +14163,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "9.76 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "1,094 kWh",
+    CommercialConsumption: "610 trillion Btu",
+
   },
   {
     State: "Washington",
@@ -14036,6 +14173,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "9.49 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "984 kWh",
+    CommercialConsumption: "331 trillion Btu",
+
   },
   {
     State: "West Virginia",
@@ -14043,6 +14183,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "10.41 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "1,066 kWh",
+    CommercialConsumption: "102 trillion Btu",
+
   },
   {
     State: "Wisconsin",
@@ -14050,6 +14193,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "11.96 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "690 kWh",
+    CommercialConsumption: "338 trillion Btu",
+
   },
   {
     State: "Wyoming",
@@ -14057,6 +14203,9 @@ export const electricusagepricedata = [
     ResidentialAverage: "15.46 cents/kWh",
     CommercialPrice: "9.72 cents/kWh",
     CommercialAverage: "13.15 cents/kWh",
+    ResidentialConsumption: "52 trillion Btu",
+    CommercialConsumption: "867 kWh",
+
   },
 ];
 
