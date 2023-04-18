@@ -26,22 +26,22 @@ const WeatherData = ({ match }) => {
   //   });
   // };
   console.log("weatherdata", weatherdata?.forecast?.temperature);
-  const getWeatherData = async (key, q,) => {
-    return await axios.get("https://api.weatherapi.com/v1/forecast.json", {
+  const getWeatherData = async (zip, appid,) => {
+    return await axios.get("https://api.openweathermap.org/data/2.5/weather", {
       params: {
-        key,
-        q,
+        zip,
+        appid,
       },
     });
   };
   const executionFunction = async () => {
     const response = await getWeatherData(
-      "dcb90f1ca39049feba1214220231903",
       match?.params?.zipcode.trim(),
+      "2258dfc5b5b305fe2e1657d846b84a29",
     );
     if (response) {
-      console.log('forecast23',response?.data?.forecast?.forecastday[0]?.day)
-      setweatherdata(response?.data?.forecast?.forecastday[0]?.day);
+      console.log('forecast23',response?.data?.main)
+      setweatherdata(response?.data?.main);
     }
     // console.log("Response Data", response.data);
   };
@@ -127,14 +127,14 @@ const WeatherData = ({ match }) => {
                           <td>{match.params.state}</td>
                           <td>
                             {weatherdata
-                              ? weatherdata?.mintemp_f
+                              ? weatherdata?.temp_min
                               : "Data is not Available at the moment"}
                             °F
                           </td>
                           <td>
                             {" "}
                             {weatherdata
-                              ? weatherdata?.maxtemp_f
+                              ? weatherdata?.temp_max
                               : "Data is not Available at the moment"}
                             °F
                           </td>
