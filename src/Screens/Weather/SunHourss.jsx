@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import useWindowTitle from "../../Hooks/useWindowTitle";
+import MyNav from "../../Components/Nav";
+import MyFoot from "../../Components/Footer";
+
+
 import { Link } from "react-router-dom";
 const {
   sunhoursss,
@@ -37,6 +41,8 @@ const SunHourss = ({ match }) => {
   console.log("filteredData", filteredData);
 
   return (
+    <>
+    <MyNav/>
     <div className="wrapper">
       <section className="inner-banner"></section>
       <section className="py-4">
@@ -130,6 +136,9 @@ const SunHourss = ({ match }) => {
         </div>
       </div>
     </div>
+    <MyFoot/>
+
+    </>
   );
 };
 

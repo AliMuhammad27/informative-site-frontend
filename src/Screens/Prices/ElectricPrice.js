@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import useWindowTitle from "../../Hooks/useWindowTitle";
 import { Link } from "react-router-dom";
+import MyNav from "../../Components/Nav";
+import MyFoot from "../../Components/Footer";
+
 const {
   getKeyByValue,
   electricRates,
@@ -54,6 +57,8 @@ const ElectricPrice = ({ match }) => {
     });
   };
   return (
+    <>
+    <MyNav/>
     <div className="wrapper">
       {/*?php include('mobile-navigation-loggedin.php') ?*/}
       <section className="inner-banner"></section>
@@ -146,6 +151,9 @@ const ElectricPrice = ({ match }) => {
         </div>
       </div>
     </div>
+    <MyFoot/>
+
+    </>
   );
 };
 

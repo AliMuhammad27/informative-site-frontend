@@ -1,6 +1,9 @@
 import React from "react";
 import useWindowTitle from "../../Hooks/useWindowTitle";
 import { Link } from "react-router-dom";
+import MyNav from "../../Components/Nav";
+import MyFoot from "../../Components/Footer";
+
 const {
   getKeyByValue,
   naturalgasRates,
@@ -30,6 +33,8 @@ const NaturalgasRates = ({ match }) => {
   };
   useWindowTitle("natural-gas-rates");
   return (
+    <>
+    <MyNav/>
     <div className="wrapper">
       <section className="inner-banner"></section>
       <section className="py-4">
@@ -144,6 +149,9 @@ const NaturalgasRates = ({ match }) => {
         </div>
       </div>
     </div>
+    <MyFoot/>
+
+    </>
   );
 };
 

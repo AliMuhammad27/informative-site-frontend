@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useWindowTitle from "../../Hooks/useWindowTitle";
+import MyNav from "../../Components/Nav";
+import MyFoot from "../../Components/Footer";
+
 import { CSVLink } from "react-csv";
 const { codeadoptiondata, toCsv, download } = require("../../Util/Helpers");
 const CodeAdoption = ({ match }) => {
@@ -32,6 +35,8 @@ const CodeAdoption = ({ match }) => {
   ];
 
   return (
+    <>
+    <MyNav/>
     <div className="wrapper">
       {/*?php include('mobile-navigation-loggedin.php') ?*/}
       <section className="inner-banner"></section>
@@ -137,6 +142,9 @@ const CodeAdoption = ({ match }) => {
         </div>
       </div>
     </div>
+    <MyFoot/>
+
+    </>
   );
 };
 export default CodeAdoption;

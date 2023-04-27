@@ -1,6 +1,9 @@
 import React from "react";
 import useWindowTitle from "../../Hooks/useWindowTitle";
 import { CSVLink } from "react-csv";
+import MyNav from "../../Components/Nav";
+import MyFoot from "../../Components/Footer";
+
 import {
   UpdatedPvSystems,
   PvSystems,
@@ -62,6 +65,8 @@ const AvergaSolarPanel = ({ match }) => {
   ];
 
   return (
+    <>
+    <MyNav/>
     <div className="wrapper">
       {/*?php include('mobile-navigation-loggedin.php') ?*/}
       <section className="inner-banner"></section>
@@ -186,6 +191,9 @@ const AvergaSolarPanel = ({ match }) => {
       </div>
       {/*?php include('site-footer.php') ?*/}
     </div>
+    <MyFoot/>
+
+    </>
   );
 };
 

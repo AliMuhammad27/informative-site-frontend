@@ -2,6 +2,9 @@ import React from "react";
 import useWindowTitle from "../../Hooks/useWindowTitle";
 import { pvRates, getKeyByValue, toCsv, download } from "../../Util/Helpers";
 import { Link } from "react-router-dom";
+import MyNav from "../../Components/Nav";
+import MyFoot from "../../Components/Footer";
+
 const SolarPrice = ({ match }) => {
   let pvData = "";
   if (Object.values(pvRates).includes(match.params.state.trim())) {
@@ -23,6 +26,8 @@ const SolarPrice = ({ match }) => {
   useWindowTitle("pv-installation");
 
   return (
+    <>
+    <MyNav/>
     <div className="wrapper">
       {/*?php include('mobile-navigation-loggedin.php') ?*/}
       <section className="inner-banner"></section>
@@ -162,6 +167,9 @@ const SolarPrice = ({ match }) => {
       </div>
       {/*?php include('site-footer.php') ?*/}
     </div>
+    <MyFoot/>
+
+    </>
   );
 };
 

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import useWindowTitle from "../../Hooks/useWindowTitle";
 import { Link } from "react-router-dom";
 import { CSVLink } from "react-csv";
+import MyNav from "../../Components/Nav";
+import MyFoot from "../../Components/Footer";
 const {
   electricusagepricedata,
   toCsv,
@@ -40,6 +42,8 @@ const ElectricalUsage = ({ match }) => {
 
   ];
   return (
+    <>
+    <MyNav/>
     <div className="wrapper">
       {/*?php include('mobile-navigation-loggedin.php') ?*/}
       <section className="inner-banner"></section>
@@ -181,6 +185,8 @@ const ElectricalUsage = ({ match }) => {
         </div>
       </div>
     </div>
+    <MyFoot/>
+    </>
   );
 };
 

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import useWindowTitle from "../../Hooks/useWindowTitle";
 import { Link } from "react-router-dom";
+import MyNav from "../../Components/Nav";
+import MyFoot from "../../Components/Footer";
+
 import {
   teslaCenters,
   getKeyByValue,
@@ -27,6 +30,8 @@ const EvChargingStations = ({ match }) => {
   };
   useWindowTitle("Tesla Charging");
   return (
+    <>
+    <MyNav/>
     <div className="wrapper">
       {/*?php include('mobile-navigation-loggedin.php') ?*/}
       <section className="inner-banner"></section>
@@ -156,6 +161,9 @@ const EvChargingStations = ({ match }) => {
       </div>
       {/*?php include('site-footer.php') ?*/}
     </div>
+    <MyFoot/>
+
+    </>
   );
 };
 

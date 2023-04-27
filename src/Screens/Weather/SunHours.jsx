@@ -10,6 +10,9 @@ import {
   UsStates,
 } from "../../Util/Helpers";
 import { Link } from "react-router-dom";
+import MyNav from "../../Components/Nav";
+import MyFoot from "../../Components/Footer";
+
 const SunHours = ({ match }) => {
   let sunValues = "";
   if (Object.values(sunData).includes(match.params.state.trim())) {
@@ -48,6 +51,8 @@ const SunHours = ({ match }) => {
     { label: "AverageESH", key: "AverageESH" },
   ];
   return (
+    <>
+    <MyNav/>
     <div className="wrapper">
       <section className="inner-banner"></section>
       <section className="py-4">
@@ -192,6 +197,9 @@ const SunHours = ({ match }) => {
         </div>
       </div>
     </div>
+    <MyFoot/>
+
+    </>
   );
 };
 

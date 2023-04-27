@@ -4,6 +4,9 @@ import useWindowTitle from "../../Hooks/useWindowTitle";
 import { CSVLink } from "react-csv";
 import { useState } from "react";
 import { useEffect } from "react";
+import MyNav from "../../Components/Nav";
+import MyFoot from "../../Components/Footer";
+
 const { necdata, toCsv, download, exportCSV } = require("../../Util/Helpers");
 const CodeNec = ({ match }) => {
   const goToTop = () => {
@@ -33,6 +36,8 @@ const CodeNec = ({ match }) => {
   ];
 
   return (
+    <>
+    <MyNav/>
     <div className="wrapper">
       {/*?php include('mobile-navigation-loggedin.php') ?*/}
       <section className="inner-banner"></section>
@@ -147,6 +152,9 @@ const CodeNec = ({ match }) => {
         </div>
       </div>
     </div>
+    <MyFoot/>
+
+    </>
   );
 };
 export default CodeNec;

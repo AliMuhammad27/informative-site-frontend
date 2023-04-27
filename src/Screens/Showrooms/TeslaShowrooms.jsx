@@ -8,6 +8,9 @@ import {
   toCsv,
   download,
 } from "../../Util/Helpers";
+import MyNav from "../../Components/Nav";
+import MyFoot from "../../Components/Footer";
+
 const TeslaShowrooms = ({ match }) => {
   let teslashowrooms = "";
   let showroomlinks = "";
@@ -34,6 +37,8 @@ const TeslaShowrooms = ({ match }) => {
   };
   useWindowTitle("showrooms");
   return (
+    <>
+    <MyNav/>
     <div className="wrapper">
       <section className="inner-banner"></section>
       <section className="py-4">
@@ -154,6 +159,9 @@ const TeslaShowrooms = ({ match }) => {
         </div>
       </div>
     </div>
+    <MyFoot/>
+
+    </>
   );
 };
 

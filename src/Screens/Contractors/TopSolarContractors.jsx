@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import useWindowTitle from "../../Hooks/useWindowTitle";
 import { Link } from "react-router-dom";
+import MyNav from "../../Components/Nav";
+import MyFoot from "../../Components/Footer";
+
 import { CSVLink } from "react-csv";
 const {
   topsolardata,
@@ -46,6 +49,8 @@ const TopSolarContractors = ({ match }) => {
     { label: "KW INSTALLED IN 2021", key: "KWINSTALLEDIN2021" },
   ];
   return (
+    <>
+    <MyNav/>
     <div className="wrapper">
       <section className="inner-banner"></section>
       <section className="py-4">
@@ -188,6 +193,9 @@ const TopSolarContractors = ({ match }) => {
         </div>
       </div>
     </div>
+    <MyFoot/>
+
+    </>
   );
 };
 

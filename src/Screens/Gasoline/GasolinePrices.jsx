@@ -3,6 +3,9 @@ import useWindowTitle from "../../Hooks/useWindowTitle";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import VecttorMap from "../../Components/VectorMax";
+import MyNav from "../../Components/Nav";
+import MyFoot from "../../Components/Footer";
+
 const {
   getKeyByValue,
   gasolineRates,
@@ -56,6 +59,8 @@ const GasolinePrices = ({ match }) => {
     console.log("gasolinePrice1", gasolinePrice1);
   }, [gasolinePrice1]);
   return (
+    <>
+    <MyNav/>
     <div className="wrapper">
       <section className="inner-banner"></section>
       <section className="py-4">
@@ -164,6 +169,9 @@ const GasolinePrices = ({ match }) => {
         </div>
       </div>
     </div>
+    <MyFoot/>
+
+    </>
   );
 };
 

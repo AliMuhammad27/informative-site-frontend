@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { State } from "country-state-city";
+import MyNav from "../../Components/Nav";
+import MyFoot from "../../Components/Footer";
+
 import Modal from "../../Components/modal/Modal";
 import { Link } from "react-router-dom";
 import Select from "react-select";
@@ -17,8 +20,32 @@ import AnimationData9 from "../../Lotties/lf30_editor_moamicbr.json";
 import AnimationData10 from "../../Lotties/lf30_editor_w9uygc7w.json";
 import Modal1 from "../../Components/Modal";
 import WOW from "wowjs";
+import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 const { zipCodeData } = require("../../Util/Helpers");
 const Home = ({ history }) => {
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+  const AuthNotifHandler=async()=>{
+    Swal.fire({
+      icon: "info",
+      title: "",
+      text: "Please Login or Signup to proceed further",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
+  
+const subscriptionidNotifHandler=async()=>{
+  Swal.fire({
+    icon: "info",
+    title: "",
+    text: "To avail this feature you must subscribe",
+    showConfirmButton: false,
+    timer: 1500,
+  });
+await history?.push('/SubscriptionPlan')
+}
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -183,8 +210,18 @@ const Home = ({ history }) => {
   setTimeout(() => {
     handlePlayVideo();
   }, 8600);
-
+const handlerr=()=>{
+  if( !userInfo){AuthNotifHandler()}
+  else if(userInfo && userInfo?.subscription?.packagename){
+    state && general ? history.push(handler()) : Modal1()
+  }
+  else if(userInfo && userInfo?.subscription == null){
+    subscriptionidNotifHandler()
+  }
+}
   return (
+    <>
+    <MyNav/>
     <div className="wrapper">
       {/*?php include('mobile-navigation-loggedin.php') ?*/}
       {/* banner section starts here */}
@@ -457,10 +494,9 @@ const Home = ({ history }) => {
                   </div>
                   <div className="col-lg col-md-6">
                     <div className=" text-sm-center">
-                      <Link
-                        onClick={(e) => {
-                          state && general ? history.push(handler()) : Modal1();
-                        }}
+                      <Link 
+                      onClick={handlerr}
+                        // onClick={(e) => {!userInfo ? AuthNotifHandler() : userInfo && userInfo?.subscription!== null ? state && general ? history.push(handler()) : Modal1() :userInfo && userInfo?.subscription == null ? subscriptionidNotifHandler() : null}}
                         className="btn site-btn"
                       >
                         Get Started
@@ -978,9 +1014,8 @@ const Home = ({ history }) => {
             <div className="col-lg col-md-6">
               <div className=" text-sm-center">
                 <Link
-                  onClick={(e) => {
-                    state && general ? history.push(handler()) : Modal1();
-                  }}
+                                      onClick={handlerr}
+
                   className="btn site-btn"
                 >
                   Get Started
@@ -1419,6 +1454,9 @@ const Home = ({ history }) => {
       {/* Best For You ends here */}
       {/*?php include('site-footer.php') ?*/}
     </div>
+    <MyFoot/>
+
+    </>
   );
 };
 export default Home;

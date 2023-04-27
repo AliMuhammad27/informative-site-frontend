@@ -3,6 +3,9 @@ import useWindowTitle from "../../Hooks/useWindowTitle";
 import Pagination from "../../Components/Pagination";
 import axios from "axios";
 import { CSVLink } from "react-csv";
+import MyNav from "../../Components/Nav";
+import MyFoot from "../../Components/Footer";
+
 import { baseURL } from "../../Util/api";
 import {
   updatedElectricCharging,
@@ -107,6 +110,8 @@ if(paginationpage==1){
 }, [paginationpage])
 
   return (
+    <>
+    <MyNav/>
     <div className="wrapper">
       {/*?php include('mobile-navigation-loggedin.php') ?*/}
       <section className="inner-banner"></section>
@@ -235,6 +240,9 @@ if(paginationpage==1){
         </div>
       </div>
     </div>
+    <MyFoot/>
+
+    </>
   );
 };
 

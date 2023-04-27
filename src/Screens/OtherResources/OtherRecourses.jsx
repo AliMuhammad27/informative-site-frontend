@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import MyNav from "../../Components/Nav";
+import MyFoot from "../../Components/Footer";
 
 const OtherRecourses = () => {
   const goToTop = () => {
@@ -9,7 +11,8 @@ const OtherRecourses = () => {
     });
   };
   return (
-    <div>
+    <>
+    <MyNav/>
       <div className="wrapper">
         {/*?php include('mobile-navigation-loggedin.php') ?*/}
         <section className="inner-banner"></section>
@@ -139,7 +142,8 @@ const OtherRecourses = () => {
         {/*?php include('site-footer.php') ?*/}
       </div>
       <div className="overlay" />
-    </div>
+      <MyFoot/>
+    </>
   );
 };
 

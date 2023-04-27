@@ -2,6 +2,8 @@ import React from "react";
 import useWindowTitle from "../../Hooks/useWindowTitle";
 import { windData, getKeyByValue, toCsv, download } from "../../Util/Helpers";
 import { Link } from "react-router-dom";
+import MyNav from "../../Components/Nav";
+import MyFoot from "../../Components/Footer";
 
 const WindSpeed = ({ match }) => {
   let windValues = "";
@@ -23,6 +25,8 @@ const WindSpeed = ({ match }) => {
   };
   useWindowTitle("Wind-Speed");
   return (
+    <>
+    <MyNav/>
     <div className="wrapper">
       <section className="inner-banner"></section>
       <section className="py-4">
@@ -123,6 +127,9 @@ const WindSpeed = ({ match }) => {
         </div>
       </div>
     </div>
+    <MyFoot/>
+
+    </>
   );
 };
 

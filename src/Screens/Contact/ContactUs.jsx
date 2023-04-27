@@ -7,6 +7,9 @@ import axios from "axios";
 import Button from "../../Components/Button";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
+import MyNav from "../../Components/Nav";
+import MyFoot from "../../Components/Footer";
+
 const ContactUs = () => {
   const [Name, setname] = useState("");
   const [email, setemail] = useState("");
@@ -50,7 +53,8 @@ const ContactUs = () => {
   };
   console.log("Phone Number", typeof value);
   return (
-    <div>
+    <>
+    <MyNav/>
       <div className="wrapper">
         {/*?php include('mobile-navigation-loggedin.php') ?*/}
         <section className="inner-banner"></section>
@@ -169,7 +173,9 @@ const ContactUs = () => {
         {/*?php include('site-footer.php') ?*/}
       </div>
       <div className="overlay" />
-    </div>
+      <MyFoot/>
+
+    </>
   );
 };
 

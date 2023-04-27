@@ -8,6 +8,9 @@ import {
   download,
   cToF,
 } from "../../Util/Helpers";
+import MyNav from "../../Components/Nav";
+import MyFoot from "../../Components/Footer";
+
 import { Link } from "react-router-dom";
 import { defaultUrl } from "../../Util/api";
 const { zipCodeData } = require("../../Util/Helpers");
@@ -64,6 +67,8 @@ const WeatherData = ({ match }) => {
   }, [match.params.state]);
   console.log("WeatherData", weatherdata);
   return (
+    <>
+    <MyNav/>
     <div className="wrapper">
       <section className="inner-banner"></section>
       <section className="py-4">
@@ -168,6 +173,8 @@ const WeatherData = ({ match }) => {
         </div>
       </div>
     </div>
+    <MyFoot/>
+    </>
   );
 };
 export default WeatherData;

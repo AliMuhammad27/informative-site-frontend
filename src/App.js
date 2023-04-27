@@ -44,11 +44,31 @@ const sunhoursss = lazy(() => import("./Screens/Weather/SunHourss"));
 const TermsAndServices = lazy(() => import("./Screens/Tos/TermsAndServices"));
 const CodeAdoption = lazy(() => import("./Screens/NewServices/CodeAdoption"));
 const CodeNec = lazy(() => import("./Screens/NewServices/CodeNec"));
+const Login = lazy(() => import("./Screens/Login/Login"));
+const ForgotPassword1 = lazy(() => import("./Screens/ForgotPassword1/ForgotPassword1"));
+const ForgotPassword2 = lazy(() => import("./Screens/ForgotPassword2/ForgotPassword2"));
+const ForgotPassword3 = lazy(() => import("./Screens/ForgotPassword3/ForgotPassword3"));
+const Signup = lazy(() => import("./Screens/Signup/Signup"));
+const SubscriptionLogs = lazy(() => import("./Screens/SubscriptionLogs/SubscriptionLogs"));
+const SubscriptionPlan = lazy(() => import("./Screens/SubscriptionPlan/SubscriptionPlan"));
+const PaymentMethod = lazy(() => import("./Screens/PaymentMethod/PaymentMethod"));
+
+
 function App() {
   return (
     <Suspense fallback={<div className="spinner-2 "></div>}>
       <Router basename="/">
-        <MyNav />
+        <Route path="/Login" component={Login} exact />
+
+        <Route path="/ForgotPassword1" component={ForgotPassword1} exact />
+        <Route path="/ForgotPassword2/:email" component={ForgotPassword2} exact />
+        <Route path="/ForgotPassword3" component={ForgotPassword3} exact />
+        <Route path="/Signup" component={Signup} exact />
+        <Route path="/SubscriptionLogs" component={SubscriptionLogs} exact />
+        <Route path="/SubscriptionPlan" component={SubscriptionPlan} exact />
+        
+        <Route path="/PaymentMethod" component={PaymentMethod} exact />
+
         <Route path="/" component={Home} exact />
         <Route path="/terms-and-services" component={TermsAndServices} exact />
         <Route
@@ -105,7 +125,6 @@ function App() {
         <Route path="/average-sunhours/:state/:zipcode" component={sunhoursss} exact />
         <Route path="/code-adoption/:state/:zipcode" component={CodeAdoption} exact />
         <Route path="/code-nec/:state/:zipcode" component={CodeNec} exact />
-        <MyFoot />
       </Router>
     </Suspense>
   );

@@ -1,9 +1,21 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { logout } from "../actions/userActions";
 const Nav = () => {
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   const [show, setshow] = useState(true);
   // return el.html(content);
+  const logOutHandler = async () => {
+    console.log("logOutHandler");
+    dispatch(logout());
+  };
+
   return (
     <header>
       <div className="container-fluid">
@@ -35,9 +47,9 @@ const Nav = () => {
                       <Link
                         to="/about-us"
 
-                        // onClick={(show) => {
-                        //   setshow(!show);
-                        // }}
+                      // onClick={(show) => {
+                      //   setshow(!show);
+                      // }}
                       >
                         About Us
                       </Link>
@@ -82,7 +94,21 @@ const Nav = () => {
                         Contact Us
                       </Link>
                     </li>
+                    {userInfo&&
+                    <li className="mx-xl-3 p-0 medium">
+                      <Link
+                        to="#"
+                        onClick={(show) => {
+                          logOutHandler()
+                          setshow(!show);
+                        }}
+
+                      >
+                        Logout
+                      </Link>
+                    </li>}
                   </ul>
+                  
                   <ul className="nav navbar-nav icons-nav  mt-3 mt-lg-0 flex-row">
                     <li className="nav-item ">
                       <div className="dropdown cart-drop cart-custom">
@@ -162,9 +188,9 @@ const Nav = () => {
                       </div> */}
                     </li>
                     <li className="nav-item mx-3">
-                      <a href="http://altways.com/" className="site-btn-header">
-                        Request a Quote{" "}
-                      </a>
+                      <Link to={userInfo ? '#' : '/Login'} onClick={()=>{userInfo && window.open('http://altways.com/')}} className="site-btn-header">
+                        {userInfo ? 'Request a Quote' : "Login"}
+                      </Link>
                     </li>
                   </ul>
                 </div>

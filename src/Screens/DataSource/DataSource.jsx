@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import MyNav from "../../Components/Nav";
+import MyFoot from "../../Components/Footer";
 
 const DataSource = () => {
   const goToTop = () => {
@@ -9,6 +11,8 @@ const DataSource = () => {
     });
   };
   return (
+    <>
+    <MyNav/>
     <div className="wrapper">
       {/*?php include('mobile-navigation-loggedin.php') ?*/}
       <section className="inner-banner"></section>
@@ -41,6 +45,9 @@ const DataSource = () => {
       </div>
       {/*?php include('site-footer.php') ?*/}
     </div>
+    <MyFoot/>
+
+    </>
   );
 };
 

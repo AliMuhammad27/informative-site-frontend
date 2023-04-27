@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import useWindowTitle from "../../Hooks/useWindowTitle";
 import { Link } from "react-router-dom";
+import MyNav from "../../Components/Nav";
+import MyFoot from "../../Components/Footer";
+
 const {
   averageElectricalUsage,
   toCsv,
@@ -28,6 +31,8 @@ const ElectricalUsageCom = ({ match }) => {
   });
   console.log("FilteredState", filteredState);
   return (
+    <>
+    <MyNav/>
     <div className="wrapper">
       <section className="inner-banner"></section>
       <section className="py-4">
@@ -123,6 +128,9 @@ const ElectricalUsageCom = ({ match }) => {
         </div>
       </div>
     </div>
+    <MyFoot/>
+
+    </>
   );
 };
 
