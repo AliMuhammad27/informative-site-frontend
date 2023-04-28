@@ -42,7 +42,10 @@ const Login = ({ history }) => {
 
   return (
     <>
+    <MyNav/>
       <div className="wrapper">
+      <section className="inner-banner"></section>
+
         <section className="contact-us-box">
           <div className="container">
             <div className="back-shadow">

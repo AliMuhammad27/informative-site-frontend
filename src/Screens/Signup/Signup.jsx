@@ -5,6 +5,8 @@ import { userSignUpAction } from '../../actions/userActions';
 import { validateEmail } from '../../Util/Helpers';
 import { Link } from 'react-router-dom';
 import Toasty from "../../Util/toast";
+import MyNav from "../../Components/Nav";
+import MyFoot from "../../Components/Footer";
 
 const Signup = ({history}) => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -12,7 +14,12 @@ const Signup = ({history}) => {
 
   useEffect(() => {
     if (userInfo) {
-      history.replace("/");
+      if(userInfo?.subscription == null){
+        history.replace("/SubscriptionPlan");
+
+      }
+      else{
+      history.replace("/")}
     }
   }, [userInfo]);
   
@@ -56,8 +63,11 @@ const body={firstName,
     setloading(false);
   };
   return (
-    <div><div>
+    <>
+    <MyNav/>
       <div className="wrapper">
+      <section className="inner-banner"></section>
+
         <section className="contact-us-box">
           <div className="container">
             <div className="back-shadow">
@@ -147,8 +157,8 @@ const body={firstName,
         </section>
       </div>
       <div className="overlay" />
-    </div>
-    </div>
+      <MyFoot/>
+    </>
   )
 }
 

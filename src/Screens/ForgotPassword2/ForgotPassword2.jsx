@@ -66,8 +66,11 @@ const ForgotPassword2 = ({ match, history }) => {
   };
 
   return (
-    <div><div>
+    <>
+    <MyNav/>
       <div className="wrapper">
+      <section className="inner-banner"></section>
+
         <section className="contact-us-box">
           <div className="container">
             <div className="back-shadow">
@@ -118,8 +121,9 @@ const ForgotPassword2 = ({ match, history }) => {
         </section>
       </div>
       <div className="overlay" />
-    </div>
-    </div>
+      <MyFoot/>
+
+    </>
   )
 }
 

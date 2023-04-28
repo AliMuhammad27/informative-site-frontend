@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { useEffect } from "react";
 import { useLayoutEffect } from "react";
+import PrivateRoute from "./Components/PrivateRoute";
+
 const Home = lazy(() => import("./Screens/Home/Home"));
 const MyNav = lazy(() => import("./Components/Nav"));
 const MyFoot = lazy(() => import("./Components/Footer"));
@@ -30,6 +32,7 @@ const EvChargingStations = lazy(() =>
 const WeatherData = lazy(() => import("./Screens/Weather/WeatherData"));
 const GasolinePrices = lazy(() => import("./Screens/Gasoline/GasolinePrices"));
 const TeslaShowrooms = lazy(() => import("./Screens/Showrooms/TeslaShowrooms"));
+const SubscriptionPlanDetails = lazy(() => import("./Screens/SubscriptionPlanDetails/SubscriptionPlanDetails"));
 const NotFound = lazy(() => import("./Screens/404/NotFound"));
 const AvergaSolarPanel = lazy(() =>
   import("./Screens/Prices/AveraeSolarPanel")
@@ -65,39 +68,41 @@ function App() {
         <Route path="/ForgotPassword3" component={ForgotPassword3} exact />
         <Route path="/Signup" component={Signup} exact />
         <Route path="/SubscriptionLogs" component={SubscriptionLogs} exact />
-        <Route path="/SubscriptionPlan" component={SubscriptionPlan} exact />
+        <PrivateRoute path="/SubscriptionPlan" component={SubscriptionPlan} exact />
         
-        <Route path="/PaymentMethod" component={PaymentMethod} exact />
+        <PrivateRoute path="/PaymentMethod" component={PaymentMethod} exact />
+        <PrivateRoute path="/SubscriptionPlanDetails/:id" component={SubscriptionPlanDetails} exact />
 
+        
         <Route path="/" component={Home} exact />
         <Route path="/terms-and-services" component={TermsAndServices} exact />
-        <Route
+        <PrivateRoute
           path="/gasoline-prices/:state/:zipcode"
           component={GasolinePrices}
           exact
         />
-        <Route
+        <PrivateRoute
           path="/naturalgas-prices/:state/:zipcode"
           component={NaturalgasRates}
           exact
         />
-        <Route path="/weather-data/:state/:zipcode" component={WeatherData} exact />
-        <Route path="/sun-hours/:state/:zipcode" component={SunHours} exact />
-        <Route path="/wind-speed/:state/:zipcode" component={WindSpeed} exact />
-        <Route
+        <PrivateRoute path="/weather-data/:state/:zipcode" component={WeatherData} exact />
+        <PrivateRoute path="/sun-hours/:state/:zipcode" component={SunHours} exact />
+        <PrivateRoute path="/wind-speed/:state/:zipcode" component={WindSpeed} exact />
+        <PrivateRoute
           path="/electric-car-charging-station/:state/:zipcode"
           component={EvChargingStations}
           exact
         />
-        <Route path="/tesla-showrooms/:state/:zipcode" component={EvShowrooms} exact />
-        <Route path="/electric-rates/:state/:zipcode" component={ElectricPrice} exact />
-        <Route path="/solar-rates/:state/:zipcode" component={SolarPrice} exact />
-        <Route
+        <PrivateRoute path="/tesla-showrooms/:state/:zipcode" component={EvShowrooms} exact />
+        <PrivateRoute path="/electric-rates/:state/:zipcode" component={ElectricPrice} exact />
+        <PrivateRoute path="/solar-rates/:state/:zipcode" component={SolarPrice} exact />
+        <PrivateRoute
           path="/electrical-usage/:state/:zipcode"
           component={ElectricalUsage}
           exact
         />
-        <Route
+        <PrivateRoute
           path="/electrical-usage-commercial/:state/:zipcode"
           component={ElectricalUsageCom}
           exact
@@ -107,24 +112,24 @@ function App() {
         <Route path="/why-zip-it-solar" component={WhyZip} exact />
         <Route path="/data-source" component={DataSource} exact />
         <Route path="/other-good-resources" component={OtherRecourses} exact />
-        <Route
+        <PrivateRoute
           path="/average-solar-panel-cost/:state/:zipcode"
           component={AvergaSolarPanel}
           exact
         />
-        <Route
+        <PrivateRoute
           path="/top-solar-contractors/:state/:zipcode"
           component={TopSolarContractors}
           exact
         />
-        <Route
+        <PrivateRoute
           path="/charging-locations/:state/:zipcode"
           component={ChargingStationsLocation}
           exact
         />
-        <Route path="/average-sunhours/:state/:zipcode" component={sunhoursss} exact />
-        <Route path="/code-adoption/:state/:zipcode" component={CodeAdoption} exact />
-        <Route path="/code-nec/:state/:zipcode" component={CodeNec} exact />
+        <PrivateRoute path="/average-sunhours/:state/:zipcode" component={sunhoursss} exact />
+        <PrivateRoute path="/code-adoption/:state/:zipcode" component={CodeAdoption} exact />
+        <PrivateRoute path="/code-nec/:state/:zipcode" component={CodeNec} exact />
       </Router>
     </Suspense>
   );

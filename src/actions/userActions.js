@@ -33,7 +33,7 @@ export const userSignUpAction = (body, history) => async (dispatch) => {
     });
 
     localStorage.setItem("userInfo", JSON.stringify(res?.data));
-    history?.replace("/");
+    history?.replace("/SubscriptionPlan");
   } catch (error) {
     console.log("error", error);
     Toasty("error", error?.response?.data?.message);

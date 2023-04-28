@@ -41,8 +41,11 @@ const ForgotPassword3 = (props) => {
   };
 
   return (
-    <div><div>
+    <>
+    <MyNav/>
     <div className="wrapper">
+    <section className="inner-banner"></section>
+
       <section className="contact-us-box">
         <div className="container">
           <div className="back-shadow">
@@ -108,8 +111,8 @@ const ForgotPassword3 = (props) => {
       </section>
     </div>
     <div className="overlay" />
-  </div>
-  </div>
+    <MyFoot/>
+  </>
   )
 }
 

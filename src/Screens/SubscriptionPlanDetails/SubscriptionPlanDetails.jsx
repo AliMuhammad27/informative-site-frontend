@@ -9,23 +9,22 @@ import MyNav from "../../Components/Nav";
 import MyFoot from "../../Components/Footer";
 import { Link } from 'react-router-dom';
 
-const SubscriptionPlan = ({ history }) => {
+const SubscriptionPlanDetails = ({ history,match }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
   useEffect(() => {
-    getpackgesHandler()
+    getpackgesDetailsHandler()
   }, [])
 
-  const [packges, setpackages] = useState()
-  const [packk, setpackk] = useState()
+  const [packagge, setpackage] = useState()
   const [loading, setloading] = useState()
 
-  const getpackgesHandler = async () => {
+  const getpackgesDetailsHandler = async () => {
     try {
       // try {
-      const res = await axios.get(`${baseURL}/user/getPackages`,);
-      setpackages(res?.data?.packages)
+      const res = await axios.get(`${baseURL}/user/packageDeail/${match?.params?.id}`,);
+      setpackage(res?.data?.package)
       setloading(false);
 
     } catch (error) {
@@ -45,7 +44,7 @@ const SubscriptionPlan = ({ history }) => {
     };
     const response = await axios.post(
       `${baseURL}/checkout`,
-      { token, product: packk?.amount },
+      { token, product: packagge?.amount },
       config
     );
     console.log("response", response);
@@ -63,7 +62,7 @@ const SubscriptionPlan = ({ history }) => {
       {
         card_holder_name: response?.data?.billing_details?.name,
         card_number: response?.data?.payment_method_details?.last4,
-        packagee: packk,
+        packagee: packagge,
         userid: userInfo?._id,
       },
       {
@@ -86,11 +85,6 @@ const SubscriptionPlan = ({ history }) => {
       });
     }
   }
-  const fillHandler=async(val)=>{
-    let vall=val
-    console.log('vall',vall)
-   await setpackk({...vall})
-  }
   
   return (
     <>
@@ -103,39 +97,36 @@ const SubscriptionPlan = ({ history }) => {
             <div className="back-shadow">
               <div className="row justify-content-center text-center">
                 <div className="col-lg-10">
-                  <h4 className="text-45">Subscription Plan</h4>
+                  <h4 className="text-45">Subscription Plan Details</h4>
                   <p className="text-16-rener">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.
                     Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar
                     tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
                     mus.</p>
                 </div>
               </div>
-              <div className="row">
-                {packges?.length > 0 && packges?.map(pac => (
-                                        <div style={{zindex:111111111111111}} onClick={async() => {await fillHandler(pac) }}>
+              <div className="row" style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
 
                   <div className="col-lg-4">
                     <div className="standard-box box">
-                      <div className="ribbon ribbon-top-left"><span>${pac?.amount} Per Year</span></div>
-                      <h5 className="packge-name text-center">{pac?.packagename}</h5>
-                      <small className="text-white">Duration : {pac?.duration} Months</small>
+                      <div className="ribbon ribbon-top-left"><span>${packagge?.amount} Per Year</span></div>
+                      <h5 className="packge-name text-center">{packagge?.packagename}</h5>
+                      <small className="text-white">Duration : {packagge?.duration} Months</small>
                       <ul>
                         <li>
                           <img src="../assets/images/green-check.png" alt="" />
-                          <span>{pac?.details} </span>
+                          <span>{packagge?.details} </span>
                         </li>
                       </ul>
-                      <Link to={`/SubscriptionPlanDetails/${pac?._id}`} className="btn site-btn my-4" >Current Plan</Link>
+                      {/* <Link to={`/SubscriptionPlanDetails/${packagge?._id}`} className="btn site-btn my-4" >Current Plan</Link> */}
 
-                        {/* <StripeCheckout
+                        <StripeCheckout
                           stripeKey="pk_test_IdCqGO7sona7aWZqqiXTs3MN00vl1vkEQa"
                           token={handleToken}
-                          amount={pac?.amount * 100}
+                          amount={packagge?.amount * 100}
                           email={userInfo?.email}
-                        ></StripeCheckout>  */}
+                        ></StripeCheckout> 
                          </div>
                     </div>
-                  </div>))}
               </div>
             </div>
           </div>
@@ -148,4 +139,4 @@ const SubscriptionPlan = ({ history }) => {
   )
 }
 
-export default SubscriptionPlan
+export default SubscriptionPlanDetails
