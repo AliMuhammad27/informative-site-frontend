@@ -36,6 +36,9 @@ const ContactUs = () => {
           icon: "success",
           title: "",
           text: `${res.data.message}`,
+          background: "#45b6fe",
+          color: "white",
+      
           showConfirmButton: false,
           timer: 1500,
         });
@@ -46,6 +49,9 @@ const ContactUs = () => {
         icon: "error",
         title: "ERROR",
         text: "Internal Server Error",
+        background: "#45b6fe",
+        color: "white",
+    
         showConfirmButton: false,
         timer: 1500,
       });

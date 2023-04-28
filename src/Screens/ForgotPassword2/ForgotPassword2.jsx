@@ -55,6 +55,9 @@ const ForgotPassword2 = ({ match, history }) => {
           icon: "success",
           title: "SUCCESS",
           text: "Verification Code Sent to your mail",
+          background: "#45b6fe",
+          color: "white",
+      
           showConfirmButton: false,
           timer: 1500
         });

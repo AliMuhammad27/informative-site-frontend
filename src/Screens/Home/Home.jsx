@@ -26,11 +26,15 @@ const { zipCodeData } = require("../../Util/Helpers");
 const Home = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+  console.log('userInfo',userInfo)
   const AuthNotifHandler = async () => {
     Swal.fire({
       icon: "info",
       title: "",
       text: "Please Login or Signup to proceed further",
+      background: "#45b6fe",
+      color: "white",
+  
       showConfirmButton: false,
       timer: 1500,
     });
@@ -41,6 +45,9 @@ const Home = ({ history }) => {
       icon: "info",
       title: "",
       text: "To avail this feature you must subscribe",
+      background: "#45b6fe",
+      color: "white",
+  
       showConfirmButton: false,
       timer: 1500,
     });
@@ -216,6 +223,7 @@ const Home = ({ history }) => {
       state && general ? history.push(handler()) : Modal1()
     }
     else if (userInfo && userInfo?.subscription == null) {
+      console.log('userInfo?.subscription',userInfo?.subscription)
       subscriptionidNotifHandler()
     }
   }

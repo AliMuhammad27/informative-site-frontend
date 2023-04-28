@@ -107,6 +107,44 @@ export const userLoginAction =
     }
   };
 
+  export const userBuySubscription =
+  (body,history) => async (dispatch) => {
+    try {
+      console.log("userLoginAction");
+
+
+      const res = await api.post("/user/userbuysubscription", body);
+
+      console.log("res", res);
+      if (res?.status == 201) {
+        dispatch({
+          type: USER_LOGIN_SUCCESS,
+          payload: res?.data,
+        });
+
+        localStorage.setItem("userInfo", JSON.stringify(res?.data));
+        Swal.fire({
+          icon: "success",
+          title: "",
+          background: "#45b6fe",
+          color: "white",
+      
+          text: "Congratulations! You have successfully subscribed to our package",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        history?.replace("/");
+
+      }
+    
+    } catch (error) {
+      dispatch({
+        type: USER_LOGIN_FAIL,
+        payload: error,
+      });
+    }
+  };
+
 export const userverfyadnresetpasword =
   (existingpassword, newpassword, confirm_password, email, history) =>
   async (dispatch, getState) => {
@@ -154,6 +192,9 @@ export const userverfyadnresetpasword =
           title: "",
           text: "Password updated successfully",
           showConfirmButton: false,
+          background: "#45b6fe",
+          color: "white",
+      
           timer: 1500,
         });
       }
@@ -193,6 +234,9 @@ export const userResetPasswordAction =
           icon: "success",
           title: "",
           text: "Password reset successfully",
+          background: "#45b6fe",
+          color: "white",
+      
           showConfirmButton: false,
           timer: 1500
         });
@@ -237,6 +281,9 @@ export const updateUserInfoAction = (body) => async (dispatch, getState) => {
         icon: "success",
         title: "",
         text: "Profile updated successfully",
+        background: "#45b6fe",
+        color: "white",
+    
         showConfirmButton: false,
         timer: 1500,
       });

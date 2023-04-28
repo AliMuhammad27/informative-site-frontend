@@ -81,6 +81,9 @@ const SubscriptionPlan = ({ history }) => {
         icon: "success",
         title: "",
         text: "Congratulations! You have successfully subscribed to our package",
+        background: "#45b6fe",
+        color: "white",
+    
         showConfirmButton: false,
         timer: 1500
       });

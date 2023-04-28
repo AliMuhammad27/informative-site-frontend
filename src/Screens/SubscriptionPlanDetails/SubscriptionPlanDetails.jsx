@@ -3,13 +3,16 @@ import React, { useEffect, useState } from 'react'
 import { baseURL } from '../../Util/api'
 import Toasty from "../../Util/toast";
 import StripeCheckout from "react-stripe-checkout";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import MyNav from "../../Components/Nav";
 import MyFoot from "../../Components/Footer";
 import { Link } from 'react-router-dom';
+import { userBuySubscription } from '../../actions/userActions';
 
 const SubscriptionPlanDetails = ({ history,match }) => {
+  const dispatch = useDispatch();
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -56,34 +59,32 @@ const SubscriptionPlanDetails = ({ history,match }) => {
       response.headers.date,
       response.data.receipt_email
     );
+    const body= {
+      card_holder_name: response?.data?.billing_details?.name,
+      card_number: response?.data?.payment_method_details?.last4,
+      packagee: packagge,
+      userid: userInfo?._id,
+    }
+    await dispatch(userBuySubscription(body,history));
 
-    const res = await axios.post(
-      `${baseURL}/user/userbuysubscription`,
-      {
-        card_holder_name: response?.data?.billing_details?.name,
-        card_number: response?.data?.payment_method_details?.last4,
-        packagee: packagge,
-        userid: userInfo?._id,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${userInfo.token}`
-        }
-      }
-    );
-    localStorage.setItem("userInfo", JSON.stringify(res?.data));
+    // const res = await axios.post(
+    //   `${baseURL}/user/userbuysubscription`,
+    //   {
+    //     card_holder_name: response?.data?.billing_details?.name,
+    //     card_number: response?.data?.payment_method_details?.last4,
+    //     packagee: packagge,
+    //     userid: userInfo?._id,
+    //   },
+    //   {
+    //     headers: {
+    //       Authorization: `Bearer ${userInfo.token}`
+    //     }
+    //   }
+    // );
+    // localStorage.setItem("userInfo", JSON.stringify(res?.data));
 
     setloading(false);
-    if (res?.status == 201) {
-      history?.push("/");
-      Swal.fire({
-        icon: "success",
-        title: "",
-        text: "Congratulations! You have successfully subscribed to our package",
-        showConfirmButton: false,
-        timer: 1500
-      });
-    }
+    
   }
   
   return (
