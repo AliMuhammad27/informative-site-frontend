@@ -45,6 +45,9 @@ const ChargingStationsLocation = lazy(() =>
 );
 const sunhoursss = lazy(() => import("./Screens/Weather/SunHourss"));
 const TermsAndServices = lazy(() => import("./Screens/Tos/TermsAndServices"));
+const PrivacyPolicy = lazy(() => import("./Screens/Tos/PrivacyPolicy"));
+
+
 const CodeAdoption = lazy(() => import("./Screens/NewServices/CodeAdoption"));
 const CodeNec = lazy(() => import("./Screens/NewServices/CodeNec"));
 const Login = lazy(() => import("./Screens/Login/Login"));
@@ -76,6 +79,9 @@ function App() {
         
         <Route path="/" component={Home} exact />
         <Route path="/terms-and-services" component={TermsAndServices} exact />
+        <Route path="/PrivacyPolicy" component={PrivacyPolicy} exact />
+
+        
         <PrivateRoute
           path="/gasoline-prices/:state/:zipcode"
           component={GasolinePrices}

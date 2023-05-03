@@ -2971,3 +2971,30 @@ h5.p-md {
 .succ-pop .modal-body img{
   width: 100px;
 }
+
+.overlay-heading {
+  position: relative;
+}
+
+.modal-content {
+  border: 1px solid transparent;
+  border-radius: 0;
+  box-shadow: 0 3px 6px rgb(106, 106, 106, 16%);
+  background: #f1f1f1;
+}
+
+.modal-content h2 {
+  font-size: 30px;
+  font-family: "Rubik", sans-serif;
+  font-weight: 800;
+  color: #2b2541;
+  line-height: 40px;
+}
+
+.modal-content p {
+  font-size: 20px;
+  line-height: 27px;
+  font-family: "Jost", sans-serif !important;
+  color: #2b2541;
+  font-weight: 600;
+}

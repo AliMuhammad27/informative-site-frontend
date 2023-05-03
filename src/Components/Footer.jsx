@@ -135,7 +135,8 @@ const Footer = () => {
                     </Link>
                   </li>
                   <li>
-                    <a href="#_"> Privacy Policy </a>
+                  <Link
+                      to="/PrivacyPolicy"  onClick={goToTop}> Privacy Policy </Link>
                   </li>
                 </ul>
               </div>
